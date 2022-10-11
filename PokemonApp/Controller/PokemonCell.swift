@@ -22,6 +22,7 @@ class PokemonCell: UITableViewCell {
         // Initialization code
         
        // pokemonImage.image = "
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

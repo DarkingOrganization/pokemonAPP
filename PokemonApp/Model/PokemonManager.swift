@@ -18,7 +18,7 @@ class PokemonManager {
     let pokemonURL = "https://pokeapi.co/api/v2/pokemon/"
     
     var imageFinal: UIImage?
-    
+  
     var delegate: PokemonManagerDelegate?
     
     func fetchPokemon(pokemonCode: String) {
@@ -52,6 +52,7 @@ class PokemonManager {
  
     func parseJSON(_ pokemonData: Data) -> PokemonModel? {
         let decoder = JSONDecoder()
+        
         do {
             let decodedData = try decoder.decode(PokemonData.self, from: pokemonData)
 //            let id = decodedData.weather[0].id
@@ -60,10 +61,13 @@ class PokemonManager {
             let imagenPokemon = decodedData.sprites.other.home.front_default
             let codigo = decodedData.id
             let id = decodedData.idString(codigo)
+            let tipo = decodedData.types[0].type.name
+            var tipo2: String = ""
+            if  decodedData.types.count > 0 {
+                tipo2 = decodedData.types[1].type.name
+            }
             
-            imagenRequest(with: imagenPokemon)
-            
-            let pokemon = PokemonModel(pokemonName: name, imageFront: imageFinal ?? .checkmark,  pokemonID: id)
+            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, tipoPokemon2: tipo2)
             
             ///
             

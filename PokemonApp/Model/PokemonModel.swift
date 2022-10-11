@@ -10,8 +10,10 @@ import UIKit
 
 struct PokemonModel {
     let pokemonName: String
-    let imageFront: UIImage
+    let imageFront: String
     let pokemonID: String
+    let tipoPokemon: String
+    let tipoPokemon2: String
     
 }
 

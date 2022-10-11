@@ -10,8 +10,8 @@ import Foundation
 struct PokemonData: Codable {
     let forms: [forms]
     let sprites: Sprites
-    var id: Int
-    
+    let id: Int
+    var types: [Types] ///= [.init(type: Name(name: "")), .init(type: Name(name: ""))]
     
     func idString (_ code: Int) -> String {
         return "00\(code)"
@@ -20,6 +20,14 @@ struct PokemonData: Codable {
 }
 struct forms: Codable {
     let name: String
+}
+
+struct Types: Codable {
+    let type: Name
+}
+
+struct Name: Codable {
+   let name: String
 }
 
 struct Sprites: Codable {

@@ -8,7 +8,20 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var buttonOne: UIButton!
     @IBOutlet weak var buttonTwo: UIButton!
     @IBOutlet weak var buttonTree: UIButton!
+   
+    
+  
+    @IBOutlet weak var constrainCentre: NSLayoutConstraint!
+
+    @IBOutlet weak var elemento: UIImageView!
+    @IBOutlet weak var pokemonPop: UIImageView!
+    @IBOutlet weak var featuresTotal: UIImageView!
+    @IBOutlet weak var vistaFeatures: UIView!
+    
+   
+    
     private var pokemonManager = PokemonManager()
+    private var codigo: String = ""
     var pokemones: [PokemonModel]? = []
    
     override func viewDidLoad() {
@@ -21,7 +34,16 @@ class ViewController: UIViewController, UITableViewDelegate {
 
         let tittle = "Pokemon"
         title = tittle
+        
+        vistaFeatures.layer.cornerRadius = 10
         loadItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        constrainCentre.constant = -500
+        vistaFeatures.alpha = 0
+        
+        
     }
     
 //    func editSearchBar () {
@@ -32,19 +54,43 @@ class ViewController: UIViewController, UITableViewDelegate {
 
     //Mark - TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "featuresSegue", sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-    }
 
+        constrainCentre.constant = 0
+        vistaFeatures.alpha = 1
+        var codigoImagenPokemon:String? = " "
+        if let imagenPokemon = Int((pokemones?[indexPath.row].pokemonID)!) {
+            if imagenPokemon < 10 {
+                codigoImagenPokemon = "00\(imagenPokemon)"
+            } else if imagenPokemon < 100 {
+                codigoImagenPokemon = "0\(imagenPokemon)"
+            } else if imagenPokemon < 810 {
+                codigoImagenPokemon = "\(imagenPokemon)"
+            } else {
+                codigoImagenPokemon = nil
+            }
+            if let codigo = codigoImagenPokemon{
+                pokemonPop.image = UIImage(named: codigo)
+                featuresTotal.image = UIImage(named: codigo)
+        }
+    }
+        if let element = pokemones?[indexPath.row].tipoPokemon{
+        elemento.image = UIImage(named: element)
+        }
+        UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
+            
+    }
+    @IBAction func closeFeatures(_ sender: UIButton) {
+    
+        constrainCentre.constant = -400
+        vistaFeatures.alpha = 0
+    }
+    
     func loadItems() {
-            pokemonManager.fetchPokemon(pokemonCode: "1")
-            pokemonManager.fetchPokemon(pokemonCode: "2")
-            pokemonManager.fetchPokemon(pokemonCode: "3")
-            pokemonManager.fetchPokemon(pokemonCode: "4")
-            pokemonManager.fetchPokemon(pokemonCode: "5")
-            pokemonManager.fetchPokemon(pokemonCode: "6")
-            pokemonManager.fetchPokemon(pokemonCode: "7")
-//            pokemones = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        
+        
+        for pokemon in 1...809 {
+                pokemonManager.fetchPokemon(pokemonCode: String(pokemon))
+            }
             tableView.reloadData()
         
     }
@@ -57,7 +103,7 @@ extension ViewController: PokemonManagerDelegate {
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
    
-            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID)]
+            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, tipoPokemon2: pokemon.tipoPokemon2)]
             self.pokemones?.append(contentsOf: pokemoncito)
             self.tableView.reloadData()
         }
@@ -102,13 +148,28 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     cell.pokemonLabel?.text = pokemones?[indexPath.row].pokemonName
     cell.codigoPokemonLabel.text = pokemones?[indexPath.row].pokemonID
     
-    cell.pokemonImage.image = pokemones?[indexPath.row].imageFront
-    
-
-    
+    var codigoImagenPokemon:String? = " "
+    if let imagenPokemon = Int((pokemones?[indexPath.row].pokemonID)!) {
+        if imagenPokemon < 10 {
+            codigoImagenPokemon = "00\(imagenPokemon)"
+        } else if imagenPokemon < 100 {
+            codigoImagenPokemon = "0\(imagenPokemon)"
+        } else if imagenPokemon < 810 {
+            codigoImagenPokemon = "\(imagenPokemon)"
+        } else {
+            codigoImagenPokemon = nil
+        }
+        if let codigo = codigoImagenPokemon{
+                cell.pokemonImage.image = UIImage(named: codigo)
+                
+        
+    }
+}
+    if let tipo = pokemones?[indexPath.row].tipoPokemon, let tipo2 =  pokemones?[indexPath.row].tipoPokemon2{
+    cell.imageClaseOne.image = UIImage(named: tipo)
+        cell.imageClaseTwo.image = UIImage(named: tipo2)
+    }
     return cell
-    
-    
 }
 }
 
