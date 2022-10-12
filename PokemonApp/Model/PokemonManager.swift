@@ -62,18 +62,13 @@ class PokemonManager {
             let codigo = decodedData.id
             let id = decodedData.idString(codigo)
             let tipo = decodedData.types[0].type.name
-            var tipo2: String = ""
-            if  decodedData.types.count > 0 {
-                tipo2 = decodedData.types[1].type.name
-            }
+            //var tipo2: String = ""
+//            if  decodedData.types.count > 0 {
+//                tipo2 = decodedData.types[1].type.name
+//            }
             
-            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, tipoPokemon2: tipo2)
-            
-            ///
-            
-            
-            
-            ///
+            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo)//, tipoPokemon2: tipo2
+
 
             return pokemon
             
