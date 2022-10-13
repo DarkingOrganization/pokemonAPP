@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var pokemonPop: UIButton!
     @IBOutlet weak var featuresTotal: UIImageView!
     @IBOutlet weak var vistaFeatures: UIView!
+    @IBOutlet weak var namePokemonFeatures: UILabel!
+    @IBOutlet weak var codigoPokemonFeatures: UILabel!
+    //@IBOutlet weak var abilityFeatures: UILabel!
     
     @IBOutlet weak var buttonViewT: UIButton!
     
@@ -67,22 +70,32 @@ class ViewController: UIViewController, UITableViewDelegate {
 
         constrainCentre.constant = 0
         vistaFeatures.alpha = 1
-        if let tipo = pokemones?[indexPath.row].tipoPokemon{
-            elemento.image = UIImage(named: tipo)
-        }
+     
+        
+        if let detailsPokemon = pokemones?[indexPath.row] {
+            self.namePokemonFeatures.text = detailsPokemon.pokemonName
+            self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
+            
+        //    self.abilityFeatures.text = "Mean ability:\(detailsPokemon.abilityPokemon)"
+            
+            elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
    
-        if let imagenPokemon = Int((pokemones?[indexPath.row].pokemonID)!) {
-
+        if let imagenPokemon = Int(detailsPokemon.pokemonID) {
             self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
            
-            if let codigo = self.codigoImagenPokemon{
-                let imagen = (UIImage(named: codigo))
-                pokemonPop.setImage(imagen, for: .normal)
-                featuresTotal.image = UIImage(named: codigo)
-        }
+//            if let codigo = codigoImagenPokemon{
+//                self.featuresTotal.image = UIImage(named: codigo)
+                
+            let imagen = (UIImage(named: self.codigoImagenPokemon!))
+            
+            pokemonPop.setImage(imagen, for: .normal)
+            self.featuresTotal.image = UIImage(named: (pokemones?[indexPath.row].imageFront)!)
+            
     }
         if let element = pokemones?[indexPath.row].tipoPokemon{
         elemento.image = UIImage(named: element)
+        }
+            
         }
         UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
         
@@ -126,7 +139,7 @@ extension ViewController: PokemonManagerDelegate {
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
    
-            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon)]//, tipoPokemon2: pokemon.tipoPokemon2
+            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon)]//, tipoPokemon2: pokemon.tipoPokemon2
             self.pokemones?.append(contentsOf: pokemoncito)
             self.tableView.reloadData()
         }
@@ -171,6 +184,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     cell.pokemonLabel?.text = pokemones?[indexPath.row].pokemonName
     cell.codigoPokemonLabel.text = pokemones?[indexPath.row].pokemonID
     
+
     
     if let imagenPokemon = Int((pokemones?[indexPath.row].pokemonID)!) {
         

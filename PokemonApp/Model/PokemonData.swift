@@ -12,11 +12,21 @@ struct PokemonData: Codable {
     let sprites: Sprites
     let id: Int
     var types: [Types] ///= [.init(type: Name(name: "")), .init(type: Name(name: ""))]
+    var abilities: [Abilities]
     
     func idString (_ code: Int) -> String {
         return "00\(code)"
     }
     
+}
+
+struct Abilities: Codable  {
+    let  ability: ability
+}
+
+struct ability: Codable  {
+    let name: String
+    let url: URL
 }
 struct forms: Codable {
     let name: String

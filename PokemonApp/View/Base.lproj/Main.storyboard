@@ -51,10 +51,6 @@
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUa-bY-EFi">
                                 <rect key="frame" x="20" y="244" width="374" height="401"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fBf-7q-Y07" userLabel="Popup">
-                                        <rect key="frame" x="18" y="141" width="338" height="235"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6Sj-EM-g5q" userLabel="elemento">
                                         <rect key="frame" x="265" y="63" width="66" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,6 +69,24 @@
                                             <action selector="imageButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ahB-FJ-rhd"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-Xo-beP">
+                                        <rect key="frame" x="130" y="44" width="127" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Codigo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WI-T8-k4k">
+                                        <rect key="frame" x="130" y="78" width="127" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fBf-7q-Y07" userLabel="Popup">
+                                        <rect key="frame" x="18" y="141" width="338" height="235"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -107,9 +121,11 @@
                         <outlet property="buttonTree" destination="7V3-ct-4Z2" id="Tpm-Vs-LXO"/>
                         <outlet property="buttonTwo" destination="LTu-a6-8EK" id="bPn-2s-mUm"/>
                         <outlet property="buttonViewT" destination="INP-7b-pyM" id="9f3-LA-tEH"/>
+                        <outlet property="codigoPokemonFeatures" destination="2WI-T8-k4k" id="V0O-pF-Ol8"/>
                         <outlet property="constrainCentre" destination="MaM-2n-Rfq" id="zZw-6h-bbA"/>
                         <outlet property="elemento" destination="6Sj-EM-g5q" id="wQY-vt-WrV"/>
                         <outlet property="featuresTotal" destination="fBf-7q-Y07" id="UjF-i5-YNr"/>
+                        <outlet property="namePokemonFeatures" destination="0Vp-Xo-beP" id="5e6-cH-PZk"/>
                         <outlet property="pokemonPop" destination="26O-A6-pPu" id="U2q-e4-tUP"/>
                         <outlet property="tableView" destination="wJG-YQ-GJS" id="nt3-ez-aps"/>
                         <outlet property="vistaFeatures" destination="SUa-bY-EFi" id="ILU-O9-ayM"/>

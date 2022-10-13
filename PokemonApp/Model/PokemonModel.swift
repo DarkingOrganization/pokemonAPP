@@ -13,6 +13,7 @@ struct PokemonModel {
     let imageFront: String
     let pokemonID: String
     let tipoPokemon: String
+    let abilityPokemon: String
    // let tipoPokemon2: String
     
 }
