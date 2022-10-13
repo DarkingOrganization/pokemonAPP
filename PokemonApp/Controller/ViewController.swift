@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var vistaFeatures: UIView!
     @IBOutlet weak var namePokemonFeatures: UILabel!
     @IBOutlet weak var codigoPokemonFeatures: UILabel!
-    //@IBOutlet weak var abilityFeatures: UILabel!
+    @IBOutlet weak var abilityFeatures: UILabel!
     
     @IBOutlet weak var buttonViewT: UIButton!
     
@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         let tittle = "Pokemon"
         title = tittle
         
-        //navigationController?.navigationBar.barTintColor = .none
         vistaFeatures.layer.cornerRadius = 10
         
         loadItems()
@@ -55,6 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     @IBAction func imageButtonPress (_ sender: UIButton) {
         performSegue(withIdentifier: "detalles", sender: self)
+        
         
     }
     
@@ -71,12 +71,12 @@ class ViewController: UIViewController, UITableViewDelegate {
         constrainCentre.constant = 0
         vistaFeatures.alpha = 1
      
-        
+ 
         if let detailsPokemon = pokemones?[indexPath.row] {
             self.namePokemonFeatures.text = detailsPokemon.pokemonName
             self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
             
-        //    self.abilityFeatures.text = "Mean ability:\(detailsPokemon.abilityPokemon)"
+         self.abilityFeatures.text = "Ability:\(detailsPokemon.abilityPokemon)"
             
             elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
    
@@ -87,22 +87,24 @@ class ViewController: UIViewController, UITableViewDelegate {
 //                self.featuresTotal.image = UIImage(named: codigo)
                 
             let imagen = (UIImage(named: self.codigoImagenPokemon!))
+                     pokemonPop.setImage(imagen, for: .normal)
+                     featuresTotal.image = UIImage(named: self.codigoImagenPokemon!)
+             }
             
-            pokemonPop.setImage(imagen, for: .normal)
-            self.featuresTotal.image = UIImage(named: (pokemones?[indexPath.row].imageFront)!)
-            
+           // self.featuresTotal.image = UIImage(named: (pokemones?[indexPath.row].imageFront)!)
+        
     }
         if let element = pokemones?[indexPath.row].tipoPokemon{
         elemento.image = UIImage(named: element)
         }
-            
-        }
+    
+        
         UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
         
         buttonViewT.alpha = 0.5
     }
-    
-    
+
+
     @IBAction func closeFeatures(_ sender: UIButton) {
     
         constrainCentre.constant = -400
