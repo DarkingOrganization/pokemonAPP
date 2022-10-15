@@ -13,11 +13,15 @@ struct PokemonData: Codable {
     let id: Int
     var types: [Types] ///= [.init(type: Name(name: "")), .init(type: Name(name: ""))]
     var abilities: [Abilities]
-    
+    var stats: [Stats] //[0].base_stat
     func idString (_ code: Int) -> String {
         return "00\(code)"
     }
     
+}
+
+struct Stats: Codable {
+    let base_stat: Int
 }
 
 struct Abilities: Codable  {

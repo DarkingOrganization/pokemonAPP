@@ -14,6 +14,8 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     @IBOutlet weak var constrainCentre: NSLayoutConstraint!
 
     @IBOutlet weak var elemento: UIImageView!
+    
+    @IBOutlet weak var elemento2: UIImageView?
     @IBOutlet weak var pokemonPop: UIButton!
     @IBOutlet weak var featuresTotal: UIImageView!
     @IBOutlet weak var vistaFeatures: UIView!
@@ -29,6 +31,13 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     private var elementoText: String?
+    
+    var stats1: Float?
+    var stats2: Float?
+    var stats3: Float?
+    var stats4: Float?
+    var stats5: Float?
+    var stats6: Float?
     
     private var searchController = UISearchController()
     
@@ -82,16 +91,34 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         let destinationVC = segue.destination as! ViewControllerDetalles
             
         if tableView.indexPathForSelectedRow != nil {
-            if let nameSegue = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image  {
+            if let nameSegue = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
             destinationVC.selectedPokemon = nameSegue
             destinationVC.selectedPokemonImage = imagenSegue
             destinationVC.selectedPokemonIconoElement = elementIcon
-            destinationVC.selectedPokemonTextElement = elementoText
+            destinationVC.selectedPokemonTextElement = self.elementoText
+              
                 
         }
     }
+        if tableView.indexPathForSelectedRow != nil {
+            if let stats1 = stats1, let stats2 = self.stats2, let stats3 = self.stats3, let stats4 = self.stats4, let stats5 = self.stats5, let stats6 = self.stats6{
+        
+            destinationVC.stats1 = Float(stats1 / 100)
+            destinationVC.stats2 = Float(stats2 / 100)
+            destinationVC.stats3 = Float(stats3 / 100)
+            destinationVC.stats4 = Float(stats4 / 100)
+            destinationVC.stats5 = Float(stats5 / 100)
+            destinationVC.stats6 = Float(stats6 / 100)
+                
+                destinationVC.statsString1 = String(Int(stats1))
+                destinationVC.statsString2 = String(Int(stats2))
+                destinationVC.statsString3 = String(Int(stats3))
+                destinationVC.statsString4 = String(Int(stats4))
+                destinationVC.statsString5 = String(Int(stats5))
+                destinationVC.statsString6 = String(Int(stats6))
     }
-   
+        }
+    }
     
     
     
@@ -144,13 +171,30 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
 
         constrainCentre.constant = 0
         vistaFeatures.alpha = 1
-     
+        
+        if let statsPokemon1 = pokemones?[indexPath.row].stats1, let statsPokemon2 = pokemones?[indexPath.row].stats2, let statsPokemon3 = pokemones?[indexPath.row].stats3, let statsPokemon4 = pokemones?[indexPath.row].stats4, let statsPokemon5 = pokemones?[indexPath.row].stats5, let statsPokemon6 = pokemones?[indexPath.row].stats6     {
+            
+            self.stats1 = Float(statsPokemon1)
+            self.stats2 = Float(statsPokemon2)
+            self.stats3 = Float(statsPokemon3)
+            self.stats4 = Float(statsPokemon4)
+            self.stats5 = Float(statsPokemon5)
+            self.stats6 = Float(statsPokemon6)
+            
+        }
  
         if let detailsPokemon = pokemones?[indexPath.row] {
             self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
             
             
             elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
+            
+            if let imagen2 = detailsPokemon.tipoPokemon2 {
+            if let elemento = UIImage(named: imagen2) {
+                elemento2?.image = elemento
+            }
+            }
+           
             elementoText = "\(detailsPokemon.tipoPokemon)"
    
         if let imagenPokemon = Int(detailsPokemon.pokemonID) {
@@ -213,7 +257,7 @@ extension ViewController: PokemonManagerDelegate {
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
    
-            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon)]//, tipoPokemon2: pokemon.tipoPokemon2
+            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats1: pokemon.stats1, stats2: pokemon.stats2, stats3: pokemon.stats3, stats4: pokemon.stats4, stats5: pokemon.stats5, stats6: pokemon.stats6)]//, tipoPokemon2: pokemon.tipoPokemon2
             self.pokemones?.append(contentsOf: pokemoncito)
             self.pokemonesFiltrados?.append(contentsOf: pokemoncito)
             self.tableView.reloadData()
@@ -256,9 +300,13 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 }
     if let tipo = pokemonesFiltrados?[indexPath.row].tipoPokemon{ //, let tipo2 =  pokemones?[indexPath.row].tipoPokemon2
     cell.imageClaseOne.image = UIImage(named: tipo)
-        //cell.imageClaseTwo.image = UIImage(named: tipo2)
+   
     }
-    cell.mutableOrderedSetValue(forKey: (pokemonesFiltrados?[indexPath.row].pokemonName)!)
+    
+    if let tipo2 = pokemonesFiltrados?[indexPath.row].tipoPokemon2{
+        cell.imageClaseTwo.image = UIImage(named: tipo2)
+        }
+    
     return cell
 }
 }

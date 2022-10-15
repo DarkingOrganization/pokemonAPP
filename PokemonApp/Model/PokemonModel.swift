@@ -14,7 +14,13 @@ struct PokemonModel {
     let pokemonID: String
     let tipoPokemon: String
     let abilityPokemon: String
-   // let tipoPokemon2: String
+    let tipoPokemon2: String?
+    let stats1: Int
+    let stats2: Int
+    let stats3: Int
+    let stats4: Int
+    let stats5: Int
+    let stats6: Int
     
 }
 

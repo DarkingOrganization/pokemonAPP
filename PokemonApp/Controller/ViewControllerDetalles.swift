@@ -14,6 +14,19 @@ class ViewControllerDetalles: UIViewController {
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
 
+    var stats1: Float?
+    var stats2: Float?
+    var stats3: Float?
+    var stats4: Float?
+    var stats5: Float?
+    var stats6: Float?
+    
+    var statsString1: String? = nil
+    var statsString2: String? = nil
+    var statsString3: String? = nil
+    var statsString4: String? = nil
+    var statsString5: String? = nil
+    var statsString6: String? = nil
     
     @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var BigImage: UIImageView!
@@ -30,6 +43,13 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var stat5: UILabel!
     @IBOutlet weak var stat6: UILabel!
     
+    @IBOutlet weak var LabelStats1: UILabel!
+    @IBOutlet weak var LabelStats2: UILabel!
+    @IBOutlet weak var LabelStats3: UILabel!
+    @IBOutlet weak var LabelStats4: UILabel!
+    @IBOutlet weak var LabelStats5: UILabel!
+    @IBOutlet weak var LabelStats6: UILabel!
+    
     @IBOutlet weak var progressStat1: UIProgressView!
     @IBOutlet weak var progressStat2: UIProgressView!
     @IBOutlet weak var progressStat3: UIProgressView!
@@ -37,9 +57,13 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var progressStat5: UIProgressView!
     @IBOutlet weak var progressStat6: UIProgressView!
 
+    @IBOutlet weak var progressTest: UIProgressView!
+    @IBOutlet weak var progressSlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loaditems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,16 +82,34 @@ class ViewControllerDetalles: UIViewController {
         viewElement.backgroundColor =  #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)  //#colorLiteral()
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
+        
+        
+        stat1.text = statsString1
+        stat2.text = statsString2
+        stat3.text = statsString3
+        stat4.text = statsString4
+        stat5.text = statsString5
+        stat6.text = statsString6
+
     }
     
     func loaditems() {
-        stat1.text = "hp"
-        stat2.text = "Attack"
-        stat3.text = "Defense"
-        stat4.text = "Sp. Atk"
-        stat5.text = "Sp. Def"
-        stat6.text = "Speed"
+        LabelStats1.text = "hp"
+        LabelStats2.text = "Attack"
+        LabelStats3.text = "Defense"
+        LabelStats4.text = "Sp. Atk"
+        LabelStats5.text = "Sp. Def"
+        LabelStats6.text = "Speed"
         
+        
+        progressStat1.progress = Float(stats1 ?? 0)
+        progressStat2.progress = Float(stats2 ?? 0)
+        progressStat3.progress = Float(stats3 ?? 0)
+        progressStat4.progress = Float(stats4 ?? 0)
+        progressStat5.progress = Float(stats5 ?? 0)
+        progressStat6.progress = Float(stats6 ?? 0)
+        
+      
         
     }
     
