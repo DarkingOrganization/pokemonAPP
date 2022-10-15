@@ -1,9 +1,9 @@
 
 import UIKit
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchTextField: UISearchBar!
+
     
     @IBOutlet weak var buttonOne: UIButton!
     @IBOutlet weak var buttonTwo: UIButton!
@@ -25,16 +25,22 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     
     private var pokemonManager = PokemonManager()
-    var pokemones: [PokemonModel]? = []
+    private var pokemones: [PokemonModel]? = []
+    private var pokemonesFiltrados: [PokemonModel]!
     private var codigoImagenPokemon:String?
     
+    private var searchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        
         tableView.dataSource = self
         tableView.delegate = self
         pokemonManager.delegate = self
+    
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
 
         let tittle = "Pokemon"
@@ -42,14 +48,21 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         vistaFeatures.layer.cornerRadius = 10
         
+        
         loadItems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         constrainCentre.constant = -500
         vistaFeatures.alpha = 0
         buttonViewT.alpha = 0
         
+        setGradientBackground()
+        
+        buttonOne.setImage(UIImage(named: "pikachuicono"), for: .normal)
+        buttonTwo.setImage(UIImage(named: "localizacion"), for: .normal)
+        buttonTree.setImage(UIImage(named: "dulce"), for: .normal)
     }
     
     @IBAction func imageButtonPress (_ sender: UIButton) {
@@ -64,46 +77,6 @@ class ViewController: UIViewController, UITableViewDelegate {
 //            pokemonManager.fetchPokemon(pokemonCode: pokemon)
 //        }
 //    }
-
-    //Mark - TableView Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        constrainCentre.constant = 0
-        vistaFeatures.alpha = 1
-     
- 
-        if let detailsPokemon = pokemones?[indexPath.row] {
-            self.namePokemonFeatures.text = detailsPokemon.pokemonName
-            self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
-            
-         self.abilityFeatures.text = "Ability:\(detailsPokemon.abilityPokemon)"
-            
-            elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
-   
-        if let imagenPokemon = Int(detailsPokemon.pokemonID) {
-            self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
-           
-//            if let codigo = codigoImagenPokemon{
-//                self.featuresTotal.image = UIImage(named: codigo)
-                
-            let imagen = (UIImage(named: self.codigoImagenPokemon!))
-                     pokemonPop.setImage(imagen, for: .normal)
-                     featuresTotal.image = UIImage(named: self.codigoImagenPokemon!)
-             }
-            
-           // self.featuresTotal.image = UIImage(named: (pokemones?[indexPath.row].imageFront)!)
-        
-    }
-        if let element = pokemones?[indexPath.row].tipoPokemon{
-        elemento.image = UIImage(named: element)
-        }
-    
-        
-        UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
-        
-        buttonViewT.alpha = 0.5
-    }
-
 
     @IBAction func closeFeatures(_ sender: UIButton) {
     
@@ -133,6 +106,78 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
     }
     
+    func setGradientBackground() {
+        let colorTop =  UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
+                    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.1, 0.1]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    
+//MARK: - TableView Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        constrainCentre.constant = 0
+        vistaFeatures.alpha = 1
+     
+ 
+        if let detailsPokemon = pokemones?[indexPath.row] {
+            self.namePokemonFeatures.text = detailsPokemon.pokemonName
+            self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
+            self.abilityFeatures.text = "Ability:\(detailsPokemon.abilityPokemon)"
+            
+            elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
+   
+        if let imagenPokemon = Int(detailsPokemon.pokemonID) {
+            self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
+           
+                
+            let imagen = (UIImage(named: self.codigoImagenPokemon!))
+                     pokemonPop.setImage(imagen, for: .normal)
+                     featuresTotal.image = UIImage(named: self.codigoImagenPokemon!)
+            
+        
+             }
+    }
+        if let element = pokemones?[indexPath.row].tipoPokemon{
+        elemento.image = UIImage(named: element)
+        }
+
+        UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
+        
+        buttonViewT.alpha = 0.5
+
+        
+        
+//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+////            pokemones? = pokemones?.filter("name CONTAINS[cd] %@", searchBar.text!)
+//            pokemones? = (pokemones?.filter("title CONTAINS[cd] %@", searchBar.text!)
+//            //toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+//            tableView.reloadData()
+//        }
+//
+//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//            if searchBar.text?.count == 0 {
+//               loadItems()
+//                DispatchQueue.main.async {
+//                    searchBar.resignFirstResponder()
+//                }
+//            }
+//        }
+        
+        
+    }
+
+
+    
+    
 //MARK: - PokemonManagerDelegate
 }
 
@@ -151,24 +196,6 @@ extension ViewController: PokemonManagerDelegate {
         print(error)
     }
 }
-
-////Mark: - Searchbar delegate methods
-//extension ViewController: UISearchBarDelegate{
-//
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        //toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
-//        tableView.reloadData()
-//    }
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.count == 0 {
-//           // loadItems()
-//            DispatchQueue.main.async {
-//                //searchBar.resignFirstResponder()
-//            }
-//        }
-//    }
-//}
 
 
 //Mark - Tableview Datasource Methods
@@ -206,5 +233,35 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 }
 }
 
+//MARK: - UISearch
 
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        print(text)
+        
+        pokemonesFiltrados = []
+        
+        if text == "" {
+            pokemonesFiltrados = pokemones
+        } else {
+            for pokemon in pokemones?.startIndex. {
+                if pokemon.
+            }
+        }
+
+        
+//        func searchBar?(searchBar?(UISearchBar, textDidChange: String)){
+//
+//        }
+    }
+    
+    
+    
+    
+}
+
+ 
 
