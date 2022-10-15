@@ -44,11 +44,7 @@ class PokemonManager {
         }
     }
     
-    
-    
-   
-    
-    
+
  
     func parseJSON(_ pokemonData: Data) -> PokemonModel? {
         let decoder = JSONDecoder()

@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     
     private var pokemonManager = PokemonManager()
     private var pokemones: [PokemonModel]? = []
-    private var pokemonesFiltrados: [PokemonModel]!
+    private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     
     private var searchController = UISearchController()
@@ -49,6 +49,7 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         vistaFeatures.layer.cornerRadius = 10
         
         
+        
         loadItems()
     }
     
@@ -58,12 +59,19 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         vistaFeatures.alpha = 0
         buttonViewT.alpha = 0
         
+        
+        
         setGradientBackground()
+            
+            
         
         buttonOne.setImage(UIImage(named: "pikachuicono"), for: .normal)
         buttonTwo.setImage(UIImage(named: "localizacion"), for: .normal)
         buttonTree.setImage(UIImage(named: "dulce"), for: .normal)
+        
     }
+    
+    
     
     @IBAction func imageButtonPress (_ sender: UIButton) {
         performSegue(withIdentifier: "detalles", sender: self)
@@ -71,12 +79,6 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         
     }
     
-    
-    //    func editSearchBar () {
-//        if let pokemon = searchTextField.text {
-//            pokemonManager.fetchPokemon(pokemonCode: pokemon)
-//        }
-//    }
 
     @IBAction func closeFeatures(_ sender: UIButton) {
     
@@ -107,12 +109,12 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     }
     
     func setGradientBackground() {
-        let colorTop =  UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
+        let colorTop =  UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 222.0/255.0, green: 245.0/255.0, blue: 219.0/255.0, alpha: 1.0).cgColor
                     
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.1, 0.1]
+        gradientLayer.locations = [0.0, 1.1]
         gradientLayer.frame = self.view.bounds
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
@@ -136,10 +138,11 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
    
         if let imagenPokemon = Int(detailsPokemon.pokemonID) {
             self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
-           
+            
                 
             let imagen = (UIImage(named: self.codigoImagenPokemon!))
                      pokemonPop.setImage(imagen, for: .normal)
+                     buttonOne.setImage(imagen, for: .normal)
                      featuresTotal.image = UIImage(named: self.codigoImagenPokemon!)
             
         
@@ -188,6 +191,7 @@ extension ViewController: PokemonManagerDelegate {
    
             let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon)]//, tipoPokemon2: pokemon.tipoPokemon2
             self.pokemones?.append(contentsOf: pokemoncito)
+            self.pokemonesFiltrados?.append(contentsOf: pokemoncito)
             self.tableView.reloadData()
         }
     }
@@ -202,7 +206,7 @@ extension ViewController: PokemonManagerDelegate {
 extension ViewController: UITableViewDataSource{
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return pokemones?.count ?? 1
+    return pokemonesFiltrados?.count ?? 1
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -210,12 +214,12 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
 
     //if let item = pokemones?[indexPath.row]{
-    cell.pokemonLabel?.text = pokemones?[indexPath.row].pokemonName
-    cell.codigoPokemonLabel.text = pokemones?[indexPath.row].pokemonID
+    cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName
+    cell.codigoPokemonLabel.text = pokemonesFiltrados?[indexPath.row].pokemonID
     
 
     
-    if let imagenPokemon = Int((pokemones?[indexPath.row].pokemonID)!) {
+    if let imagenPokemon = Int((pokemonesFiltrados?[indexPath.row].pokemonID)!) {
         
         self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
         
@@ -225,10 +229,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
     }
 }
-    if let tipo = pokemones?[indexPath.row].tipoPokemon{ //, let tipo2 =  pokemones?[indexPath.row].tipoPokemon2
+    if let tipo = pokemonesFiltrados?[indexPath.row].tipoPokemon{ //, let tipo2 =  pokemones?[indexPath.row].tipoPokemon2
     cell.imageClaseOne.image = UIImage(named: tipo)
         //cell.imageClaseTwo.image = UIImage(named: tipo2)
     }
+    cell.mutableOrderedSetValue(forKey: (pokemonesFiltrados?[indexPath.row].pokemonName)!)
     return cell
 }
 }
@@ -236,21 +241,26 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 //MARK: - UISearch
 
 extension ViewController: UISearchResultsUpdating {
+    
+    
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
+        pokemonesFiltrados = []
+        guard let text = searchController.searchBar.text?.lowercased() else {
             return
         }
         print(text)
         
-        pokemonesFiltrados = []
+        
         
         if text == "" {
             pokemonesFiltrados = pokemones
         } else {
-            for pokemon in pokemones?.startIndex. {
-                if pokemon.
-            }
+           
+                pokemonesFiltrados = pokemones?.filter({$0.pokemonName == text})
+
+                //
         }
+        self.tableView.reloadData()
 
         
 //        func searchBar?(searchBar?(UISearchBar, textDidChange: String)){
@@ -259,9 +269,9 @@ extension ViewController: UISearchResultsUpdating {
     }
     
     
-    
-    
 }
+    
+
 
  
 
