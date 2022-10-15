@@ -28,6 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     private var pokemones: [PokemonModel]? = []
     private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
+    private var elementoText: String?
     
     private var searchController = UISearchController()
     
@@ -47,7 +48,6 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         title = tittle
         
         vistaFeatures.layer.cornerRadius = 10
-        
         
         
         loadItems()
@@ -76,8 +76,25 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     @IBAction func imageButtonPress (_ sender: UIButton) {
         performSegue(withIdentifier: "detalles", sender: self)
         
-        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ViewControllerDetalles
+            
+        if tableView.indexPathForSelectedRow != nil {
+            if let nameSegue = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image  {
+            destinationVC.selectedPokemon = nameSegue
+            destinationVC.selectedPokemonImage = imagenSegue
+            destinationVC.selectedPokemonIconoElement = elementIcon
+            destinationVC.selectedPokemonTextElement = elementoText
+                
+        }
+    }
+    }
+   
+    
+    
+    
     
 
     @IBAction func closeFeatures(_ sender: UIButton) {
@@ -130,11 +147,11 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
      
  
         if let detailsPokemon = pokemones?[indexPath.row] {
-            self.namePokemonFeatures.text = detailsPokemon.pokemonName
             self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
-            self.abilityFeatures.text = "Ability:\(detailsPokemon.abilityPokemon)"
+            
             
             elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
+            elementoText = "\(detailsPokemon.tipoPokemon)"
    
         if let imagenPokemon = Int(detailsPokemon.pokemonID) {
             self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
@@ -144,6 +161,9 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
                      pokemonPop.setImage(imagen, for: .normal)
                      buttonOne.setImage(imagen, for: .normal)
                      featuresTotal.image = UIImage(named: self.codigoImagenPokemon!)
+            
+            
+            self.namePokemonFeatures.text = detailsPokemon.pokemonName.capitalized
             
         
              }
@@ -175,6 +195,10 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
 //            }
 //        }
         
+     
+            
+
+
         
     }
 
@@ -214,9 +238,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
 
     //if let item = pokemones?[indexPath.row]{
-    cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName
-    cell.codigoPokemonLabel.text = pokemonesFiltrados?[indexPath.row].pokemonID
-    
+    cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
+    if let codePokemon = Int((pokemonesFiltrados?[indexPath.row].pokemonID)!){
+    cell.codigoPokemonLabel.text = "\(codePokemon)"
+    }
 
     
     if let imagenPokemon = Int((pokemonesFiltrados?[indexPath.row].pokemonID)!) {
@@ -244,6 +269,8 @@ extension ViewController: UISearchResultsUpdating {
     
     
     func updateSearchResults(for searchController: UISearchController) {
+        
+        let pokemonFil: [PokemonModel]?
         pokemonesFiltrados = []
         guard let text = searchController.searchBar.text?.lowercased() else {
             return
@@ -256,12 +283,13 @@ extension ViewController: UISearchResultsUpdating {
             pokemonesFiltrados = pokemones
         } else {
            
-                pokemonesFiltrados = pokemones?.filter({$0.pokemonName == text})
+                pokemonFil = pokemones?.filter({$0.pokemonName == text})
+                pokemonesFiltrados = pokemonFil
 
-                //
+
         }
         self.tableView.reloadData()
-
+       
         
 //        func searchBar?(searchBar?(UISearchBar, textDidChange: String)){
 //

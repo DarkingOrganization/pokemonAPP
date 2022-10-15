@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct PokemonModel {
-    let pokemonName: String
+    var pokemonName: String
     let imageFront: String
     let pokemonID: String
     let tipoPokemon: String
