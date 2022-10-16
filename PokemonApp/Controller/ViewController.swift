@@ -89,18 +89,16 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ViewControllerDetalles
-            
+        
         if tableView.indexPathForSelectedRow != nil {
-            if let nameSegue = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
-            destinationVC.selectedPokemon = nameSegue
+            if let namePoke = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
+            destinationVC.selectedPokemon = namePoke
             destinationVC.selectedPokemonImage = imagenSegue
             destinationVC.selectedPokemonIconoElement = elementIcon
             destinationVC.selectedPokemonTextElement = self.elementoText
-              
-                
+            
         }
-    }
-        if tableView.indexPathForSelectedRow != nil {
+
             if let stats1 = stats1, let stats2 = self.stats2, let stats3 = self.stats3, let stats4 = self.stats4, let stats5 = self.stats5, let stats6 = self.stats6{
         
             destinationVC.stats1 = Float(stats1 / 100)
@@ -116,8 +114,10 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
                 destinationVC.statsString4 = String(Int(stats4))
                 destinationVC.statsString5 = String(Int(stats5))
                 destinationVC.statsString6 = String(Int(stats6))
-    }
+            
+    
         }
+    }
     }
     
     

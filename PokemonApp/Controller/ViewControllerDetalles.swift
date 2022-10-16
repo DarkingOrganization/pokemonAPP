@@ -97,12 +97,7 @@ class ViewControllerDetalles: UIViewController {
         whiteBackground.backgroundColor = .white
         
         
-        stat1.text = statsString1
-        stat2.text = statsString2
-        stat3.text = statsString3
-        stat4.text = statsString4
-        stat5.text = statsString5
-        stat6.text = statsString6
+        
 
     }
     
@@ -117,6 +112,7 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         
         performSegue(withIdentifier: "segueStats", sender: self)
+        
     
     }
             
@@ -139,24 +135,6 @@ class ViewControllerDetalles: UIViewController {
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
 
-
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            let destinationVC = segue.destination as! DetailsViewController
-                
-            destinationVC.detallesStraction = xx
-//                if let nameSegue = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
-//                destinationVC.selectedPokemon = nameSegue
-//                destinationVC.selectedPokemonImage = imagenSegue
-//                destinationVC.selectedPokemonIconoElement = elementIcon
-//                destinationVC.selectedPokemonTextElement = self.elementoText
-//                  
-//                    
-//        }
-            
-    
-    }
-    
-    
     
     func loaditems() {
         LabelStats1.text = "Hp"
@@ -166,15 +144,19 @@ class ViewControllerDetalles: UIViewController {
         LabelStats5.text = "Sp. Def"
         LabelStats6.text = "Speed"
         
-        
         progressStat1.progress = Float(stats1 ?? 0)
         progressStat2.progress = Float(stats2 ?? 0)
         progressStat3.progress = Float(stats3 ?? 0)
         progressStat4.progress = Float(stats4 ?? 0)
         progressStat5.progress = Float(stats5 ?? 0)
         progressStat6.progress = Float(stats6 ?? 0)
-        
-        
+
+        stat1.text = statsString1
+        stat2.text = statsString2
+        stat3.text = statsString3
+        stat4.text = statsString4
+        stat5.text = statsString5
+        stat6.text = statsString6
         
     }
     
@@ -185,18 +167,7 @@ class ViewControllerDetalles: UIViewController {
     
 
     
-    func imagenPokemonF (imagen: Int) -> String? {
-            if imagen < 10 {
-                return "00\(String(imagen))"
-            } else if imagen < 100 {
-                return "0\(String(imagen))"
-            } else if imagen < 810 {
-                return "\(String(imagen))"
-            } else {
-                 return "nil"
-            }
-    }
-    
+  
     
     
     func setGradientBackground() {
@@ -211,6 +182,35 @@ class ViewControllerDetalles: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+        let destinationVCDetails = segue.destination as! DetailsViewController
+        
+            
+        destinationVCDetails.selectedPokemon = self.selectedPokemon
+        destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
+        destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
+        destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
+        
+        
+                
+                destinationVCDetails.stats1 = self.stats1
+                destinationVCDetails.stats2 = self.stats2
+                destinationVCDetails.stats3 = self.stats3
+                destinationVCDetails.stats4 = self.stats4
+                destinationVCDetails.stats5 = self.stats5
+                destinationVCDetails.stats6 = self.stats6
+                    
+                destinationVCDetails.statsString1 = self.statsString1
+                destinationVCDetails.statsString2 = self.statsString2
+                destinationVCDetails.statsString3 = self.statsString3
+                destinationVCDetails.statsString4 = self.statsString4
+                destinationVCDetails.statsString5 = self.statsString5
+                destinationVCDetails.statsString6 = self.statsString6
+    
+        
+    }
     
     
     
