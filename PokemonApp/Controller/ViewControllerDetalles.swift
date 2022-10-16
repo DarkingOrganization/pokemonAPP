@@ -62,36 +62,6 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var evolutionButton: UIButton!
     @IBOutlet weak var movesButton: UIButton!
     
-    @IBAction func statsButtonPress(_ sender: UIButton) {
-        statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
-        statsButton.setTitleColor(.white, for: .normal)
-        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-        evolutionButton.backgroundColor = .white
-        movesButton.backgroundColor = .white
-        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-    }
-    
-    @IBAction func evolutionButtonPress(_ sender: UIButton) {
-        evolutionButton.setTitleColor(.white, for: .normal)
-        evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
-        statsButton.backgroundColor = .white
-        movesButton.backgroundColor = .white
-        statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-    }
-    
-    @IBAction func movesButtonPress(_ sender: UIButton) {
-        movesButton.setTitleColor(.white, for: .normal)
-        movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
-        statsButton.backgroundColor = .white
-        evolutionButton.backgroundColor = .white
-        statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +106,57 @@ class ViewControllerDetalles: UIViewController {
 
     }
     
+    @IBAction func statsButtonPress(_ sender: UIButton) {
+        statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.setTitleColor(.white, for: .normal)
+        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        evolutionButton.backgroundColor = .white
+        movesButton.backgroundColor = .white
+        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        
+        performSegue(withIdentifier: "segueStats", sender: self)
+    
+    }
+            
+    
+    @IBAction func evolutionButtonPress(_ sender: UIButton) {
+        evolutionButton.setTitleColor(.white, for: .normal)
+        evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.backgroundColor = .white
+        movesButton.backgroundColor = .white
+        statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+    }
+    
+    @IBAction func movesButtonPress(_ sender: UIButton) {
+        movesButton.setTitleColor(.white, for: .normal)
+        movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.backgroundColor = .white
+        evolutionButton.backgroundColor = .white
+        statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+    }
 
+
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            let destinationVC = segue.destination as! DetailsViewController
+                
+            destinationVC.detallesStraction = xx
+//                if let nameSegue = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
+//                destinationVC.selectedPokemon = nameSegue
+//                destinationVC.selectedPokemonImage = imagenSegue
+//                destinationVC.selectedPokemonIconoElement = elementIcon
+//                destinationVC.selectedPokemonTextElement = self.elementoText
+//                  
+//                    
+//        }
+            
+    
+    }
+    
+    
     
     func loaditems() {
         LabelStats1.text = "Hp"

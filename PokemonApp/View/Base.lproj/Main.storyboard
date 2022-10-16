@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ABM-1x-7d4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EYI-0g-8vp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -297,7 +297,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="statsButtonPress:" destination="LyU-cy-4mM" eventType="touchUpInside" id="NkA-lZ-FzR"/>
-                                                    <segue destination="ABM-1x-7d4" kind="presentation" modalPresentationStyle="fullScreen" id="ENq-3D-bcD"/>
+                                                    <segue destination="ABM-1x-7d4" kind="presentation" identifier="segueStats" modalPresentationStyle="fullScreen" id="ENq-3D-bcD"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag7-Az-iao">

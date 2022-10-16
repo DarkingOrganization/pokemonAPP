@@ -9,6 +9,10 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
+    
+    var detallesStraction: String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
