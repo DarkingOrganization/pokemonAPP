@@ -112,8 +112,38 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         
         performSegue(withIdentifier: "segueStats", sender: self)
-        
+
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+        if segue.identifier == "segueStats" {
+    let destinationVCDetails = segue.destination as! DetailsViewController
+        
+            
+        destinationVCDetails.selectedPokemon = self.selectedPokemon
+        destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
+        destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
+        destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
+        
+        
+                
+                destinationVCDetails.stats1 = self.stats1
+                destinationVCDetails.stats2 = self.stats2
+                destinationVCDetails.stats3 = self.stats3
+                destinationVCDetails.stats4 = self.stats4
+                destinationVCDetails.stats5 = self.stats5
+                destinationVCDetails.stats6 = self.stats6
+                    
+                destinationVCDetails.statsString1 = self.statsString1
+                destinationVCDetails.statsString2 = self.statsString2
+                destinationVCDetails.statsString3 = self.statsString3
+                destinationVCDetails.statsString4 = self.statsString4
+                destinationVCDetails.statsString5 = self.statsString5
+                destinationVCDetails.statsString6 = self.statsString6
+    
+        
+        }
     }
             
     
@@ -133,6 +163,7 @@ class ViewControllerDetalles: UIViewController {
         evolutionButton.backgroundColor = .white
         statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+    
     }
 
     
@@ -183,34 +214,7 @@ class ViewControllerDetalles: UIViewController {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        let destinationVCDetails = segue.destination as! DetailsViewController
-        
-            
-        destinationVCDetails.selectedPokemon = self.selectedPokemon
-        destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
-        destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
-        destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
-        
-        
-                
-                destinationVCDetails.stats1 = self.stats1
-                destinationVCDetails.stats2 = self.stats2
-                destinationVCDetails.stats3 = self.stats3
-                destinationVCDetails.stats4 = self.stats4
-                destinationVCDetails.stats5 = self.stats5
-                destinationVCDetails.stats6 = self.stats6
-                    
-                destinationVCDetails.statsString1 = self.statsString1
-                destinationVCDetails.statsString2 = self.statsString2
-                destinationVCDetails.statsString3 = self.statsString3
-                destinationVCDetails.statsString4 = self.statsString4
-                destinationVCDetails.statsString5 = self.statsString5
-                destinationVCDetails.statsString6 = self.statsString6
     
-        
-    }
     
     
     
