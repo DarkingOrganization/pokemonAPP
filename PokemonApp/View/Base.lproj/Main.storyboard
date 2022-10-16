@@ -156,7 +156,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BbD-GA-N2p">
-                                        <rect key="frame" x="0.0" y="180" width="393" height="659"/>
+                                        <rect key="frame" x="0.0" y="180" width="414" height="659"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0s9-9T-rgm">
@@ -183,8 +183,8 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description of pokemon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBU-et-L3S">
-                                        <rect key="frame" x="19" y="457" width="374" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of pokemon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBU-et-L3S">
+                                        <rect key="frame" x="19" y="468.5" width="374" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -286,8 +286,8 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="szw-Jb-GUX">
-                                        <rect key="frame" x="59" y="509" width="296" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="szw-Jb-GUX">
+                                        <rect key="frame" x="59" y="519" width="296" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-kw-d2p">
                                                 <rect key="frame" x="0.0" y="0.0" width="36" height="30"/>
@@ -316,11 +316,11 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65h-WM-jpS">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65h-WM-jpS">
                                         <rect key="frame" x="97" y="374" width="217" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psU-Za-kjP" userLabel="elementLabel">
-                                                <rect key="frame" x="54" y="10" width="163" height="35"/>
+                                                <rect key="frame" x="54" y="10" width="108" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                 <nil key="textColor"/>
@@ -332,6 +332,9 @@
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="NTr-KJ-jsI"/>
+                                        </constraints>
                                     </view>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UvG-v4-Fhb">
                                         <rect key="frame" x="103" y="654" width="270" height="4"/>
@@ -359,7 +362,6 @@
                                     </progressView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="nCK-q0-SP0" firstAttribute="top" secondItem="feR-El-5jc" secondAttribute="top" constant="90" id="2vb-oN-Djo"/>
                                     <constraint firstItem="65h-WM-jpS" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="97" id="4IT-lF-wcx"/>
                                     <constraint firstItem="YZg-1r-k2S" firstAttribute="trailing" secondItem="65h-WM-jpS" secondAttribute="trailing" constant="98" id="6za-0n-TsV"/>
                                     <constraint firstItem="0s9-9T-rgm" firstAttribute="top" secondItem="awB-yx-9oh" secondAttribute="top" constant="730" id="8T5-Ct-EiA"/>
@@ -368,7 +370,6 @@
                                     <constraint firstAttribute="trailing" secondItem="nCK-q0-SP0" secondAttribute="trailing" constant="78" id="EFO-1r-ELS"/>
                                     <constraint firstItem="nCK-q0-SP0" firstAttribute="centerX" secondItem="awB-yx-9oh" secondAttribute="centerX" id="Hob-32-gSy"/>
                                     <constraint firstItem="nCK-q0-SP0" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="80" id="Kzw-bk-71T"/>
-                                    <constraint firstItem="RBU-et-L3S" firstAttribute="top" secondItem="65h-WM-jpS" secondAttribute="bottom" constant="90" id="MfQ-RW-07T"/>
                                     <constraint firstItem="65h-WM-jpS" firstAttribute="top" secondItem="Dyb-8Q-ssZ" secondAttribute="bottom" constant="7" id="Ors-j6-pEn"/>
                                     <constraint firstItem="szw-Jb-GUX" firstAttribute="top" secondItem="RBU-et-L3S" secondAttribute="bottom" constant="30" id="Slq-5P-oYA"/>
                                     <constraint firstItem="RBU-et-L3S" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="19" id="Wwk-JG-P5v"/>
@@ -376,10 +377,13 @@
                                     <constraint firstItem="JPV-yf-Bty" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="8" id="epN-Mb-dCg"/>
                                     <constraint firstItem="0s9-9T-rgm" firstAttribute="leading" secondItem="awB-yx-9oh" secondAttribute="leadingMargin" id="hSA-d8-3M2"/>
                                     <constraint firstItem="Dyb-8Q-ssZ" firstAttribute="centerX" secondItem="awB-yx-9oh" secondAttribute="centerX" id="iOQ-oP-lXd"/>
+                                    <constraint firstItem="JPV-yf-Bty" firstAttribute="top" secondItem="szw-Jb-GUX" secondAttribute="bottom" constant="50" id="izM-HZ-7U2"/>
                                     <constraint firstAttribute="bottom" secondItem="nCK-q0-SP0" secondAttribute="bottom" constant="550" id="lXy-G5-vMc"/>
                                     <constraint firstItem="Dyb-8Q-ssZ" firstAttribute="top" secondItem="nCK-q0-SP0" secondAttribute="bottom" constant="8" symbolic="YES" id="mri-8u-3Zg"/>
                                     <constraint firstItem="YZg-1r-k2S" firstAttribute="trailing" secondItem="RBU-et-L3S" secondAttribute="trailing" constant="19" id="ofj-Fs-j0w"/>
+                                    <constraint firstItem="RBU-et-L3S" firstAttribute="top" secondItem="65h-WM-jpS" secondAttribute="bottom" constant="34.5" id="rq6-YS-Oim"/>
                                     <constraint firstItem="feR-El-5jc" firstAttribute="trailing" secondItem="nCK-q0-SP0" secondAttribute="trailing" constant="80" id="veI-lA-mbG"/>
+                                    <constraint firstItem="nCK-q0-SP0" firstAttribute="top" secondItem="awB-yx-9oh" secondAttribute="top" constant="90" id="wvc-eX-x4O"/>
                                     <constraint firstItem="Dyb-8Q-ssZ" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="28" id="zle-ea-flp"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="YZg-1r-k2S"/>

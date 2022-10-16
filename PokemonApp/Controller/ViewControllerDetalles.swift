@@ -75,7 +75,7 @@ class ViewControllerDetalles: UIViewController {
         elementLabel.text = selectedPokemonTextElement?.capitalized
         
         elementIcon.image = selectedPokemonIconoElement
-        viewElement.layer.cornerRadius = 10
+        viewElement.layer.cornerRadius = 40
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         elementLabel.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
