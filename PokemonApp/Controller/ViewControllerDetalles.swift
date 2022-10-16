@@ -57,11 +57,51 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var progressStat5: UIProgressView!
     @IBOutlet weak var progressStat6: UIProgressView!
 
-    @IBOutlet weak var progressTest: UIProgressView!
-    @IBOutlet weak var progressSlider: UISlider!
+ 
+    @IBOutlet weak var statsButton: UIButton!
+    @IBOutlet weak var evolutionButton: UIButton!
+    @IBOutlet weak var movesButton: UIButton!
+    
+    @IBAction func statsButtonPress(_ sender: UIButton) {
+        statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.setTitleColor(.white, for: .normal)
+        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        evolutionButton.backgroundColor = .white
+        movesButton.backgroundColor = .white
+        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+    }
+    
+    @IBAction func evolutionButtonPress(_ sender: UIButton) {
+        evolutionButton.setTitleColor(.white, for: .normal)
+        evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.backgroundColor = .white
+        movesButton.backgroundColor = .white
+        statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+    }
+    
+    @IBAction func movesButtonPress(_ sender: UIButton) {
+        movesButton.setTitleColor(.white, for: .normal)
+        movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.backgroundColor = .white
+        evolutionButton.backgroundColor = .white
+        statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        statsButton.layer.cornerRadius = 15
+        evolutionButton.layer.cornerRadius = 15
+        movesButton.layer.cornerRadius = 15
+        
+        statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
+        statsButton.setTitleColor(.white, for: .normal)
         
         loaditems()
     }
@@ -75,11 +115,14 @@ class ViewControllerDetalles: UIViewController {
         elementLabel.text = selectedPokemonTextElement?.capitalized
         
         elementIcon.image = selectedPokemonIconoElement
-        viewElement.layer.cornerRadius = 40
+        viewElement.layer.cornerRadius = 30
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
+        elementIcon.layer.cornerRadius = 20
         elementLabel.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         viewElement.backgroundColor =  #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)  //#colorLiteral()
+        
+        
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
         
@@ -93,8 +136,10 @@ class ViewControllerDetalles: UIViewController {
 
     }
     
+
+    
     func loaditems() {
-        LabelStats1.text = "hp"
+        LabelStats1.text = "Hp"
         LabelStats2.text = "Attack"
         LabelStats3.text = "Defense"
         LabelStats4.text = "Sp. Atk"
@@ -109,7 +154,7 @@ class ViewControllerDetalles: UIViewController {
         progressStat5.progress = Float(stats5 ?? 0)
         progressStat6.progress = Float(stats6 ?? 0)
         
-      
+        
         
     }
     

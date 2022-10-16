@@ -22,7 +22,7 @@ class PokemonManager {
     var delegate: PokemonManagerDelegate?
     var tipo2Decode: String?
     func fetchPokemon(pokemonCode: String) {
-        let urlString = "\(pokemonURL)\(pokemonCode)/"
+        let urlString = "\(pokemonURL)\(pokemonCode)"
         performRequest(with: urlString)
     }
     
