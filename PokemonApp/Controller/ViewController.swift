@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     private var elementoText: String?
-    
+    private var boolVar: Bool = false
     var stats1: Float?
     var stats2: Float?
     var stats3: Float?
@@ -83,8 +83,10 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     
     
     @IBAction func imageButtonPress (_ sender: UIButton) {
-        performSegue(withIdentifier: "detalles", sender: self)
         
+        if  boolVar == true {
+            performSegue(withIdentifier: "detalles", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -168,7 +170,8 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     
 //MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        boolVar = true
         constrainCentre.constant = 0
         vistaFeatures.alpha = 1
         
@@ -221,29 +224,6 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         buttonViewT.alpha = 0.5
 
         
-        
-//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//
-////            pokemones? = pokemones?.filter("name CONTAINS[cd] %@", searchBar.text!)
-//            pokemones? = (pokemones?.filter("title CONTAINS[cd] %@", searchBar.text!)
-//            //toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
-//            tableView.reloadData()
-//        }
-//
-//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//            if searchBar.text?.count == 0 {
-//               loadItems()
-//                DispatchQueue.main.async {
-//                    searchBar.resignFirstResponder()
-//                }
-//            }
-//        }
-        
-     
-            
-
-
-        
     }
 
 
@@ -259,7 +239,6 @@ extension ViewController: PokemonManagerDelegate {
    
             let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats1: pokemon.stats1, stats2: pokemon.stats2, stats3: pokemon.stats3, stats4: pokemon.stats4, stats5: pokemon.stats5, stats6: pokemon.stats6)]//, tipoPokemon2: pokemon.tipoPokemon2
             self.pokemones?.append(contentsOf: pokemoncito)
-            self.pokemonesFiltrados?.append(contentsOf: pokemoncito)
             self.tableView.reloadData()
         }
     }
@@ -314,8 +293,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 //MARK: - UISearch
 
 extension ViewController: UISearchResultsUpdating {
-    
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         
         let pokemonFil: [PokemonModel]?
@@ -323,9 +301,6 @@ extension ViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text?.lowercased() else {
             return
         }
-        print(text)
-        
-        
         
         if text == "" {
             pokemonesFiltrados = pokemones
@@ -333,20 +308,34 @@ extension ViewController: UISearchResultsUpdating {
            
                 pokemonFil = pokemones?.filter({$0.pokemonName == text})
                 pokemonesFiltrados = pokemonFil
-
-
         }
+        boolVar = false
+
         self.tableView.reloadData()
-       
-        
-//        func searchBar?(searchBar?(UISearchBar, textDidChange: String)){
-//
-//        }
     }
     
     
 }
-    
+//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+////            pokemones? = pokemones?.filter("name CONTAINS[cd] %@", searchBar.text!)
+//            pokemones? = (pokemones?.filter("title CONTAINS[cd] %@", searchBar.text!)
+//            //toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+//            tableView.reloadData()
+//        }
+//
+//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//            if searchBar.text?.count == 0 {
+//               loadItems()
+//                DispatchQueue.main.async {
+//                    searchBar.resignFirstResponder()
+//                }
+//            }
+//        }
+        
+     
+            
+
 
 
  
