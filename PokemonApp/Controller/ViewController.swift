@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var vistaFeatures: UIView!
     @IBOutlet weak var namePokemonFeatures: UILabel!
     @IBOutlet weak var codigoPokemonFeatures: UILabel!
-    @IBOutlet weak var abilityFeatures: UILabel!
+
     
     @IBOutlet weak var buttonViewT: UIButton!
     
