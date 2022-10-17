@@ -83,47 +83,42 @@
                                     <constraint firstItem="2WI-T8-k4k" firstAttribute="top" secondItem="0Vp-Xo-beP" secondAttribute="bottom" constant="6" id="z56-Sc-t1g"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f9-Kz-9Be">
-                                <rect key="frame" x="314" y="792" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="gad-4a-rDY"/>
-                                    <constraint firstAttribute="width" constant="50" id="nCd-16-L9z"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="dulce"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psm-jW-ik2">
-                                <rect key="frame" x="50" y="792" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="XTS-19-XIx"/>
-                                    <constraint firstAttribute="width" constant="50" id="oia-gz-Xrp"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psm-jW-ik2">
+                                <rect key="frame" x="50" y="801" width="50" height="50"/>
                                 <state key="normal" title="Button" image="pikachuicono"/>
                                 <connections>
                                     <action selector="imageButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vFY-Ql-g48"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNN-fk-vXO">
-                                <rect key="frame" x="182" y="792" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="c9u-p7-HU7"/>
-                                    <constraint firstAttribute="height" constant="50" id="vhh-J0-BAl"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNN-fk-vXO">
+                                <rect key="frame" x="173" y="791" width="50" height="50"/>
                                 <state key="normal" title="Button" image="localizacion"/>
+                            </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGs-eu-elh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f9-Kz-9Be">
+                                <rect key="frame" x="328" y="801" width="50" height="30"/>
+                                <state key="normal" title="Button" image="dulce"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UNN-fk-vXO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AZe-rQ-y3v"/>
+                            <constraint firstItem="3f9-Kz-9Be" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UNN-fk-vXO" secondAttribute="trailing" constant="8" symbolic="YES" id="0ST-76-UPN"/>
+                            <constraint firstItem="UNN-fk-vXO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-9" id="AZe-rQ-y3v"/>
                             <constraint firstItem="psm-jW-ik2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Fsg-5p-GJw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3f9-Kz-9Be" secondAttribute="bottom" constant="20" id="HHU-29-S33"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3f9-Kz-9Be" secondAttribute="trailing" constant="50" id="KAU-Jn-Xdi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3f9-Kz-9Be" secondAttribute="bottom" constant="31" id="HHU-29-S33"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3f9-Kz-9Be" secondAttribute="trailing" constant="36" id="KAU-Jn-Xdi"/>
                             <constraint firstAttribute="bottom" secondItem="SUa-bY-EFi" secondAttribute="bottom" constant="251" id="Loq-v8-Yvd"/>
                             <constraint firstItem="SUa-bY-EFi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MaM-2n-Rfq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SUa-bY-EFi" secondAttribute="trailing" constant="20" id="PBL-X5-3ev"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UNN-fk-vXO" secondAttribute="bottom" constant="20" id="dUs-X2-BN3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="psm-jW-ik2" secondAttribute="bottom" constant="20" id="gd0-mo-koL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UNN-fk-vXO" secondAttribute="bottom" constant="21" id="dUs-X2-BN3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="psm-jW-ik2" secondAttribute="bottom" constant="11" id="nVj-xC-nT7"/>
                             <constraint firstItem="SUa-bY-EFi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="244" id="oJy-th-ATv"/>
+                            <constraint firstItem="UNN-fk-vXO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="psm-jW-ik2" secondAttribute="trailing" constant="8" symbolic="YES" id="tp2-Aw-PIE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rhG-ck-8qS"/>
@@ -139,6 +134,7 @@
                         <outlet property="featuresTotal" destination="fBf-7q-Y07" id="UjF-i5-YNr"/>
                         <outlet property="namePokemonFeatures" destination="0Vp-Xo-beP" id="5e6-cH-PZk"/>
                         <outlet property="pokemonPop" destination="26O-A6-pPu" id="U2q-e4-tUP"/>
+                        <outlet property="searchBar" destination="GGs-eu-elh" id="W4Z-kn-8e4"/>
                         <outlet property="tableView" destination="wJG-YQ-GJS" id="nt3-ez-aps"/>
                         <outlet property="vistaFeatures" destination="SUa-bY-EFi" id="ILU-O9-ayM"/>
                         <segue destination="LyU-cy-4mM" kind="showDetail" identifier="detalles" id="dBu-pr-zrI"/>

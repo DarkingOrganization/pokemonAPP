@@ -1,6 +1,6 @@
 
 import UIKit
-class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -39,13 +39,12 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
     var stats5: Float?
     var stats6: Float?
     
-    private var searchController = UISearchController()
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
+        searchBar.delegate = self
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -294,49 +293,70 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
 //MARK: - UISearch
 
+//Mark: - Searchbar delegate methods
 
-extension ViewController: UISearchResultsUpdating {
-
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        let pokemonFil: [PokemonModel]?
+extension ViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         pokemonesFiltrados = []
-        guard let text = searchController.searchBar.text?.lowercased() else {
-            return
-        }
         
-        if text == "" {
+        if searchText == "" {
             pokemonesFiltrados = pokemones
         } else {
-           
-                pokemonFil = pokemones?.filter({$0.pokemonName == text})
-                pokemonesFiltrados = pokemonFil
+            for pokemon in self.pokemones!{
+                if pokemon.pokemonName.contains(searchText.lowercased()){
+                    pokemonesFiltrados?.append(pokemon)
+                }
+            }
+//            pokemonesFiltrados = pokemones?.filter({$0.pokemonName == text})
+//                pokemonesFiltrados = pokemonFil
         }
-        boolVar = false
-
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
-    
-    
 }
-//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
 //
-////            pokemones? = pokemones?.filter("name CONTAINS[cd] %@", searchBar.text!)
-//            pokemones? = (pokemones?.filter("title CONTAINS[cd] %@", searchBar.text!)
-//            //toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
-//            tableView.reloadData()
+//extension ViewController: UISearchResultsUpdating {
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//
+//        let pokemonFil: [PokemonModel]?
+//        pokemonesFiltrados = []
+//        guard let text = searchController.searchBar.text?.lowercased() else {
+//            return
 //        }
 //
-//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//            if searchBar.text?.count == 0 {
-//               loadItems()
-//                DispatchQueue.main.async {
-//                    searchBar.resignFirstResponder()
-//                }
-//            }
+//        if text == "" {
+//            pokemonesFiltrados = pokemones
+//        } else {
+//
+//                pokemonFil = pokemones?.filter({$0.pokemonName == text})
+//                pokemonesFiltrados = pokemonFil
 //        }
-        
-     
+//        boolVar = false
+//
+//        self.tableView.reloadData()
+//    }
+//
+//
+//}
+
+//extension ViewController: UISearchBarDelegate{
+//
+//func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//    pokemonesFiltrados = []
+//    pokemonesFiltrados = pokemones?.filter({$0.pokemonName == searchBar.text})
+//    tableView.reloadData()
+//}
+//
+//func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//    if searchBar.text?.count == 0 {
+//        loadItems()
+//        DispatchQueue.main.async {
+//            searchBar.resignFirstResponder()
+//        }
+//    }
+//}
+//
             
 
 
