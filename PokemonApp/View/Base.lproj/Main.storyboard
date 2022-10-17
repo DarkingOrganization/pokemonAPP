@@ -119,7 +119,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3f9-Kz-9Be" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UNN-fk-vXO" secondAttribute="trailing" constant="8" symbolic="YES" id="0ST-76-UPN"/>
                             <constraint firstItem="UNN-fk-vXO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-1" id="AZe-rQ-y3v"/>
                             <constraint firstItem="psm-jW-ik2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Fsg-5p-GJw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3f9-Kz-9Be" secondAttribute="bottom" constant="21" id="HHU-29-S33"/>
@@ -130,7 +129,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UNN-fk-vXO" secondAttribute="bottom" constant="11" id="dUs-X2-BN3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="psm-jW-ik2" secondAttribute="bottom" constant="11" id="nVj-xC-nT7"/>
                             <constraint firstItem="SUa-bY-EFi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="244" id="oJy-th-ATv"/>
-                            <constraint firstItem="UNN-fk-vXO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="psm-jW-ik2" secondAttribute="trailing" constant="8" symbolic="YES" id="tp2-Aw-PIE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rhG-ck-8qS"/>

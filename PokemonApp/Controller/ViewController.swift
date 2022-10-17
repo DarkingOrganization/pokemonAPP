@@ -174,32 +174,36 @@ class ViewController: UIViewController, UITableViewDelegate {
         constrainCentre.constant = 0
         vistaFeatures.alpha = 1
         
-        if let statsPokemon1 = pokemones?[indexPath.row].stats1, let statsPokemon2 = pokemones?[indexPath.row].stats2, let statsPokemon3 = pokemones?[indexPath.row].stats3, let statsPokemon4 = pokemones?[indexPath.row].stats4, let statsPokemon5 = pokemones?[indexPath.row].stats5, let statsPokemon6 = pokemones?[indexPath.row].stats6     {
-            
-            self.stats1 = Float(statsPokemon1)
-            self.stats2 = Float(statsPokemon2)
-            self.stats3 = Float(statsPokemon3)
-            self.stats4 = Float(statsPokemon4)
-            self.stats5 = Float(statsPokemon5)
-            self.stats6 = Float(statsPokemon6)
+        let poke: [PokemonModel]?
+        if pokemonesFiltrados?.count == 0 {
+            poke = pokemones
+        } else{
+            poke = pokemonesFiltrados
             
         }
- 
-        if let detailsPokemon = pokemones?[indexPath.row] {
-            self.codigoPokemonFeatures.text = detailsPokemon.pokemonID
+        
+        if let indexPokemon = poke?[indexPath.row] {
+    
+            self.stats1 = Float(indexPokemon.stats1)
+            self.stats2 = Float(indexPokemon.stats2)
+            self.stats3 = Float(indexPokemon.stats3)
+            self.stats4 = Float(indexPokemon.stats4)
+            self.stats5 = Float(indexPokemon.stats5)
+            self.stats6 = Float(indexPokemon.stats6)
             
+            self.codigoPokemonFeatures.text = indexPokemon.pokemonID
             
-            elemento.image = UIImage(named: detailsPokemon.tipoPokemon)
+            elemento.image = UIImage(named: indexPokemon.tipoPokemon)
             
-            if let imagen2 = detailsPokemon.tipoPokemon2 {
+            if let imagen2 = indexPokemon.tipoPokemon2 {
             if let elemento = UIImage(named: imagen2) {
                 elemento2?.image = elemento
             }
             }
            
-            elementoText = "\(detailsPokemon.tipoPokemon)"
+            elementoText = "\(indexPokemon.tipoPokemon)"
    
-        if let imagenPokemon = Int(detailsPokemon.pokemonID) {
+        if let imagenPokemon = Int(indexPokemon.pokemonID) {
             self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
             
                 
@@ -207,11 +211,9 @@ class ViewController: UIViewController, UITableViewDelegate {
                      pokemonPop.setImage(imagen, for: .normal)
                      buttonOne.setImage(imagen, for: .normal)
                      featuresTotal.image = UIImage(named: self.codigoImagenPokemon!)
-            
-            
-            self.namePokemonFeatures.text = detailsPokemon.pokemonName.capitalized
-            
-        
+
+            self.namePokemonFeatures.text = indexPokemon.pokemonName.capitalized
+
              }
     }
         if let element = pokemones?[indexPath.row].tipoPokemon{
@@ -224,12 +226,14 @@ class ViewController: UIViewController, UITableViewDelegate {
 
         //MARK: - SearchBar
     }
+    }
+
 
 
     
     
 //MARK: - PokemonManagerDelegate
-}
+
 
 extension ViewController: PokemonManagerDelegate {
     
@@ -306,11 +310,12 @@ extension ViewController: UISearchBarDelegate{
                 if pokemon.pokemonName.contains(searchText.lowercased()){
                     pokemonesFiltrados?.append(pokemon)
                 }
+                boolVar = true
             }
 //            pokemonesFiltrados = pokemones?.filter({$0.pokemonName == text})
 //                pokemonesFiltrados = pokemonFil
         }
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
 }
 
