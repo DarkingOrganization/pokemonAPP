@@ -223,7 +223,7 @@ class ViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate
         
         buttonViewT.alpha = 0.5
 
-        
+        //MARK: - SearchBar
     }
 
 
@@ -239,6 +239,7 @@ extension ViewController: PokemonManagerDelegate {
    
             let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats1: pokemon.stats1, stats2: pokemon.stats2, stats3: pokemon.stats3, stats4: pokemon.stats4, stats5: pokemon.stats5, stats6: pokemon.stats6)]//, tipoPokemon2: pokemon.tipoPokemon2
             self.pokemones?.append(contentsOf: pokemoncito)
+            self.pokemonesFiltrados = self.pokemones
             self.tableView.reloadData()
         }
     }
@@ -288,9 +289,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     
     return cell
 }
+    
 }
 
 //MARK: - UISearch
+
 
 extension ViewController: UISearchResultsUpdating {
 
