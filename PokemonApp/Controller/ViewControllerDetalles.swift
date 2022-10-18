@@ -8,12 +8,12 @@
 import UIKit
 
 class ViewControllerDetalles: UIViewController {
-  
+    
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
-
+    
     var stats1: Float?
     var stats2: Float?
     var stats3: Float?
@@ -56,12 +56,13 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var progressStat4: UIProgressView!
     @IBOutlet weak var progressStat5: UIProgressView!
     @IBOutlet weak var progressStat6: UIProgressView!
-
- 
+    
+    
     @IBOutlet weak var statsButton: UIButton!
     @IBOutlet weak var evolutionButton: UIButton!
     @IBOutlet weak var movesButton: UIButton!
     
+    var viewControllerPrincipal = ViewController ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,9 @@ class ViewControllerDetalles: UIViewController {
         
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
+        
+        viewControllerPrincipal.gradient.frame = view.bounds
+        self.view.layer.insertSublayer(viewControllerPrincipal.gradient, at:0)
         
         loaditems()
     }
@@ -98,7 +102,7 @@ class ViewControllerDetalles: UIViewController {
         
         
         
-
+        
     }
     
     @IBAction func statsButtonPress(_ sender: UIButton) {
@@ -112,40 +116,40 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         
         performSegue(withIdentifier: "segueStats", sender: self)
-
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
+        
         if segue.identifier == "segueStats" {
-    let destinationVCDetails = segue.destination as! DetailsViewController
-        
+            let destinationVCDetails = segue.destination as! DetailsViewController
             
-        destinationVCDetails.selectedPokemon = self.selectedPokemon
-        destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
-        destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
-        destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
-        
-        
-                
-                destinationVCDetails.stats1 = self.stats1
-                destinationVCDetails.stats2 = self.stats2
-                destinationVCDetails.stats3 = self.stats3
-                destinationVCDetails.stats4 = self.stats4
-                destinationVCDetails.stats5 = self.stats5
-                destinationVCDetails.stats6 = self.stats6
-                    
-                destinationVCDetails.statsString1 = self.statsString1
-                destinationVCDetails.statsString2 = self.statsString2
-                destinationVCDetails.statsString3 = self.statsString3
-                destinationVCDetails.statsString4 = self.statsString4
-                destinationVCDetails.statsString5 = self.statsString5
-                destinationVCDetails.statsString6 = self.statsString6
-    
-        
+            
+            destinationVCDetails.selectedPokemon = self.selectedPokemon
+            destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
+            destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
+            destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
+            
+            
+            
+            destinationVCDetails.stats1 = self.stats1
+            destinationVCDetails.stats2 = self.stats2
+            destinationVCDetails.stats3 = self.stats3
+            destinationVCDetails.stats4 = self.stats4
+            destinationVCDetails.stats5 = self.stats5
+            destinationVCDetails.stats6 = self.stats6
+            
+            destinationVCDetails.statsString1 = self.statsString1
+            destinationVCDetails.statsString2 = self.statsString2
+            destinationVCDetails.statsString3 = self.statsString3
+            destinationVCDetails.statsString4 = self.statsString4
+            destinationVCDetails.statsString5 = self.statsString5
+            destinationVCDetails.statsString6 = self.statsString6
+            
+            
         }
     }
-            
+    
     
     @IBAction func evolutionButtonPress(_ sender: UIButton) {
         evolutionButton.setTitleColor(.white, for: .normal)
@@ -163,9 +167,9 @@ class ViewControllerDetalles: UIViewController {
         evolutionButton.backgroundColor = .white
         statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
-    
+        
     }
-
+    
     
     func loaditems() {
         LabelStats1.text = "Hp"
@@ -181,7 +185,7 @@ class ViewControllerDetalles: UIViewController {
         progressStat4.progress = Float(stats4 ?? 0)
         progressStat5.progress = Float(stats5 ?? 0)
         progressStat6.progress = Float(stats6 ?? 0)
-
+        
         stat1.text = statsString1
         stat2.text = statsString2
         stat3.text = statsString3
@@ -196,20 +200,20 @@ class ViewControllerDetalles: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-
     
-  
+    
+    
     
     
     func setGradientBackground() {
         let colorTop =  UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
         let colorBottom = UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-                    
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
         gradientLayer.locations = [0.1, 0.1]
         gradientLayer.frame = self.view.bounds
-                
+        
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
     

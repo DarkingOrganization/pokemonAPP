@@ -8,13 +8,13 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-
+    
     
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
-
+    
     var stats1: Float?
     var stats2: Float?
     var stats3: Float?
@@ -30,14 +30,14 @@ class DetailsViewController: UIViewController {
     var statsString6: String? = nil
     
     @IBOutlet weak var titlePokemon: UILabel!
-
+    
     @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var BigImage: UIImageView!
     
-//    @IBOutlet weak var elementLabel: UILabel!
-//    @IBOutlet weak var elementIcon: UIImageView!
-//    @IBOutlet weak var viewElement: UIView!
-//    @IBOutlet weak var descriptionLabel: UILabel!
+    //    @IBOutlet weak var elementLabel: UILabel!
+    //    @IBOutlet weak var elementIcon: UIImageView!
+    //    @IBOutlet weak var viewElement: UIView!
+    //    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var stat1: UILabel!
     @IBOutlet weak var stat2: UILabel!
     @IBOutlet weak var stat3: UILabel!
@@ -58,8 +58,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var progressStat4: UIProgressView!
     @IBOutlet weak var progressStat5: UIProgressView!
     @IBOutlet weak var progressStat6: UIProgressView!
-
- 
+    
+    
     @IBOutlet weak var statsButton: UIButton!
     @IBOutlet weak var evolutionButton: UIButton!
     @IBOutlet weak var movesButton: UIButton!
@@ -74,29 +74,29 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         titlePokemon.text = selectedPokemon
         titlePokemon.textColor = .white
-
+        
         loaditems()
         setGradientBackground()
-
+        
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
         movesButton.layer.cornerRadius = 15
         
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-
+        
         BigImage.image = selectedPokemonImage
- 
+        
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
-
+        
     }
     
     
@@ -110,7 +110,7 @@ class DetailsViewController: UIViewController {
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
-            
+    
     
     @IBAction func evolutionButtonPress(_ sender: UIButton) {
         evolutionButton.setTitleColor(.white, for: .normal)
@@ -145,7 +145,7 @@ class DetailsViewController: UIViewController {
         progressStat4.progress = Float(stats4 ?? 0)
         progressStat5.progress = Float(stats5 ?? 0)
         progressStat6.progress = Float(stats6 ?? 0)
-
+        
         stat1.text = statsString1
         stat2.text = statsString2
         stat3.text = statsString3
@@ -157,13 +157,13 @@ class DetailsViewController: UIViewController {
     func setGradientBackground() {
         let colorTop =  UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
         let colorBottom = UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-                    
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
         gradientLayer.locations = [0.1, 0.1]
         gradientLayer.frame = self.view.bounds
-                
+        
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
-
+    
 }
