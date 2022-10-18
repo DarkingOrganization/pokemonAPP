@@ -14,11 +14,11 @@ class DetailsViewController: UIViewController {
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
     
-    var stats: [Float]? = [0,1,2,3,4,5]
-
+    var stats: [Float]? = []
+    
     
     var statsString: [String]? = ["1","2","3","4","cinco"]
-
+    
     
     @IBOutlet weak var titlePokemon: UILabel!
     
@@ -129,25 +129,23 @@ class DetailsViewController: UIViewController {
         LabelStats4.text = "Sp. Atk"
         LabelStats5.text = "Sp. Def"
         LabelStats6.text = "Speed"
-
+        
         if stats != nil{
-                progressStat1.progress = Float(stats![0])
-                    progressStat2.progress = Float(stats![1])
-                    progressStat3.progress = Float(stats![2])
-                    progressStat4.progress = Float(stats![3])
-                    progressStat5.progress = Float(stats![4])
-                    progressStat6.progress = Float(stats![5])
-            }
-    
-        if statsString != nil {
-        stat1.text = "statsString![0]"
-        stat2.text = "statsString![1]"
-        stat3.text = "statsString![2]"
-        stat4.text = "statsString![3]"
-        stat5.text = "statsString![4]"
-        stat6.text = "statsString![5]"
+            progressStat1.progress = Float(stats![0])
+            progressStat2.progress = Float(stats![1])
+            progressStat3.progress = Float(stats![2])
+            progressStat4.progress = Float(stats![3])
+            progressStat5.progress = Float(stats![4])
+            progressStat6.progress = Float(stats![5])
+            
+            
+            stat1.text = String(stats![0] * 100)
+            stat2.text = String(stats![1] * 100)
+            stat3.text = String(stats![2] * 100)
+            stat4.text = String(stats![3] * 100)
+            stat5.text = String(stats![4] * 100)
+            stat6.text = String(stats![5] * 100)
         }
     }
-    
     
 }

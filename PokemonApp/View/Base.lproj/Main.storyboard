@@ -194,7 +194,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JPV-yf-Bty">
-                                        <rect key="frame" x="8" y="612" width="80" height="138"/>
+                                        <rect key="frame" x="8" y="602" width="80" height="138"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="JDp-VB-HV8">
                                                 <rect key="frame" x="0.0" y="0.0" width="37.5" height="138"/>
@@ -383,7 +383,7 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="YZg-1r-k2S" firstAttribute="bottom" secondItem="JPV-yf-Bty" secondAttribute="bottom" constant="102" id="9Ni-kw-ZNK"/>
+                                    <constraint firstItem="YZg-1r-k2S" firstAttribute="bottom" secondItem="JPV-yf-Bty" secondAttribute="bottom" constant="112" id="9Ni-kw-ZNK"/>
                                     <constraint firstAttribute="trailing" secondItem="nCK-q0-SP0" secondAttribute="trailing" constant="80" id="EFO-1r-ELS"/>
                                     <constraint firstItem="65h-WM-jpS" firstAttribute="centerX" secondItem="awB-yx-9oh" secondAttribute="centerX" id="HWN-yt-QpV"/>
                                     <constraint firstAttribute="trailing" secondItem="BbD-GA-N2p" secondAttribute="trailing" constant="2" id="Hct-sP-Qd9"/>
@@ -396,7 +396,7 @@
                                     <constraint firstItem="JPV-yf-Bty" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="8" id="epN-Mb-dCg"/>
                                     <constraint firstItem="BbD-GA-N2p" firstAttribute="centerX" secondItem="Dyb-8Q-ssZ" secondAttribute="centerX" id="hX3-D7-RcN"/>
                                     <constraint firstItem="Dyb-8Q-ssZ" firstAttribute="centerX" secondItem="awB-yx-9oh" secondAttribute="centerX" id="iOQ-oP-lXd"/>
-                                    <constraint firstItem="JPV-yf-Bty" firstAttribute="top" secondItem="szw-Jb-GUX" secondAttribute="bottom" constant="50" id="izM-HZ-7U2"/>
+                                    <constraint firstItem="JPV-yf-Bty" firstAttribute="top" secondItem="szw-Jb-GUX" secondAttribute="bottom" constant="40" id="izM-HZ-7U2"/>
                                     <constraint firstAttribute="bottom" secondItem="nCK-q0-SP0" secondAttribute="bottom" constant="581" id="lXy-G5-vMc"/>
                                     <constraint firstItem="Dyb-8Q-ssZ" firstAttribute="top" secondItem="nCK-q0-SP0" secondAttribute="bottom" constant="26" id="mri-8u-3Zg"/>
                                     <constraint firstItem="YZg-1r-k2S" firstAttribute="trailing" secondItem="RBU-et-L3S" secondAttribute="trailing" constant="19" id="ofj-Fs-j0w"/>
