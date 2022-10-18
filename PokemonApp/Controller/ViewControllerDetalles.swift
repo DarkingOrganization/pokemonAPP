@@ -1,25 +1,7 @@
-//
-//  ViewControllerDetalles.swift
-//  PokemonApp
-//
-//  Created by Alejanro Cardenas on 15/10/22.
-//
-
 import UIKit
 
 class ViewControllerDetalles: UIViewController {
-    
-    var viewControllerPrincipal = ViewController ()
-    
-    var selectedPokemon: String = ""
-    var selectedPokemonImage: UIImage?
-    var selectedPokemonIconoElement: UIImage?
-    var selectedPokemonTextElement: String?
-    
-    var stats: [Float]? = [0,1,2,3,4,5]
-    var statsString: [String] = ["1","2"]
-
-    
+     
     @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var BigImage: UIImageView!
     @IBOutlet weak var namePokemon: UILabel!
@@ -54,10 +36,19 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var evolutionButton: UIButton!
     @IBOutlet weak var movesButton: UIButton!
     
+    var viewControllerPrincipal = ViewController ()
     
+    var selectedPokemon: String = ""
+    var selectedPokemonImage: UIImage?
+    var selectedPokemonIconoElement: UIImage?
+    var selectedPokemonTextElement: String?
+    
+    var stats: [Float]? = [0,1,2,3,4,5]
+    var statsString: [String] = ["1","2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
@@ -75,7 +66,6 @@ class ViewControllerDetalles: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setGradientBackground()
         
         namePokemon.text = selectedPokemon
         BigImage.image = selectedPokemonImage
@@ -86,16 +76,11 @@ class ViewControllerDetalles: UIViewController {
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         elementIcon.layer.cornerRadius = 20
         elementLabel.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
-        elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         viewElement.backgroundColor =  #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)  //#colorLiteral()
-        
         
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
-        
-        
-        
-        
+
     }
     
     @IBAction func statsButtonPress(_ sender: UIButton) {
@@ -105,7 +90,6 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         evolutionButton.backgroundColor = .white
         movesButton.backgroundColor = .white
-        evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         
         performSegue(withIdentifier: "segueStats", sender: self)
@@ -122,15 +106,9 @@ class ViewControllerDetalles: UIViewController {
             destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
             destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
             destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
-            
-            
+ 
             destinationVCDetails.stats = stats
 
-//            if statsString != nil{
-//                for statString in 1...6{
-//                   destinationVCDetails.statsString![statString - 1] = statsString[statString - 1]
-//                }
-//            }
         }
     }
     
@@ -176,43 +154,23 @@ class ViewControllerDetalles: UIViewController {
         
        
 //print(statsString[0])
-//            print(statsString[1])
-//            print(statsString![2])
-//            print(statsString![3])
-//            print(statsString![4])
-//            print(statsString![5])
-            stat1.text = String(stats![0] * 100)
-            stat2.text = String(stats![1] * 100)
-            stat3.text = String(stats![2] * 100)
-            stat4.text = String(stats![3] * 100)
-            stat5.text = String(stats![4] * 100)
-            stat6.text = String(stats![5] * 100)
+//            print(statsString[1]) //// BUG
+
+            stat1.text = String(Int(stats![0] * 100))
+            stat2.text = String(Int(stats![1] * 100))
+            stat3.text = String(Int(stats![2] * 100))
+            stat4.text = String(Int(stats![3] * 100))
+            stat5.text = String(Int(stats![4] * 100))
+            stat6.text = String(Int(stats![5] * 100))
         
         }
     }
-    
-    
     
     @IBAction func closePush(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
-    func setGradientBackground() {
-        let colorTop =  UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.1, 0.1]
-        gradientLayer.frame = self.view.bounds
-        
-        self.view.layer.insertSublayer(gradientLayer, at:0)
-    }
+
     
     
     

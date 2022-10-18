@@ -1,10 +1,3 @@
-//
-//  DetailsViewController.swift
-//  PokemonApp
-//
-//  Created by Alejanro Cardenas on 16/10/22.
-//
-
 import UIKit
 
 class DetailsViewController: UIViewController {
@@ -25,10 +18,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var BigImage: UIImageView!
     
-    //    @IBOutlet weak var elementLabel: UILabel!
-    //    @IBOutlet weak var elementIcon: UIImageView!
-    //    @IBOutlet weak var viewElement: UIView!
-    //    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var stat1: UILabel!
     @IBOutlet weak var stat2: UILabel!
     @IBOutlet weak var stat3: UILabel!
@@ -59,8 +48,7 @@ class DetailsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    
+      
     override func viewDidLoad() {
         super.viewDidLoad()
         titlePokemon.text = selectedPokemon
@@ -139,12 +127,12 @@ class DetailsViewController: UIViewController {
             progressStat6.progress = Float(stats![5])
             
             
-            stat1.text = String(stats![0] * 100)
-            stat2.text = String(stats![1] * 100)
-            stat3.text = String(stats![2] * 100)
-            stat4.text = String(stats![3] * 100)
-            stat5.text = String(stats![4] * 100)
-            stat6.text = String(stats![5] * 100)
+            stat1.text = String(Int(stats![0] * 100))
+            stat2.text = String(Int(stats![1] * 100))
+            stat3.text = String(Int(stats![2] * 100))
+            stat4.text = String(Int(stats![3] * 100))
+            stat5.text = String(Int(stats![4] * 100))
+            stat6.text = String(Int(stats![5] * 100))
         }
     }
     

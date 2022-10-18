@@ -1,4 +1,3 @@
-
 import UIKit
 class ViewController: UIViewController, UITableViewDelegate {
     
@@ -24,10 +23,11 @@ class ViewController: UIViewController, UITableViewDelegate {
  
     private var pokemonManager = PokemonManager()
     private var pokemones: [PokemonModel]? = []
-    private var pokemonesFiltrados: [PokemonModel]? = []
+    var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     private var elementoText: String?
     private var boolVar: Bool = false
+
 
     var stats: [Float]? = [0,1,2,3,4,5]
     @IBOutlet weak var searchBar: UISearchBar!
@@ -38,7 +38,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         gradient.type = .axial
         gradient.colors = [
             UIColor.init(named: "blueCustom")!.cgColor,
-            // UIColor.purple.cgColor,
             UIColor.init(named: "greenCustom")!.cgColor
         ]
         gradient.startPoint = CGPoint(x: 0, y: 1)
@@ -82,44 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         tableView.layer.borderColor = UIColor.red.cgColor
         self.tableView.layer.borderWidth = 2
     }
-    
-    
-    
-    @IBAction func imageButtonPress (_ sender: UIButton) {
-        
-        if  boolVar == true {
-            performSegue(withIdentifier: "detalles", sender: self)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ViewControllerDetalles
-        
-        if tableView.indexPathForSelectedRow != nil {
-            if let namePoke = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
-                destinationVC.selectedPokemon = namePoke
-                destinationVC.selectedPokemonImage = imagenSegue
-                destinationVC.selectedPokemonIconoElement = elementIcon
-                destinationVC.selectedPokemonTextElement = self.elementoText
-                
-            }
-            
-
-            if let stats = stats{
-                
-                for stat in 1...6{
-                
-                destinationVC.stats![stat - 1] = Float(stats[(stat - 1)] / 100)
-                    
-                    let intStats = (Int(stats[(stat - 1)]))
-                destinationVC.statsString = [String(intStats)]
-
-                }
-                
-            }
-        }
-    }
-    
+ 
     
     @IBAction func closeFeatures(_ sender: UIButton) {
         
@@ -137,22 +99,11 @@ class ViewController: UIViewController, UITableViewDelegate {
         tableView.reloadData()
     }
     
-    func imagenPokemonF (imagen: Int) -> String? {
-        if imagen < 10 {
-            return "00\(String(imagen))"
-        } else if imagen < 100 {
-            return "0\(String(imagen))"
-        } else if imagen < 810 {
-            return "\(String(imagen))"
-        } else {
-            return "nil"
-        }
-    }
+
     
     
     //MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         
         boolVar = true
         
@@ -168,14 +119,10 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         if let indexPokemon = poke?[indexPath.row] {
             
-
             for stat in 1...6{
-
             stats![stat - 1] = Float(indexPokemon.stats[stat - 1])
             }
-           // }
-            
-            
+    
             let codeP = imagenPokemonF(imagen: Int(indexPokemon.pokemonID)!)
             self.codigoPokemonFeatures.text = "#\(String(codeP!))"
             
@@ -210,14 +157,54 @@ class ViewController: UIViewController, UITableViewDelegate {
         UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
         
         buttonViewT.alpha = 0.5
+    }
+    
+    func imagenPokemonF (imagen: Int) -> String? {
+        if imagen < 10 {
+            return "00\(String(imagen))"
+        } else if imagen < 100 {
+            return "0\(String(imagen))"
+        } else if imagen < 810 {
+            return "\(String(imagen))"
+        } else {
+            return "nil"
+        }
+    }
+    
+    //MARK: - preparacion View Controller Detalles
+    @IBAction func imageButtonPress (_ sender: UIButton) {
         
-        //MARK: - SearchBar
+        if  boolVar == true {
+            performSegue(withIdentifier: "detalles", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ViewControllerDetalles
+        
+        if tableView.indexPathForSelectedRow != nil {
+            if let namePoke = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
+                destinationVC.selectedPokemon = namePoke
+                destinationVC.selectedPokemonImage = imagenSegue
+                destinationVC.selectedPokemonIconoElement = elementIcon
+                destinationVC.selectedPokemonTextElement = self.elementoText
+            }
+
+            if let stats = stats{
+                
+                for stat in 1...6{
+                
+                destinationVC.stats![stat - 1] = Float(stats[(stat - 1)] / 100)
+                    
+                    let intStats = (Int(stats[(stat - 1)]))
+                destinationVC.statsString = [String(intStats)]
+
+                }
+                
+            }
+        }
     }
 }
-
-
-
-
 
 //MARK: - PokemonManagerDelegate
 
