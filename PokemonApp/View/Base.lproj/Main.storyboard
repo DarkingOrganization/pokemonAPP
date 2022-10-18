@@ -299,12 +299,18 @@
                                                 <state key="normal" title=" Evolutions ">
                                                     <color key="titleColor" red="0.3951376379" green="0.69967669249999997" blue="0.85806852580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="evolutionButtonPress:" destination="LyU-cy-4mM" eventType="touchUpInside" id="1aA-jy-m6v"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgO-gV-0xz">
                                                 <rect key="frame" x="302" y="0.0" width="79" height="43"/>
                                                 <state key="normal" title="Moves">
                                                     <color key="titleColor" red="0.3951376379" green="0.69967669249999997" blue="0.85806852580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="movesButtonPress:" destination="LyU-cy-4mM" eventType="touchUpInside" id="esw-6R-ZZ1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

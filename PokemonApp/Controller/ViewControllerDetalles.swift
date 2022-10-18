@@ -9,17 +9,13 @@ import UIKit
 
 class ViewControllerDetalles: UIViewController {
     
+    var viewControllerPrincipal = ViewController ()
+    
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
     
-    var stats1: Float?
-    var stats2: Float?
-    var stats3: Float?
-    var stats4: Float?
-    var stats5: Float?
-    var stats6: Float?
     
     var statsString1: String? = nil
     var statsString2: String? = nil
@@ -62,7 +58,7 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var evolutionButton: UIButton!
     @IBOutlet weak var movesButton: UIButton!
     
-    var viewControllerPrincipal = ViewController ()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,14 +126,12 @@ class ViewControllerDetalles: UIViewController {
             destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
             destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
             
-            
-            
-            destinationVCDetails.stats1 = self.stats1
-            destinationVCDetails.stats2 = self.stats2
-            destinationVCDetails.stats3 = self.stats3
-            destinationVCDetails.stats4 = self.stats4
-            destinationVCDetails.stats5 = self.stats5
-            destinationVCDetails.stats6 = self.stats6
+            destinationVCDetails.stats1 = self.viewControllerPrincipal.stats1
+            destinationVCDetails.stats2 = self.viewControllerPrincipal.stats2
+            destinationVCDetails.stats3 = self.viewControllerPrincipal.stats3
+            destinationVCDetails.stats4 = self.viewControllerPrincipal.stats4
+            destinationVCDetails.stats5 = self.viewControllerPrincipal.stats5
+            destinationVCDetails.stats6 = self.viewControllerPrincipal.stats6
             
             destinationVCDetails.statsString1 = self.statsString1
             destinationVCDetails.statsString2 = self.statsString2
@@ -179,12 +173,12 @@ class ViewControllerDetalles: UIViewController {
         LabelStats5.text = "Sp. Def"
         LabelStats6.text = "Speed"
         
-        progressStat1.progress = Float(stats1 ?? 0)
-        progressStat2.progress = Float(stats2 ?? 0)
-        progressStat3.progress = Float(stats3 ?? 0)
-        progressStat4.progress = Float(stats4 ?? 0)
-        progressStat5.progress = Float(stats5 ?? 0)
-        progressStat6.progress = Float(stats6 ?? 0)
+        progressStat1.progress = Float(viewControllerPrincipal.stats1 ?? 0)
+        progressStat2.progress = Float(viewControllerPrincipal.stats2 ?? 0)
+        progressStat3.progress = Float(viewControllerPrincipal.stats3 ?? 0)
+        progressStat4.progress = Float(viewControllerPrincipal.stats4 ?? 0)
+        progressStat5.progress = Float(viewControllerPrincipal.stats5 ?? 0)
+        progressStat6.progress = Float(viewControllerPrincipal.stats6 ?? 0)
         
         stat1.text = statsString1
         stat2.text = statsString2

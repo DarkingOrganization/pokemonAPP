@@ -20,10 +20,8 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var namePokemonFeatures: UILabel!
     @IBOutlet weak var codigoPokemonFeatures: UILabel!
     
-    
     @IBOutlet weak var buttonViewT: UIButton!
-    
-    
+ 
     private var pokemonManager = PokemonManager()
     private var pokemones: [PokemonModel]? = []
     private var pokemonesFiltrados: [PokemonModel]? = []
@@ -53,32 +51,25 @@ class ViewController: UIViewController, UITableViewDelegate {
         return gradient
     }()
     
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
         
         searchBar.delegate = self
-        
         tableView.dataSource = self
         tableView.delegate = self
         pokemonManager.delegate = self
         
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         
-        let tittle = "Pokemon"
-        title = tittle
-        
         vistaFeatures.layer.cornerRadius = 10
         
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
-        
-        
+  
         loadItems()
-        
         
     }
     
@@ -120,12 +111,12 @@ class ViewController: UIViewController, UITableViewDelegate {
             
             if let stats1 = stats1, let stats2 = self.stats2, let stats3 = self.stats3, let stats4 = self.stats4, let stats5 = self.stats5, let stats6 = self.stats6{
                 
-                destinationVC.stats1 = Float(stats1 / 100)
-                destinationVC.stats2 = Float(stats2 / 100)
-                destinationVC.stats3 = Float(stats3 / 100)
-                destinationVC.stats4 = Float(stats4 / 100)
-                destinationVC.stats5 = Float(stats5 / 100)
-                destinationVC.stats6 = Float(stats6 / 100)
+                destinationVC.viewControllerPrincipal.stats1 = Float(stats1 / 100)
+                destinationVC.viewControllerPrincipal.stats2 = Float(stats2 / 100)
+                destinationVC.viewControllerPrincipal.stats3 = Float(stats3 / 100)
+                destinationVC.viewControllerPrincipal.stats4 = Float(stats4 / 100)
+                destinationVC.viewControllerPrincipal.stats5 = Float(stats5 / 100)
+                destinationVC.viewControllerPrincipal.stats6 = Float(stats6 / 100)
                 
                 destinationVC.statsString1 = String(Int(stats1))
                 destinationVC.statsString2 = String(Int(stats2))

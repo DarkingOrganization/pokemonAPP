@@ -8,8 +8,7 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    
-    
+    var viewControllerPrincipal = ViewController ()
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
@@ -76,7 +75,6 @@ class DetailsViewController: UIViewController {
         titlePokemon.textColor = .white
         
         loaditems()
-        setGradientBackground()
         
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
@@ -85,7 +83,8 @@ class DetailsViewController: UIViewController {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         
-        // Do any additional setup after loading the view.
+        viewControllerPrincipal.gradient.frame = view.bounds
+        self.view.layer.insertSublayer(viewControllerPrincipal.gradient, at:0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,14 +137,14 @@ class DetailsViewController: UIViewController {
         LabelStats4.text = "Sp. Atk"
         LabelStats5.text = "Sp. Def"
         LabelStats6.text = "Speed"
-        
+
         progressStat1.progress = Float(stats1 ?? 0)
         progressStat2.progress = Float(stats2 ?? 0)
         progressStat3.progress = Float(stats3 ?? 0)
         progressStat4.progress = Float(stats4 ?? 0)
         progressStat5.progress = Float(stats5 ?? 0)
         progressStat6.progress = Float(stats6 ?? 0)
-        
+
         stat1.text = statsString1
         stat2.text = statsString2
         stat3.text = statsString3
@@ -154,16 +153,5 @@ class DetailsViewController: UIViewController {
         stat6.text = statsString6
     }
     
-    func setGradientBackground() {
-        let colorTop =  UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 82.0/255.0, green: 153.0/255.0, blue: 216.0/255.0, alpha: 1.0).cgColor
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.1, 0.1]
-        gradientLayer.frame = self.view.bounds
-        
-        self.view.layer.insertSublayer(gradientLayer, at:0)
-    }
     
 }
