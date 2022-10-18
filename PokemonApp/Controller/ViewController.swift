@@ -39,9 +39,32 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    
+    lazy var gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor.init(named: "blueCustom")!.cgColor,
+           // UIColor.purple.cgColor,
+            UIColor.init(named: "greenCustom")!.cgColor
+        ]
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        return gradient
+    }()
+
+
+
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        self.navigationController?.isNavigationBarHidden = true
+        
         searchBar.delegate = self
         
         tableView.dataSource = self
@@ -55,8 +78,13 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         vistaFeatures.layer.cornerRadius = 10
         
+            gradient.frame = view.bounds
+            self.view.layer.insertSublayer(gradient, at:0)
+        
         
         loadItems()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +100,8 @@ class ViewController: UIViewController, UITableViewDelegate {
         buttonTwo.setImage(UIImage(named: "localizacion"), for: .normal)
         buttonTree.setImage(UIImage(named: "dulce"), for: .normal)
         
+        tableView.layer.borderColor = UIColor.red.cgColor
+        self.tableView.layer.borderWidth = 2
     }
     
     
@@ -324,10 +354,6 @@ extension ViewController: UISearchBarDelegate{
 
     }
 }
-
-
-
-
 
 
  
