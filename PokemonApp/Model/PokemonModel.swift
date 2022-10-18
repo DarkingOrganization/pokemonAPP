@@ -1,10 +1,3 @@
-//
-//  PokemonModel.swift
-//  PokemonApp
-//
-//  Created by Alejanro Cardenas on 7/10/22.
-//
-
 import Foundation
 import UIKit
 

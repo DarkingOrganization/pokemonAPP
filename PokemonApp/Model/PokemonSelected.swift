@@ -1,10 +1,3 @@
-//
-//  PokemonSelected.swift
-//  PokemonApp
-//
-//  Created by Alejanro Cardenas on 8/10/22.
-//
-
 import Foundation
 
 

@@ -1,10 +1,3 @@
-//
-//  PokemonCell.swift
-//  PokemonApp
-//
-//  Created by Alejanro Cardenas on 7/10/22.
-//
-
 import UIKit
 
 class PokemonCell: UITableViewCell {
@@ -19,9 +12,6 @@ class PokemonCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-       // pokemonImage.image = "
         
     }
 
