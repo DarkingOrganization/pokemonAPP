@@ -109,7 +109,7 @@ class ViewController: UIViewController, UITableViewDelegate {
                 
                 for stat in 1...6{
                 
-                destinationVC.viewControllerPrincipal.stats![stat - 1] = Float(stats[(stat - 1)] / 100)
+                destinationVC.stats![stat - 1] = Float(stats[(stat - 1)] / 100)
                 destinationVC.statsString = [String(Int(stats[(stat - 1)]))]
 
                 }

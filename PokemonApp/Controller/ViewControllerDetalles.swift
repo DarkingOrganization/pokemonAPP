@@ -17,7 +17,7 @@ class ViewControllerDetalles: UIViewController {
     var selectedPokemonTextElement: String?
     
     var stats: [Float]? = [0,1,2,3,4,5]
-    var statsString: [String]? = [" "," "," "," "," "," "]
+    var statsString: [String]? = ["0","1","2","3","4","5"]
 
     
     @IBOutlet weak var whiteBackground: UIImageView!
@@ -124,11 +124,11 @@ class ViewControllerDetalles: UIViewController {
             destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
             
             
-            destinationVCDetails.stats = self.viewControllerPrincipal.stats
+            destinationVCDetails.stats = stats
 
             if statsString != nil{
                 for statString in 1...6{
-                    destinationVCDetails.statsString![statString - 1] = statsString![statString - 1]
+                  "  destinationVCDetails.statsString![statString - 1] = statsString![statString - 1]"
                 }
             }
         }
@@ -165,19 +165,23 @@ class ViewControllerDetalles: UIViewController {
         
         
         
-        if viewControllerPrincipal.stats != nil{
-            for stat in 1...6{
-        progressStat1.progress = Float(viewControllerPrincipal.stats![stat - 1])
+        if stats != nil{
+          
+        progressStat1.progress = Float(stats![0])
+            progressStat2.progress = Float(stats![1])
+            progressStat3.progress = Float(stats![2])
+            progressStat4.progress = Float(stats![3])
+            progressStat5.progress = Float(stats![4])
+            progressStat6.progress = Float(stats![5])
         
-        }
        
 
-        stat1.text = statsString![0]
-        stat2.text = statsString![1]
-        stat3.text = statsString![2]
-        stat4.text = statsString![3]
-        stat5.text = statsString![4]
-        stat6.text = statsString![5]
+        stat1.text = "statsString![0]"
+        stat2.text = "statsString![1]"
+        stat3.text = "statsString![2]"
+        stat4.text = "statsString![3]"
+        stat5.text = "statsString![4]"
+        stat6.text = "statsString![5]"
         
         }
     }
