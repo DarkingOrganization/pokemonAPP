@@ -97,26 +97,5 @@ class PokemonManager {
     }
 
     
-    func imagenRequest(with urlString: String){
-            if let url = URL(string: urlString) {
-                let session = URLSession(configuration: .default)
-                let _ = session.dataTask(with: url) { [weak self] data, response, error in
-                          let httpURLResponse = response as? HTTPURLResponse
-                          if let error = error {
-                            print(error.localizedDescription)
-                          }
-                    if httpURLResponse?.statusCode == 200 {
-                                guard let data = data else { return }
-                                let image = UIImage(data: data)
-
-                        // ya puedes usar la imagen  normalmente te pide procesar en el hilo principal solo usa el DispatchQueue.main.async
-                        self?.imageFinal = image!
-                          }
-
-                    }.resume()
-    }
-
-     }
-    
 }
 
