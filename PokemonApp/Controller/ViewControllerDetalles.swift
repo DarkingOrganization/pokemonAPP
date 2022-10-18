@@ -16,13 +16,9 @@ class ViewControllerDetalles: UIViewController {
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
     
-    
-    var statsString1: String? = nil
-    var statsString2: String? = nil
-    var statsString3: String? = nil
-    var statsString4: String? = nil
-    var statsString5: String? = nil
-    var statsString6: String? = nil
+    var stats: [Float]? = [0,1,2,3,4,5]
+    var statsString: [String]? = [" "," "," "," "," "," "]
+
     
     @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var BigImage: UIImageView!
@@ -74,6 +70,7 @@ class ViewControllerDetalles: UIViewController {
         self.view.layer.insertSublayer(viewControllerPrincipal.gradient, at:0)
         
         loaditems()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,21 +123,14 @@ class ViewControllerDetalles: UIViewController {
             destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
             destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
             
-            destinationVCDetails.stats1 = self.viewControllerPrincipal.stats1
-            destinationVCDetails.stats2 = self.viewControllerPrincipal.stats2
-            destinationVCDetails.stats3 = self.viewControllerPrincipal.stats3
-            destinationVCDetails.stats4 = self.viewControllerPrincipal.stats4
-            destinationVCDetails.stats5 = self.viewControllerPrincipal.stats5
-            destinationVCDetails.stats6 = self.viewControllerPrincipal.stats6
             
-            destinationVCDetails.statsString1 = self.statsString1
-            destinationVCDetails.statsString2 = self.statsString2
-            destinationVCDetails.statsString3 = self.statsString3
-            destinationVCDetails.statsString4 = self.statsString4
-            destinationVCDetails.statsString5 = self.statsString5
-            destinationVCDetails.statsString6 = self.statsString6
-            
-            
+            destinationVCDetails.stats = self.viewControllerPrincipal.stats
+
+            if statsString != nil{
+                for statString in 1...6{
+                    destinationVCDetails.statsString![statString - 1] = statsString![statString - 1]
+                }
+            }
         }
     }
     
@@ -173,21 +163,25 @@ class ViewControllerDetalles: UIViewController {
         LabelStats5.text = "Sp. Def"
         LabelStats6.text = "Speed"
         
-        progressStat1.progress = Float(viewControllerPrincipal.stats1 ?? 0)
-        progressStat2.progress = Float(viewControllerPrincipal.stats2 ?? 0)
-        progressStat3.progress = Float(viewControllerPrincipal.stats3 ?? 0)
-        progressStat4.progress = Float(viewControllerPrincipal.stats4 ?? 0)
-        progressStat5.progress = Float(viewControllerPrincipal.stats5 ?? 0)
-        progressStat6.progress = Float(viewControllerPrincipal.stats6 ?? 0)
         
-        stat1.text = statsString1
-        stat2.text = statsString2
-        stat3.text = statsString3
-        stat4.text = statsString4
-        stat5.text = statsString5
-        stat6.text = statsString6
         
+        if viewControllerPrincipal.stats != nil{
+            for stat in 1...6{
+        progressStat1.progress = Float(viewControllerPrincipal.stats![stat - 1])
+        
+        }
+       
+
+        stat1.text = statsString![0]
+        stat2.text = statsString![1]
+        stat3.text = statsString![2]
+        stat4.text = statsString![3]
+        stat5.text = statsString![4]
+        stat6.text = statsString![5]
+        
+        }
     }
+    
     
     
     @IBAction func closePush(_ sender: UIButton) {

@@ -28,13 +28,8 @@ class ViewController: UIViewController, UITableViewDelegate {
     private var codigoImagenPokemon:String?
     private var elementoText: String?
     private var boolVar: Bool = false
-    var stats1: Float?
-    var stats2: Float?
-    var stats3: Float?
-    var stats4: Float?
-    var stats5: Float?
-    var stats6: Float?
-    
+
+    var stats: [Float]? = [0,1,2,3,4,5]
     @IBOutlet weak var searchBar: UISearchBar!
     
     
@@ -109,22 +104,15 @@ class ViewController: UIViewController, UITableViewDelegate {
                 
             }
             
-            if let stats1 = stats1, let stats2 = self.stats2, let stats3 = self.stats3, let stats4 = self.stats4, let stats5 = self.stats5, let stats6 = self.stats6{
+
+            if let stats = stats{
                 
-                destinationVC.viewControllerPrincipal.stats1 = Float(stats1 / 100)
-                destinationVC.viewControllerPrincipal.stats2 = Float(stats2 / 100)
-                destinationVC.viewControllerPrincipal.stats3 = Float(stats3 / 100)
-                destinationVC.viewControllerPrincipal.stats4 = Float(stats4 / 100)
-                destinationVC.viewControllerPrincipal.stats5 = Float(stats5 / 100)
-                destinationVC.viewControllerPrincipal.stats6 = Float(stats6 / 100)
+                for stat in 1...6{
                 
-                destinationVC.statsString1 = String(Int(stats1))
-                destinationVC.statsString2 = String(Int(stats2))
-                destinationVC.statsString3 = String(Int(stats3))
-                destinationVC.statsString4 = String(Int(stats4))
-                destinationVC.statsString5 = String(Int(stats5))
-                destinationVC.statsString6 = String(Int(stats6))
-                
+                destinationVC.viewControllerPrincipal.stats![stat - 1] = Float(stats[(stat - 1)] / 100)
+                destinationVC.statsString = [String(Int(stats[(stat - 1)]))]
+
+                }
                 
             }
         }
@@ -163,6 +151,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     //MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
         boolVar = true
         
         constrainCentre.constant = 0
@@ -177,12 +166,13 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         if let indexPokemon = poke?[indexPath.row] {
             
-            self.stats1 = Float(indexPokemon.stats1)
-            self.stats2 = Float(indexPokemon.stats2)
-            self.stats3 = Float(indexPokemon.stats3)
-            self.stats4 = Float(indexPokemon.stats4)
-            self.stats5 = Float(indexPokemon.stats5)
-            self.stats6 = Float(indexPokemon.stats6)
+
+            for stat in 1...6{
+
+            stats![stat - 1] = Float(indexPokemon.stats[stat - 1])
+            }
+           // }
+            
             
             let codeP = imagenPokemonF(imagen: Int(indexPokemon.pokemonID)!)
             self.codigoPokemonFeatures.text = "#\(String(codeP!))"
@@ -235,7 +225,7 @@ extension ViewController: PokemonManagerDelegate {
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
             
-            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats1: pokemon.stats1, stats2: pokemon.stats2, stats3: pokemon.stats3, stats4: pokemon.stats4, stats5: pokemon.stats5, stats6: pokemon.stats6)]//, tipoPokemon2: pokemon.tipoPokemon2
+            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats: pokemon.stats)]//, tipoPokemon2: pokemon.tipoPokemon2
             self.pokemones?.append(contentsOf: pokemoncito)
             self.pokemonesFiltrados = self.pokemones
             self.tableView.reloadData()

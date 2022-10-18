@@ -60,7 +60,10 @@ class PokemonManager {
             let id = decodedData.idString(codigo)
             let tipo = decodedData.types[0].type.name
             let ability = decodedData.abilities[0].ability.name
-            let stats1  = decodedData.stats[0].base_stat
+            
+            var stats = [0,1,2,3,4,5]
+            
+            let stats1 = decodedData.stats[0].base_stat
             let stats2 = decodedData.stats[1].base_stat
             let stats3 = decodedData.stats[2].base_stat
             let stats4 = decodedData.stats[3].base_stat
@@ -74,10 +77,15 @@ class PokemonManager {
                     return tipo
                 }
             }
-                
-            
+   
+            stats[0] = stats1
+            stats[1] = stats2
+            stats[2] = stats3
+            stats[3] = stats4
+            stats[4] = stats5
+            stats[5] = stats6
 
-            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, abilityPokemon: ability, tipoPokemon2: tipo2Decode, stats1: stats1, stats2: stats2, stats3: stats3, stats4: stats4, stats5: stats5, stats6: stats6)//
+            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, abilityPokemon: ability, tipoPokemon2: tipo2Decode, stats: stats)//
 
 
             return pokemon
