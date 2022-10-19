@@ -1,7 +1,7 @@
 import UIKit
 
 class ViewControllerDetalles: UIViewController {
-     
+    
     @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var BigImage: UIImageView!
     @IBOutlet weak var namePokemon: UILabel!
@@ -35,8 +35,6 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak var statsButton: UIButton!
     @IBOutlet weak var evolutionButton: UIButton!
     @IBOutlet weak var movesButton: UIButton!
-    
-    var viewControllerPrincipal = ViewController ()
     
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
@@ -79,7 +77,7 @@ class ViewControllerDetalles: UIViewController {
         
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
-        gradieteBackground ()
+        gradieteBackground()
     }
     
     @IBAction func statsButtonPress(_ sender: UIButton) {
@@ -105,9 +103,9 @@ class ViewControllerDetalles: UIViewController {
             destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
             destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
             destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
- 
+            
             destinationVCDetails.stats = stats
-
+            
         }
     }
     
@@ -143,22 +141,22 @@ class ViewControllerDetalles: UIViewController {
         
         
         if let stats = stats {
-
+            
             progressStat1.progress = Float(stats[0])
             progressStat2.progress = Float(stats[1])
             progressStat3.progress = Float(stats[2])
             progressStat4.progress = Float(stats[3])
             progressStat5.progress = Float(stats[4])
             progressStat6.progress = Float(stats[5])
-        
-
+            
+            
             stat1.text = String(Int(stats[0] * 100))
             stat2.text = String(Int(stats[1] * 100))
             stat3.text = String(Int(stats[2] * 100))
             stat4.text = String(Int(stats[3] * 100))
             stat5.text = String(Int(stats[4] * 100))
             stat6.text = String(Int(stats[5] * 100))
-        
+            
         }
     }
     
@@ -166,18 +164,18 @@ class ViewControllerDetalles: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     //MARK: - Gradiete
-    func gradieteBackground () {
+    func gradieteBackground() {
         let gradient: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.type = .axial
-        gradient.colors = [
-            UIColor.init(named: "blueCustom")!.cgColor,
-            UIColor.init(named: "greenCustom")!.cgColor
-        ]
-        gradient.startPoint = CGPoint(x: 0, y: 1)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        return gradient
-    }()
+            let gradient = CAGradientLayer()
+            gradient.type = .axial
+            gradient.colors = [
+                UIColor.init(named: "blueCustom")!.cgColor,
+                UIColor.init(named: "greenCustom")!.cgColor
+            ]
+            gradient.startPoint = CGPoint(x: 0, y: 1)
+            gradient.endPoint = CGPoint(x: 1, y: 1)
+            return gradient
+        }()
         
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
