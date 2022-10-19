@@ -134,8 +134,8 @@ class DetailsViewController: UIViewController {
             let gradient = CAGradientLayer()
             gradient.type = .axial
             gradient.colors = [
-                UIColor.init(named: "blueCustom")!.cgColor,
-                UIColor.init(named: "greenCustom")!.cgColor
+                UIColor.init(named: "greenCustom")?.cgColor ?? "green",
+                UIColor.init(named: "blueCustom")?.cgColor ?? "blue"
             ]
             gradient.startPoint = CGPoint(x: 0, y: 1)
             gradient.endPoint = CGPoint(x: 1, y: 1)

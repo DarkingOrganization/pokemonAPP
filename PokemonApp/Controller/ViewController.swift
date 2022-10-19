@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     private var elementoText: String?
     private var boolVar: Bool = false
     
-    var stats: [Float]? = [0,1,2,3,4,5]
+    var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,28 +62,17 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     //MARK: - TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         boolVar = true
-        constrainCentre.constant = 0
-        vistaFeatures.alpha = 1
+        let poke = filterPokemon()
         
-        let poke: [PokemonModel]?
-        if pokemonesFiltrados?.count == 0 {
-            poke = pokemones
-        } else {
-            poke = pokemonesFiltrados
-        }
+        showFeatureView()
         
         if let indexPokemon = poke?[indexPath.row] {
             assignedStats(pokemonModel: poke, indexPath: indexPath, indexPokemon: indexPokemon)
-            codeSelected(indexPokemon: indexPokemon)
-            elementSelected(indexPokemon: indexPokemon, indexPath: indexPath)
-            imageAndName(indexPokemon: indexPokemon)
+            setupCode(indexPokemon: indexPokemon)
+            setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
+            assignedImageAndName(indexPokemon: indexPokemon)
         }
-        
-        UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
-        
-        buttonViewT.alpha = 0.5
     }
     
     func renameImagenAssests(imagen: Int) -> String? {
@@ -100,18 +89,34 @@ class ViewController: UIViewController, UITableViewDelegate {
     //MARK: - Funciones didselect
     func assignedStats(pokemonModel: [PokemonModel]?, indexPath: IndexPath, indexPokemon: PokemonModel) {
         if let countStats = pokemonModel?[indexPath.row].stats.count {
+            
             for stat in 1...countStats {
-                stats![stat - 1] = Float(indexPokemon.stats[stat - 1])
+                stats[stat - 1] = Float(indexPokemon.stats[stat - 1])
             }
         }
     }
     
-    func codeSelected(indexPokemon: PokemonModel) {
+    func filterPokemon() -> [PokemonModel]? {
+        if pokemonesFiltrados?.count == 0 {
+            return pokemones
+        } else {
+            return pokemonesFiltrados
+        }
+    }
+    
+    func showFeatureView() {
+        constrainCentre.constant = 0
+        vistaFeatures.alpha = 1
+        UIView.animate(withDuration: 0.1, animations: { self.view.layoutIfNeeded()})
+        buttonViewT.alpha = 0.5
+    }
+    
+    func setupCode(indexPokemon: PokemonModel) {
         let codeP = renameImagenAssests(imagen: Int(indexPokemon.pokemonID)!)
         self.codigoPokemonFeatures.text = "#\(String(codeP!))"
     }
     
-    func elementSelected(indexPokemon: PokemonModel, indexPath: IndexPath) {
+    func setupElement(indexPokemon: PokemonModel, indexPath: IndexPath) {
         elemento.image = UIImage(named: indexPokemon.tipoPokemon)
         elementoText = "\(indexPokemon.tipoPokemon)"
         
@@ -126,7 +131,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    func imageAndName(indexPokemon: PokemonModel) {
+    func assignedImageAndName(indexPokemon: PokemonModel) {
         if let imagenPokemon = Int(indexPokemon.pokemonID) {
             self.codigoImagenPokemon = renameImagenAssests(imagen: imagenPokemon)
             
@@ -144,8 +149,8 @@ class ViewController: UIViewController, UITableViewDelegate {
             let gradient = CAGradientLayer()
             gradient.type = .axial
             gradient.colors = [
-                UIColor.init(named: "blueCustom")!.cgColor,
-                UIColor.init(named: "greenCustom")!.cgColor
+                UIColor.init(named: "greenCustom")?.cgColor ?? "green",
+                UIColor.init(named: "blueCustom")?.cgColor ?? "blue"
             ]
             gradient.startPoint = CGPoint(x: 0, y: 1)
             gradient.endPoint = CGPoint(x: 1, y: 1)
@@ -203,14 +208,11 @@ class ViewController: UIViewController, UITableViewDelegate {
                 destinationVC.selectedPokemonTextElement = self.elementoText
             }
             
-            if let stats = stats {
+            for stat in 1...stats.count {
+                destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
                 
-                for stat in 1...stats.count {
-                    destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
-                    
-                    let intStats = (Int(stats[(stat - 1)]))
-                    destinationVC.statsString.append(String(intStats))
-                }
+                let intStats = (Int(stats[(stat - 1)]))
+                destinationVC.statsString.append(String(intStats))
             }
         }
     }
