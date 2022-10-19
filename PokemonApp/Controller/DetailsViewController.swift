@@ -1,50 +1,48 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    var viewControllerPrincipal = ViewController ()
+    private var viewControllerPrincipal = ViewController ()
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
     
     var stats: [Float]? = []
-    
-    
     var statsString: [String]? = ["1","2","3","4","cinco"]
     
     
-    @IBOutlet weak var titlePokemon: UILabel!
+    @IBOutlet private weak var titlePokemon: UILabel!
     
-    @IBOutlet weak var whiteBackground: UIImageView!
-    @IBOutlet weak var BigImage: UIImageView!
+    @IBOutlet private weak var whiteBackground: UIImageView!
+    @IBOutlet private weak var bigImage: UIImageView!
     
-    @IBOutlet weak var stat1: UILabel!
-    @IBOutlet weak var stat2: UILabel!
-    @IBOutlet weak var stat3: UILabel!
-    @IBOutlet weak var stat4: UILabel!
-    @IBOutlet weak var stat5: UILabel!
-    @IBOutlet weak var stat6: UILabel!
+    @IBOutlet private weak var stat1: UILabel!
+    @IBOutlet private weak var stat2: UILabel!
+    @IBOutlet private weak var stat3: UILabel!
+    @IBOutlet private weak var stat4: UILabel!
+    @IBOutlet private weak var stat5: UILabel!
+    @IBOutlet private weak var stat6: UILabel!
     
-    @IBOutlet weak var LabelStats1: UILabel!
-    @IBOutlet weak var LabelStats2: UILabel!
-    @IBOutlet weak var LabelStats3: UILabel!
-    @IBOutlet weak var LabelStats4: UILabel!
-    @IBOutlet weak var LabelStats5: UILabel!
-    @IBOutlet weak var LabelStats6: UILabel!
+    @IBOutlet private weak var LabelStats1: UILabel!
+    @IBOutlet private weak var LabelStats2: UILabel!
+    @IBOutlet private weak var LabelStats3: UILabel!
+    @IBOutlet private weak var LabelStats4: UILabel!
+    @IBOutlet private weak var LabelStats5: UILabel!
+    @IBOutlet private weak var LabelStats6: UILabel!
     
-    @IBOutlet weak var progressStat1: UIProgressView!
-    @IBOutlet weak var progressStat2: UIProgressView!
-    @IBOutlet weak var progressStat3: UIProgressView!
-    @IBOutlet weak var progressStat4: UIProgressView!
-    @IBOutlet weak var progressStat5: UIProgressView!
-    @IBOutlet weak var progressStat6: UIProgressView!
+    @IBOutlet private weak var progressStat1: UIProgressView!
+    @IBOutlet private weak var progressStat2: UIProgressView!
+    @IBOutlet private weak var progressStat3: UIProgressView!
+    @IBOutlet private weak var progressStat4: UIProgressView!
+    @IBOutlet private weak var progressStat5: UIProgressView!
+    @IBOutlet private weak var progressStat6: UIProgressView!
     
     
-    @IBOutlet weak var statsButton: UIButton!
-    @IBOutlet weak var evolutionButton: UIButton!
-    @IBOutlet weak var movesButton: UIButton!
+    @IBOutlet private weak var statsButton: UIButton!
+    @IBOutlet private weak var evolutionButton: UIButton!
+    @IBOutlet private weak var movesButton: UIButton!
     
-    @IBAction func closeButton(_ sender: Any) {
+    @IBAction private func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -70,12 +68,9 @@ class DetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        BigImage.image = selectedPokemonImage
-        
+        bigImage.image = selectedPokemonImage
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
-        
     }
     
     
@@ -118,21 +113,21 @@ class DetailsViewController: UIViewController {
         LabelStats5.text = "Sp. Def"
         LabelStats6.text = "Speed"
         
-        if stats != nil{
-            progressStat1.progress = Float(stats![0])
-            progressStat2.progress = Float(stats![1])
-            progressStat3.progress = Float(stats![2])
-            progressStat4.progress = Float(stats![3])
-            progressStat5.progress = Float(stats![4])
-            progressStat6.progress = Float(stats![5])
+        if let stats = stats {
+            progressStat1.progress = Float(stats[0])
+            progressStat2.progress = Float(stats[1])
+            progressStat3.progress = Float(stats[2])
+            progressStat4.progress = Float(stats[3])
+            progressStat5.progress = Float(stats[4])
+            progressStat6.progress = Float(stats[5])
             
             
-            stat1.text = String(Int(stats![0] * 100))
-            stat2.text = String(Int(stats![1] * 100))
-            stat3.text = String(Int(stats![2] * 100))
-            stat4.text = String(Int(stats![3] * 100))
-            stat5.text = String(Int(stats![4] * 100))
-            stat6.text = String(Int(stats![5] * 100))
+            stat1.text = String(Int(stats[0] * 100))
+            stat2.text = String(Int(stats[1] * 100))
+            stat3.text = String(Int(stats[2] * 100))
+            stat4.text = String(Int(stats[3] * 100))
+            stat5.text = String(Int(stats[4] * 100))
+            stat6.text = String(Int(stats[5] * 100))
         }
     }
     

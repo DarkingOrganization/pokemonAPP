@@ -45,8 +45,6 @@ class PokemonManager {
         do {
             let decodedData = try decoder.decode(PokemonData.self, from: pokemonData)
             
-//            let id = decodedData.weather[0].id
-//            let temp = decodedData.main.temp
             let name = decodedData.forms[0].name
             let imagenPokemon = decodedData.sprites.other.home.front_default
             let codigo = decodedData.id
@@ -63,12 +61,9 @@ class PokemonManager {
             let stats5 = decodedData.stats[4].base_stat
             let stats6 = decodedData.stats[5].base_stat
             
-            _ = {
-                    func decodeRange (_ indexPath: IndexPath) -> String? {
-                            let tipo = decodedData.types[indexPath.row].type.name
-                        self.tipo2Decode = tipo
-                    return tipo
-                }
+            var tipo2: String = ""
+            if  decodedData.types.count > 1 {
+                tipo2 = decodedData.types[1].type.name
             }
    
             stats[0] = stats1
@@ -78,7 +73,7 @@ class PokemonManager {
             stats[4] = stats5
             stats[5] = stats6
 
-            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, abilityPokemon: ability, tipoPokemon2: tipo2Decode, stats: stats)//
+            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, abilityPokemon: ability, tipoPokemon2: tipo2, stats: stats)//
 
 
             return pokemon
