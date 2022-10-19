@@ -58,7 +58,7 @@ class ViewControllerDetalles: UIViewController {
         gradieteBackground()
     }
     
-    @IBAction func statsButtonPress(_ sender: UIButton) {
+    @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
         
         performSegue(withIdentifier: "segueStats", sender: self)
@@ -76,15 +76,15 @@ class ViewControllerDetalles: UIViewController {
         }
     }
     
-    @IBAction func evolutionButtonPress(_ sender: UIButton) {
+    @IBAction private func evolutionButtonPress(_ sender: UIButton) {
         configEvolutionButton()
     }
     
-    @IBAction func movesButtonPress(_ sender: UIButton) {
+    @IBAction private func movesButtonPress(_ sender: UIButton) {
         configMoveButton()
     }
     
-    func setupButtons() {
+    private func setupButtons() {
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
         movesButton.layer.cornerRadius = 15
@@ -92,7 +92,7 @@ class ViewControllerDetalles: UIViewController {
         statsButton.setTitleColor(.white, for: .normal)
     }
     
-    func loaditems() {
+    private func loaditems() {
         renameLabelStats()
         
         if let stats = stats {
@@ -101,7 +101,7 @@ class ViewControllerDetalles: UIViewController {
         }
     }
     
-    func assignmentValueProgressBar(_ stats: [Float]) {
+    private func assignmentValueProgressBar(_ stats: [Float]) {
         progressStat1.progress = Float(stats[0])
         progressStat2.progress = Float(stats[1])
         progressStat3.progress = Float(stats[2])
@@ -110,7 +110,7 @@ class ViewControllerDetalles: UIViewController {
         progressStat6.progress = Float(stats[5])
     }
     
-    func septupLabelProgressBar(_ stats: [Float]) {
+    private func septupLabelProgressBar(_ stats: [Float]) {
         stat1.text = String(Int(stats[0] * 100))
         stat2.text = String(Int(stats[1] * 100))
         stat3.text = String(Int(stats[2] * 100))
@@ -119,7 +119,7 @@ class ViewControllerDetalles: UIViewController {
         stat6.text = String(Int(stats[5] * 100))
     }
     
-    func renameLabelStats() {
+    private func renameLabelStats() {
         LabelStats1.text = "Hp"
         LabelStats2.text = "Attack"
         LabelStats3.text = "Defense"
@@ -128,7 +128,7 @@ class ViewControllerDetalles: UIViewController {
         LabelStats6.text = "Speed"
     }
     
-    func setupElement() {
+    private func setupElement() {
         elementLabel.text = selectedPokemonTextElement?.capitalized
         elementIcon.image = selectedPokemonIconoElement
         viewElement.layer.cornerRadius = 30
@@ -138,12 +138,12 @@ class ViewControllerDetalles: UIViewController {
         viewElement.backgroundColor =  #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
     }
     
-    func configWhiteImage() {
+    private func configWhiteImage() {
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
     }
     
-    func configStatsButton() {
+    private func configStatsButton() {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
@@ -153,7 +153,7 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configEvolutionButton() {
+    private func configEvolutionButton() {
         evolutionButton.setTitleColor(.white, for: .normal)
         evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -162,7 +162,7 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configMoveButton() {
+    private func configMoveButton() {
         movesButton.setTitleColor(.white, for: .normal)
         movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -175,7 +175,7 @@ class ViewControllerDetalles: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     //MARK: - Gradiete
-    func gradieteBackground() {
+    private func gradieteBackground() {
         let gradient: CAGradientLayer = {
             let gradient = CAGradientLayer()
             gradient.type = .axial

@@ -54,19 +54,19 @@ class DetailsViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    @IBAction func statsButtonPress(_ sender: UIButton) {
+    @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
     }
     
-    @IBAction func evolutionButtonPress(_ sender: UIButton) {
+    @IBAction private func evolutionButtonPress(_ sender: UIButton) {
         configEvolutionButton()
     }
     
-    @IBAction func movesButtonPress(_ sender: UIButton) {
+    @IBAction private func movesButtonPress(_ sender: UIButton) {
         configMoveButton()
     }
     
-    func loaditems() {
+    private func loaditems() {
         renameLabelStats()
         
         if let stats = stats {
@@ -75,7 +75,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    func assignmentValueProgressBar(_ stats: [Float]) {
+    private func assignmentValueProgressBar(_ stats: [Float]) {
         progressStat1.progress = Float(stats[0])
         progressStat2.progress = Float(stats[1])
         progressStat3.progress = Float(stats[2])
@@ -84,7 +84,7 @@ class DetailsViewController: UIViewController {
         progressStat6.progress = Float(stats[5])
     }
     
-    func septupLabelProgressBar(_ stats: [Float]) {
+    private func septupLabelProgressBar(_ stats: [Float]) {
         stat1.text = String(Int(stats[0] * 100))
         stat2.text = String(Int(stats[1] * 100))
         stat3.text = String(Int(stats[2] * 100))
@@ -93,7 +93,7 @@ class DetailsViewController: UIViewController {
         stat6.text = String(Int(stats[5] * 100))
     }
     
-    func renameLabelStats() {
+    private func renameLabelStats() {
         LabelStats1.text = "Hp"
         LabelStats2.text = "Attack"
         LabelStats3.text = "Defense"
@@ -102,25 +102,25 @@ class DetailsViewController: UIViewController {
         LabelStats6.text = "Speed"
     }
     
-    func setupButtons() {
+    private func setupButtons() {
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
         movesButton.layer.cornerRadius = 15
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
     }
-    func configWhiteImage() {
+    private func configWhiteImage() {
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
     }
     
-    func setupTitlePokemon() {
+    private func setupTitlePokemon() {
         titlePokemon.text = selectedPokemon
         titlePokemon.textColor = .white
         bigImage.image = selectedPokemonImage
     }
     
-    func configStatsButton() {
+    private func configStatsButton() {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
@@ -130,7 +130,7 @@ class DetailsViewController: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configEvolutionButton() {
+    private func configEvolutionButton() {
         evolutionButton.setTitleColor(.white, for: .normal)
         evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -139,7 +139,7 @@ class DetailsViewController: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configMoveButton() {
+    private func configMoveButton() {
         movesButton.setTitleColor(.white, for: .normal)
         movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -148,7 +148,7 @@ class DetailsViewController: UIViewController {
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     //MARK: - Gradiete
-    func gradieteBackground() {
+    private func gradieteBackground() {
         let gradient: CAGradientLayer = {
             let gradient = CAGradientLayer()
             gradient.type = .axial

@@ -4,13 +4,12 @@ struct PokemonData: Codable {
     let forms: [forms]
     let sprites: Sprites
     let id: Int
-    var types: [Types] ///= [.init(type: Name(name: "")), .init(type: Name(name: ""))]
+    var types: [Types]
     var abilities: [Abilities]
-    var stats: [Stats] //[0].base_stat
+    var stats: [Stats]
     func idString (_ code: Int) -> String {
         return "00\(code)"
     }
-    
 }
 
 struct Stats: Codable {
@@ -34,7 +33,7 @@ struct Types: Codable {
 }
 
 struct Name: Codable {
-   let name: String
+    let name: String
 }
 
 struct Sprites: Codable {
@@ -44,10 +43,6 @@ struct Other: Codable {
     let home: Home
 }
 
-//sprites.other.home.front_default
-
 struct Home: Codable {
     let front_default: String
 }
-
-
