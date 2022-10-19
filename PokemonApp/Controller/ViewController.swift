@@ -27,58 +27,22 @@ class ViewController: UIViewController, UITableViewDelegate {
     private var elementoText: String?
     private var boolVar: Bool = false
 
-
     var stats: [Float]? = [0,1,2,3,4,5]
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    
-    lazy var gradient: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.type = .axial
-        gradient.colors = [
-            UIColor.init(named: "blueCustom")!.cgColor,
-            UIColor.init(named: "greenCustom")!.cgColor
-        ]
-        gradient.startPoint = CGPoint(x: 0, y: 1)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        return gradient
-    }()
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.isNavigationBarHidden = true
-        
-        searchBar.delegate = self
-        tableView.dataSource = self
-        tableView.delegate = self
-        pokemonManager.delegate = self
-        
-        tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        
-        vistaFeatures.layer.cornerRadius = 10
-        
-        gradient.frame = view.bounds
-        self.view.layer.insertSublayer(gradient, at:0)
-  
+        delegates()
+        gradieteBackground ()
         loadItems()
-        
+        asingCellNib ()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        constrainCentre.constant = -500
-        vistaFeatures.alpha = 0
-        buttonViewT.alpha = 0
-        
-        
-        buttonOne.setImage(UIImage(named: "pikachuicono"), for: .normal)
-        buttonTwo.setImage(UIImage(named: "localizacion"), for: .normal)
-        buttonTree.setImage(UIImage(named: "dulce"), for: .normal)
-        
-        tableView.layer.borderColor = UIColor.red.cgColor
-        self.tableView.layer.borderWidth = 2
+        constrainsAndViewsConfig()
+        tableBorderColor ()
+        iconsButtons()
     }
     
     @IBAction func closeFeatures(_ sender: UIButton) {
@@ -114,11 +78,13 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         if let indexPokemon = poke?[indexPath.row] {
             
-            for stat in 1...6{
+            if let countStats = poke?[indexPath.row].stats.count{
+                for stat in 1...countStats{
             stats![stat - 1] = Float(indexPokemon.stats[stat - 1])
             }
+            }
     
-            let codeP = imagenPokemonF(imagen: Int(indexPokemon.pokemonID)!)
+            let codeP = renameImagenAssests(imagen: Int(indexPokemon.pokemonID)!)
             self.codigoPokemonFeatures.text = "#\(String(codeP!))"
             
             elemento.image = UIImage(named: indexPokemon.tipoPokemon)
@@ -133,7 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             
             if let imagenPokemon = Int(indexPokemon.pokemonID) {
                 
-                self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
+                self.codigoImagenPokemon = renameImagenAssests(imagen: imagenPokemon)
                 
                 
                 let imagen = (UIImage(named: self.codigoImagenPokemon!))
@@ -154,7 +120,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         buttonViewT.alpha = 0.5
     }
     
-    func imagenPokemonF(imagen: Int) -> String? {
+    func renameImagenAssests(imagen: Int) -> String? {
         if imagen < 10 {
             return "00\(String(imagen))"
         } else if imagen < 100 {
@@ -165,7 +131,52 @@ class ViewController: UIViewController, UITableViewDelegate {
             return "nil"
         }
     }
+    //MARK: - Gradiete
+    func gradieteBackground() {
+        let gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor.init(named: "blueCustom")!.cgColor,
+            UIColor.init(named: "greenCustom")!.cgColor
+        ]
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        return gradient
+    }()
+        
+        gradient.frame = view.bounds
+        self.view.layer.insertSublayer(gradient, at:0)
+        
+    }
     
+    func delegates() {
+    searchBar.delegate = self
+    tableView.dataSource = self
+    tableView.delegate = self
+    pokemonManager.delegate = self
+    }
+    
+    func asingCellNib() {
+    tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+    }
+    
+    func constrainsAndViewsConfig() {
+    vistaFeatures.layer.cornerRadius = 10
+    constrainCentre.constant = -500
+    vistaFeatures.alpha = 0
+    buttonViewT.alpha = 0
+
+    }
+    func iconsButtons() {
+    buttonOne.setImage(UIImage(named: "pikachuicono"), for: .normal)
+    buttonTwo.setImage(UIImage(named: "localizacion"), for: .normal)
+    buttonTree.setImage(UIImage(named: "dulce"), for: .normal)
+    }
+    func tableBorderColor (){
+tableView.layer.borderColor = UIColor.red.cgColor
+self.tableView.layer.borderWidth = 2
+    }
     //MARK: - preparacion View Controller Detalles
     @IBAction func imageButtonPress(_ sender: UIButton) {
         
@@ -237,14 +248,14 @@ extension ViewController: UITableViewDataSource{
         cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
         
         
-        if let codePokemon = imagenPokemonF(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!){
+        if let codePokemon = renameImagenAssests(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!){
             cell.codigoPokemonLabel.text = "#\(String(codePokemon))"
         }
         
         
         if let imagenPokemon = Int((pokemonesFiltrados?[indexPath.row].pokemonID)!) {
             
-            self.codigoImagenPokemon = imagenPokemonF(imagen: imagenPokemon)
+            self.codigoImagenPokemon = renameImagenAssests(imagen: imagenPokemon)
             
             if let codigo = codigoImagenPokemon{
                 cell.pokemonImage.image = UIImage(named: codigo)

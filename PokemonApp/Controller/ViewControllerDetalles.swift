@@ -57,8 +57,7 @@ class ViewControllerDetalles: UIViewController {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         
-        viewControllerPrincipal.gradient.frame = view.bounds
-        self.view.layer.insertSublayer(viewControllerPrincipal.gradient, at:0)
+        
         
         loaditems()
         
@@ -80,7 +79,7 @@ class ViewControllerDetalles: UIViewController {
         
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
-
+        gradieteBackground ()
     }
     
     @IBAction func statsButtonPress(_ sender: UIButton) {
@@ -165,5 +164,23 @@ class ViewControllerDetalles: UIViewController {
     
     @IBAction func closePush(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+    //MARK: - Gradiete
+    func gradieteBackground () {
+        let gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor.init(named: "blueCustom")!.cgColor,
+            UIColor.init(named: "greenCustom")!.cgColor
+        ]
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        return gradient
+    }()
+        
+        gradient.frame = view.bounds
+        self.view.layer.insertSublayer(gradient, at:0)
+        
     }
 }

@@ -61,8 +61,7 @@ class DetailsViewController: UIViewController {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         
-        viewControllerPrincipal.gradient.frame = view.bounds
-        self.view.layer.insertSublayer(viewControllerPrincipal.gradient, at:0)
+       gradieteBackground ()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,5 +129,22 @@ class DetailsViewController: UIViewController {
             stat6.text = String(Int(stats[5] * 100))
         }
     }
-    
+    //MARK: - Gradiete
+    func gradieteBackground () {
+        let gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor.init(named: "blueCustom")!.cgColor,
+            UIColor.init(named: "greenCustom")!.cgColor
+        ]
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        return gradient
+    }()
+        
+        gradient.frame = view.bounds
+        self.view.layer.insertSublayer(gradient, at:0)
+        
+    }
 }
