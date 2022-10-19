@@ -9,11 +9,12 @@ protocol PokemonManagerDelegate {
 
 class PokemonManager {
     let pokemonURL = "https://pokeapi.co/api/v2/pokemon/"
-    
     var imageFinal: UIImage?
-  
     var delegate: PokemonManagerDelegate?
     var tipo2Decode: String?
+    var stats = [0,1,2,3,4,5]
+    var tipo2: String = ""
+    
     func fetchPokemon(pokemonCode: String) {
         let urlString = "\(pokemonURL)\(pokemonCode)"
         performRequest(with: urlString)
@@ -37,8 +38,6 @@ class PokemonManager {
         }
     }
     
-
- 
     func parseJSON(_ pokemonData: Data) -> PokemonModel? {
         let decoder = JSONDecoder()
         
@@ -52,38 +51,23 @@ class PokemonManager {
             let tipo = decodedData.types[0].type.name
             let ability = decodedData.abilities[0].ability.name
             
-            var stats = [0,1,2,3,4,5]
+            stats[0] = decodedData.stats[0].base_stat
+            stats[1] = decodedData.stats[1].base_stat
+            stats[2] = decodedData.stats[2].base_stat
+            stats[3] = decodedData.stats[3].base_stat
+            stats[4] = decodedData.stats[4].base_stat
+            stats[5] = decodedData.stats[5].base_stat
             
-            let stats1 = decodedData.stats[0].base_stat
-            let stats2 = decodedData.stats[1].base_stat
-            let stats3 = decodedData.stats[2].base_stat
-            let stats4 = decodedData.stats[3].base_stat
-            let stats5 = decodedData.stats[4].base_stat
-            let stats6 = decodedData.stats[5].base_stat
-            
-            var tipo2: String = ""
             if  decodedData.types.count > 1 {
                 tipo2 = decodedData.types[1].type.name
             }
-   
-            stats[0] = stats1
-            stats[1] = stats2
-            stats[2] = stats3
-            stats[3] = stats4
-            stats[4] = stats5
-            stats[5] = stats6
-
-            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, abilityPokemon: ability, tipoPokemon2: tipo2, stats: stats)//
-
-
-            return pokemon
             
+            let pokemon = PokemonModel(pokemonName: name, imageFront: imagenPokemon,  pokemonID: id, tipoPokemon: tipo, abilityPokemon: ability, tipoPokemon2: tipo2, stats: stats)
+            return pokemon
         } catch {
             delegate?.didFailWithError(error: error)
             return nil
         }
     }
-
-    
 }
 
