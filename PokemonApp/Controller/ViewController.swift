@@ -11,7 +11,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var constrainCentre: NSLayoutConstraint!
     
     @IBOutlet weak var elemento: UIImageView!
-    
     @IBOutlet weak var elemento2: UIImageView?
     @IBOutlet weak var pokemonPop: UIButton!
     @IBOutlet weak var featuresTotal: UIImageView!
@@ -81,16 +80,12 @@ class ViewController: UIViewController, UITableViewDelegate {
         tableView.layer.borderColor = UIColor.red.cgColor
         self.tableView.layer.borderWidth = 2
     }
- 
     
     @IBAction func closeFeatures(_ sender: UIButton) {
-        
-        constrainCentre.constant = -400
+        constrainCentre.constant = -500
         vistaFeatures.alpha = 0
         buttonViewT.alpha = 0
     }
-    
-    
     
     func loadItems() {
         for pokemon in 1...809 {
@@ -159,7 +154,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         buttonViewT.alpha = 0.5
     }
     
-    func imagenPokemonF (imagen: Int) -> String? {
+    func imagenPokemonF(imagen: Int) -> String? {
         if imagen < 10 {
             return "00\(String(imagen))"
         } else if imagen < 100 {
@@ -172,7 +167,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     //MARK: - preparacion View Controller Detalles
-    @IBAction func imageButtonPress (_ sender: UIButton) {
+    @IBAction func imageButtonPress(_ sender: UIButton) {
         
         if  boolVar == true {
             performSegue(withIdentifier: "detalles", sender: self)
@@ -192,12 +187,12 @@ class ViewController: UIViewController, UITableViewDelegate {
 
             if let stats = stats{
                 
-                for stat in 1...6{
+                for stat in 1...stats.count {
                 
-                destinationVC.stats![stat - 1] = Float(stats[(stat - 1)] / 100)
+                destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
                     
                     let intStats = (Int(stats[(stat - 1)]))
-                destinationVC.statsString = [String(intStats)]
+                    destinationVC.statsString.append(String(intStats))
 
                 }
                 

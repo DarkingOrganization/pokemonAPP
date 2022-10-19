@@ -143,25 +143,22 @@ class ViewControllerDetalles: UIViewController {
         
         
         
-        if stats != nil{
-          
-        progressStat1.progress = Float(stats![0])
-            progressStat2.progress = Float(stats![1])
-            progressStat3.progress = Float(stats![2])
-            progressStat4.progress = Float(stats![3])
-            progressStat5.progress = Float(stats![4])
-            progressStat6.progress = Float(stats![5])
-        
-       
-//print(statsString[0])
-//            print(statsString[1]) //// BUG
+        if let stats = stats {
 
-            stat1.text = String(Int(stats![0] * 100))
-            stat2.text = String(Int(stats![1] * 100))
-            stat3.text = String(Int(stats![2] * 100))
-            stat4.text = String(Int(stats![3] * 100))
-            stat5.text = String(Int(stats![4] * 100))
-            stat6.text = String(Int(stats![5] * 100))
+            progressStat1.progress = Float(stats[0])
+            progressStat2.progress = Float(stats[1])
+            progressStat3.progress = Float(stats[2])
+            progressStat4.progress = Float(stats[3])
+            progressStat5.progress = Float(stats[4])
+            progressStat6.progress = Float(stats[5])
+        
+
+            stat1.text = String(Int(stats[0] * 100))
+            stat2.text = String(Int(stats[1] * 100))
+            stat3.text = String(Int(stats[2] * 100))
+            stat4.text = String(Int(stats[3] * 100))
+            stat5.text = String(Int(stats[4] * 100))
+            stat6.text = String(Int(stats[5] * 100))
         
         }
     }
@@ -169,12 +166,4 @@ class ViewControllerDetalles: UIViewController {
     @IBAction func closePush(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-
-    
-    
-    
-    
-    
-    
 }

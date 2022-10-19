@@ -420,7 +420,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="rfy-Gc-TNs"/>
                     <connections>
-                        <outlet property="BigImage" destination="nCK-q0-SP0" id="EID-rU-z2U"/>
+                        <outlet property="bigImage" destination="nCK-q0-SP0" id="EID-rU-z2U"/>
                         <outlet property="LabelStats1" destination="4ku-M4-8Wg" id="WUI-UX-Zdt"/>
                         <outlet property="LabelStats2" destination="QM6-ma-nYG" id="GGV-Nh-6Wt"/>
                         <outlet property="LabelStats3" destination="b9K-8d-HDq" id="hH6-9x-GtO"/>
@@ -699,7 +699,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="BigImage" destination="NEO-WK-ox8" id="3tK-e5-6mn"/>
+                        <outlet property="bigImage" destination="NEO-WK-ox8" id="3tK-e5-6mn"/>
                         <outlet property="LabelStats1" destination="2KS-Va-Kme" id="Cla-iC-b8Q"/>
                         <outlet property="LabelStats2" destination="zwk-JV-gnk" id="v5D-Ae-uvI"/>
                         <outlet property="LabelStats3" destination="9Zr-9j-Rw1" id="be5-rB-YgU"/>
