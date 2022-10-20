@@ -270,13 +270,14 @@
                                             <constraint firstAttribute="height" constant="199" id="V6q-Bk-Rto"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wq8-pB-jQS" customClass="StatsView" customModule="PokemonApp">
-                                        <rect key="frame" x="10" y="599" width="394" height="171"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wq8-pB-jQS" customClass="StatsView" customModule="PokemonApp" customModuleProvider="target">
+                                        <rect key="frame" x="57" y="599" width="300" height="171"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Wq8-pB-jQS" firstAttribute="top" secondItem="szw-Jb-GUX" secondAttribute="bottom" constant="50" id="1Fl-3D-K3M"/>
+                                    <constraint firstItem="Wq8-pB-jQS" firstAttribute="leading" secondItem="feR-El-5jc" secondAttribute="leading" constant="57" id="89M-SV-mKh"/>
                                     <constraint firstItem="Wq8-pB-jQS" firstAttribute="centerX" secondItem="szw-Jb-GUX" secondAttribute="centerX" id="D3M-Lg-7pe"/>
                                     <constraint firstAttribute="trailing" secondItem="nCK-q0-SP0" secondAttribute="trailing" constant="80" id="EFO-1r-ELS"/>
                                     <constraint firstItem="65h-WM-jpS" firstAttribute="centerX" secondItem="awB-yx-9oh" secondAttribute="centerX" id="HWN-yt-QpV"/>

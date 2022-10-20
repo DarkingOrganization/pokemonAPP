@@ -5,6 +5,8 @@ import UIKit
 
 class StatsView: UIView {
     var viewControllerDetalles = ViewControllerDetalles()
+    var stats: [Float] = [0,1,2,3,4,5]
+    var statsString: [String] = ["1","2"]
     
     @IBOutlet weak private var stat1: UILabel!
     @IBOutlet weak private var stat2: UILabel!
@@ -33,6 +35,7 @@ class StatsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+        loaditems()
     }
     
     override init(frame: CGRect) {

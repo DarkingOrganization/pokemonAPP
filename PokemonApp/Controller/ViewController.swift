@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     private var elementoText: String?
     private var activeButtonOne: Bool = false
     
-    private var stats: [Float] = [0,1,2,3,4,5]
+    var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()

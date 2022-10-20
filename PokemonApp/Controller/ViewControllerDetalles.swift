@@ -14,7 +14,7 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak private var evolutionButton: UIButton!
     @IBOutlet weak private var movesButton: UIButton!
     
-    @IBOutlet weak private var statsView: StatsView!
+    @IBOutlet weak var statsView: StatsView!
     
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
