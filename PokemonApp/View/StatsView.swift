@@ -5,8 +5,6 @@ import UIKit
 
 class StatsView: UIView {
     var viewControllerDetalles = ViewControllerDetalles()
-    var stats: [Float] = [0,1,2,3,4,5]
-    var statsString: [String] = ["1","2"]
     
     @IBOutlet weak private var stat1: UILabel!
     @IBOutlet weak private var stat2: UILabel!
@@ -35,7 +33,6 @@ class StatsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        loaditems()
     }
     
     override init(frame: CGRect) {
@@ -62,7 +59,7 @@ class StatsView: UIView {
         septupLabelProgressBar(stats)
     }
     
-    private func assignmentValueProgressBar(_ stats: [Float]) {
+    func assignmentValueProgressBar(_ stats: [Float]) {
         progressStat1.progress = Float(stats[0])
         progressStat2.progress = Float(stats[1])
         progressStat3.progress = Float(stats[2])
@@ -71,7 +68,7 @@ class StatsView: UIView {
         progressStat6.progress = Float(stats[5])
     }
     
-    private func septupLabelProgressBar(_ stats: [Float]) {
+    func septupLabelProgressBar(_ stats: [Float]) {
         stat1.text = String(Int(stats[0] * 100))
         stat2.text = String(Int(stats[1] * 100))
         stat3.text = String(Int(stats[2] * 100))
@@ -80,7 +77,7 @@ class StatsView: UIView {
         stat6.text = String(Int(stats[5] * 100))
     }
     
-    private func renameLabelStats() {
+    func renameLabelStats() {
         LabelStats1.text = "Hp"
         LabelStats2.text = "Attack"
         LabelStats3.text = "Defense"

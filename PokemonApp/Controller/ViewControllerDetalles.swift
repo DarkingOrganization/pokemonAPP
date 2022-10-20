@@ -141,4 +141,10 @@ class ViewControllerDetalles: UIViewController {
             statsView.loaditems(stats: stats)
         }
     }
+    
+    func loaditems() {
+        if let stats = self.stats{
+        statsView.loaditems(stats: stats)
+        }
+    }
 }
