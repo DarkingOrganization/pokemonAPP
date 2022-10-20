@@ -4,34 +4,15 @@ class DetailsViewController: UIViewController {
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
-    var stats: [Float]? = []
-    var statsString: [String]? = ["1","2","3","4","cinco"]
+    var stats: [Float]? = [0,0,0,0,0]
+    var statsString: [String]? = ["1","2","3","4","5"]
+   
+    @IBOutlet weak var statsViewD: StatsView!
     
     @IBOutlet private weak var titlePokemon: UILabel!
     
     @IBOutlet private weak var whiteBackground: UIImageView!
     @IBOutlet private weak var bigImage: UIImageView!
-    
-    @IBOutlet private weak var stat1: UILabel!
-    @IBOutlet private weak var stat2: UILabel!
-    @IBOutlet private weak var stat3: UILabel!
-    @IBOutlet private weak var stat4: UILabel!
-    @IBOutlet private weak var stat5: UILabel!
-    @IBOutlet private weak var stat6: UILabel!
-    
-    @IBOutlet private weak var LabelStats1: UILabel!
-    @IBOutlet private weak var LabelStats2: UILabel!
-    @IBOutlet private weak var LabelStats3: UILabel!
-    @IBOutlet private weak var LabelStats4: UILabel!
-    @IBOutlet private weak var LabelStats5: UILabel!
-    @IBOutlet private weak var LabelStats6: UILabel!
-    
-    @IBOutlet private weak var progressStat1: UIProgressView!
-    @IBOutlet private weak var progressStat2: UIProgressView!
-    @IBOutlet private weak var progressStat3: UIProgressView!
-    @IBOutlet private weak var progressStat4: UIProgressView!
-    @IBOutlet private weak var progressStat5: UIProgressView!
-    @IBOutlet private weak var progressStat6: UIProgressView!
     
     @IBOutlet private weak var statsButton: UIButton!
     @IBOutlet private weak var evolutionButton: UIButton!
@@ -48,6 +29,7 @@ class DetailsViewController: UIViewController {
         setupButtons()
         gradieteBackground()
         configWhiteImage()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,42 +48,12 @@ class DetailsViewController: UIViewController {
         configMoveButton()
     }
     
-    private func loaditems() {
-        renameLabelStats()
-        
-        if let stats = stats {
-            assignmentValueProgressBar(stats)
-            septupLabelProgressBar(stats)
+    func loaditems() {
+        if let stats = self.stats{
+        statsViewD.loaditems(stats: stats)
         }
     }
-    
-    private func assignmentValueProgressBar(_ stats: [Float]) {
-        progressStat1.progress = Float(stats[0])
-        progressStat2.progress = Float(stats[1])
-        progressStat3.progress = Float(stats[2])
-        progressStat4.progress = Float(stats[3])
-        progressStat5.progress = Float(stats[4])
-        progressStat6.progress = Float(stats[5])
-    }
-    
-    private func septupLabelProgressBar(_ stats: [Float]) {
-        stat1.text = String(Int(stats[0] * 100))
-        stat2.text = String(Int(stats[1] * 100))
-        stat3.text = String(Int(stats[2] * 100))
-        stat4.text = String(Int(stats[3] * 100))
-        stat5.text = String(Int(stats[4] * 100))
-        stat6.text = String(Int(stats[5] * 100))
-    }
-    
-    private func renameLabelStats() {
-        LabelStats1.text = "Hp"
-        LabelStats2.text = "Attack"
-        LabelStats3.text = "Defense"
-        LabelStats4.text = "Sp. Atk"
-        LabelStats5.text = "Sp. Def"
-        LabelStats6.text = "Speed"
-    }
-    
+     
     private func setupButtons() {
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15

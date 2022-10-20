@@ -21,14 +21,14 @@ class ViewControllerDetalles: UIViewController {
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
-    var stats: [Float]? = [0,1,2,3,4,5]
+    var stats: [Float]? = [0,0,0,0,0,0]
     var statsString: [String] = ["1","2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
         
-       // loaditems()
+       loaditems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +37,6 @@ class ViewControllerDetalles: UIViewController {
         namePokemon.text = selectedPokemon
         bigImage.image = selectedPokemonImage
         setupElement()
-        
         configWhiteImage()
         gradieteBackground()
     }
@@ -139,5 +138,11 @@ class ViewControllerDetalles: UIViewController {
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
         
+    }
+    
+    func loaditems() {
+        if let stats = self.stats{
+        statsView.loaditems(stats: stats)
+        }
     }
 }
