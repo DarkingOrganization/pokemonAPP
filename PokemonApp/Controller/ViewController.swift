@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     private var elementoText: String?
     private var boolVar: Bool = false
     
-    private var stats: [Float] = [0,1,2,3,4,5]
+    var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,10 +201,12 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
             
             for stat in 1...stats.count {
+                
                 destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
                 
                 let intStats = (Int(stats[(stat - 1)]))
                 destinationVC.statsString.append(String(intStats))
+                
             }
         }
     }

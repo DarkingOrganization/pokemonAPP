@@ -20,6 +20,8 @@
 		D6444C6A28F0846F000494E2 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6444C6828F0846F000494E2 /* PokemonCell.swift */; };
 		D6444C6B28F0846F000494E2 /* PokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6444C6928F0846F000494E2 /* PokemonCell.xib */; };
 		D6444C9428F0A5BF000494E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6444C4528F0662B000494E2 /* ViewController.swift */; };
+		D648D16E29019026003A94E6 /* StatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D648D16D29019026003A94E6 /* StatsView.xib */; };
+		D648D171290190F0003A94E6 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D648D170290190F0003A94E6 /* StatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		D6444C6528F070AD000494E2 /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		D6444C6828F0846F000494E2 /* PokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PokemonCell.swift; path = PokemonApp/Controller/PokemonCell.swift; sourceTree = SOURCE_ROOT; };
 		D6444C6928F0846F000494E2 /* PokemonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PokemonCell.xib; path = PokemonApp/Controller/PokemonCell.xib; sourceTree = SOURCE_ROOT; };
+		D648D16D29019026003A94E6 /* StatsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsView.xib; sourceTree = "<group>"; };
+		D648D170290190F0003A94E6 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				D6444C6828F0846F000494E2 /* PokemonCell.swift */,
 				D6444C6928F0846F000494E2 /* PokemonCell.xib */,
 				D6444C4728F0662B000494E2 /* Main.storyboard */,
+				D648D16D29019026003A94E6 /* StatsView.xib */,
+				D648D170290190F0003A94E6 /* StatsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D648D16E29019026003A94E6 /* StatsView.xib in Resources */,
 				D6444C4E28F06634000494E2 /* LaunchScreen.storyboard in Resources */,
 				D6444C6B28F0846F000494E2 /* PokemonCell.xib in Resources */,
 				D6444C4B28F06634000494E2 /* Assets.xcassets in Resources */,
@@ -189,6 +196,7 @@
 				D6444C9428F0A5BF000494E2 /* ViewController.swift in Sources */,
 				D6444C6328F07070000494E2 /* PokemonModel.swift in Sources */,
 				D633042C28FAAB01005ECE72 /* ViewControllerDetalles.swift in Sources */,
+				D648D171290190F0003A94E6 /* StatsView.swift in Sources */,
 				D6444C6A28F0846F000494E2 /* PokemonCell.swift in Sources */,
 				D6444C5E28F06E5F000494E2 /* PokemonManager.swift in Sources */,
 				D63C175428FC8B3C0096BD4E /* DetailsViewController.swift in Sources */,
