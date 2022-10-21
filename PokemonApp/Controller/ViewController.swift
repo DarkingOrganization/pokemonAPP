@@ -1,5 +1,6 @@
 import UIKit
-class ViewController: UIViewController, UITableViewDelegate {
+
+class ViewController: UIViewController {
     
     @IBOutlet weak private var tableView: UITableView!
     
@@ -24,7 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     private var elementoText: String?
-    private var boolVar: Bool = false
+    private var activeButtonOne: Bool = false
     
     private var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
@@ -56,20 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
         tableView.reloadData()
     }
-    //MARK: - TableView Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        boolVar = true
-        let poke = filterPokemon()
-        
-        showFeatureView()
-        
-        if let indexPokemon = poke?[indexPath.row] {
-            assignedStats(pokemonModel: poke, indexPath: indexPath, indexPokemon: indexPokemon)
-            setupCode(indexPokemon: indexPokemon)
-            setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
-            assignedImageAndName(indexPokemon: indexPokemon)
-        }
-    }
+    
     
     private func renameImagenAssests(imagen: Int) -> String? {
         if imagen < 10 {
@@ -184,7 +172,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     //MARK: - preparacion View Controller Detalles
     @IBAction func imageButtonPress(_ sender: UIButton) {
         
-        if  boolVar == true {
+        if  activeButtonOne == true {
             performSegue(withIdentifier: "detalles", sender: self)
         }
     }
@@ -201,10 +189,12 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
             
             for stat in 1...stats.count {
+                
                 destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
                 
                 let intStats = (Int(stats[(stat - 1)]))
                 destinationVC.statsString.append(String(intStats))
+                
             }
         }
     }
@@ -263,6 +253,23 @@ extension ViewController: UITableViewDataSource {
         }
     }
 }
+//MARK: - TableViewDelegate Methods
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        activeButtonOne = true
+        let pokemonSeleccionado = filterPokemon()
+        
+        showFeatureView()
+        
+        if let indexPokemon = pokemonSeleccionado?[indexPath.row] {
+            assignedStats(pokemonModel: pokemonSeleccionado, indexPath: indexPath, indexPokemon: indexPokemon)
+            setupCode(indexPokemon: indexPokemon)
+            setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
+            assignedImageAndName(indexPokemon: indexPokemon)
+        }
+    }
+}
+
 //MARK: - Searchbar delegate methods
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -275,7 +282,7 @@ extension ViewController: UISearchBarDelegate {
                 if pokemon.pokemonName.contains(searchText.lowercased()) {
                     pokemonesFiltrados?.append(pokemon)
                 }
-                boolVar = false
+                activeButtonOne = false
             }
         }
         self.tableView.reloadData()
