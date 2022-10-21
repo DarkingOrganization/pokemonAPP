@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         gradieteBackground()
         loadItems()
         registerCells()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
         constrainsAndViewsConfig()
         tableBorderColor()
         setupIconsButtons()
+        activeButtonOne = false
     }
     
     @IBAction private func closeFeatures(_ sender: UIButton) {
@@ -72,7 +74,6 @@ class ViewController: UIViewController {
     //MARK: - Funciones didselect
     private func assignedStats(pokemonModel: [PokemonModel]?, indexPath: IndexPath, indexPokemon: PokemonModel) {
         if let countStats = pokemonModel?[indexPath.row].stats.count {
-            
             for stat in 1...countStats {
                 stats[stat - 1] = Float(indexPokemon.stats[stat - 1])
             }
@@ -137,7 +138,6 @@ class ViewController: UIViewController {
             gradient.endPoint = CGPoint(x: 1, y: 1)
             return gradient
         }()
-        
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
@@ -170,7 +170,6 @@ class ViewController: UIViewController {
     }
     //MARK: - preparacion View Controller Detalles
     @IBAction func imageButtonPress(_ sender: UIButton) {
-        
         if  activeButtonOne == true {
             performSegue(withIdentifier: "detalles", sender: self)
         }
@@ -178,7 +177,6 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ViewControllerDetalles
-        
         if tableView.indexPathForSelectedRow != nil {
             if let namePoke = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
                 destinationVC.selectedPokemon = namePoke
@@ -186,14 +184,10 @@ class ViewController: UIViewController {
                 destinationVC.selectedPokemonIconoElement = elementIcon
                 destinationVC.selectedPokemonTextElement = self.elementoText
             }
-            
             for stat in 1...stats.count {
-                
                 destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
-                
                 let intStats = (Int(stats[(stat - 1)]))
                 destinationVC.statsString.append(String(intStats))
-                
             }
         }
     }

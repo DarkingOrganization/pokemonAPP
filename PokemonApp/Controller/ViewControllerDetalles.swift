@@ -116,6 +116,7 @@ class ViewControllerDetalles: UIViewController {
     }
     
     @IBAction private func closePush(_ sender: UIButton) {
+        
         dismiss(animated: true, completion: nil)
     }
     //MARK: - Gradiete
