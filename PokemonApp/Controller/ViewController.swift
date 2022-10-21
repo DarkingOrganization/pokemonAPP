@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     private var elementoText: String?
-    private var boolVar: Bool = false
+    private var activeButtonOne: Bool = false
     
     private var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
         tableView.reloadData()
     }
-
+    
     
     private func renameImagenAssests(imagen: Int) -> String? {
         if imagen < 10 {
@@ -172,7 +172,7 @@ class ViewController: UIViewController {
     //MARK: - preparacion View Controller Detalles
     @IBAction func imageButtonPress(_ sender: UIButton) {
         
-        if  boolVar == true {
+        if  activeButtonOne == true {
             performSegue(withIdentifier: "detalles", sender: self)
         }
     }
@@ -255,19 +255,19 @@ extension ViewController: UITableViewDataSource {
 }
 //MARK: - TableViewDelegate Methods
 extension ViewController: UITableViewDelegate {
-func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    boolVar = true
-    let poke = filterPokemon()
-    
-    showFeatureView()
-    
-    if let indexPokemon = poke?[indexPath.row] {
-        assignedStats(pokemonModel: poke, indexPath: indexPath, indexPokemon: indexPokemon)
-        setupCode(indexPokemon: indexPokemon)
-        setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
-        assignedImageAndName(indexPokemon: indexPokemon)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        activeButtonOne = true
+        let pokemonSeleccionado = filterPokemon()
+        
+        showFeatureView()
+        
+        if let indexPokemon = pokemonSeleccionado?[indexPath.row] {
+            assignedStats(pokemonModel: pokemonSeleccionado, indexPath: indexPath, indexPokemon: indexPokemon)
+            setupCode(indexPokemon: indexPokemon)
+            setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
+            assignedImageAndName(indexPokemon: indexPokemon)
+        }
     }
-}
 }
 
 //MARK: - Searchbar delegate methods
@@ -282,7 +282,7 @@ extension ViewController: UISearchBarDelegate {
                 if pokemon.pokemonName.contains(searchText.lowercased()) {
                     pokemonesFiltrados?.append(pokemon)
                 }
-                boolVar = false
+                activeButtonOne = false
             }
         }
         self.tableView.reloadData()
