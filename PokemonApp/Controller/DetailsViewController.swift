@@ -7,7 +7,7 @@ class DetailsViewController: UIViewController {
     var selectedPokemonTextElement: String?
     var stats: [Float]? = [0,0,0,0,0]
     var statsString: [String]? = ["1","2","3","4","5"]
-   
+    
     @IBOutlet weak private var statsViewD: StatsView!
     @IBOutlet private weak var titlePokemon: UILabel!
     @IBOutlet private weak var whiteBackground: UIImageView!

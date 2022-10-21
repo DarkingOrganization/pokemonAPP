@@ -9,7 +9,7 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak private var elementIcon: UIImageView!
     @IBOutlet weak private var viewElement: UIView!
     @IBOutlet weak private var descriptionLabel: UILabel!
-
+    
     @IBOutlet weak private var statsButton: UIButton!
     @IBOutlet weak private var evolutionButton: UIButton!
     @IBOutlet weak private var movesButton: UIButton!
@@ -138,7 +138,7 @@ class ViewControllerDetalles: UIViewController {
     
     private func loaditems() {
         if let stats = self.stats {
-        statsView.loaditems(stats: stats)
+            statsView.loaditems(stats: stats)
         }
     }
 }
