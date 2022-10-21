@@ -7,10 +7,8 @@ class DetailsViewController: UIViewController {
     var stats: [Float]? = [0,0,0,0,0]
     var statsString: [String]? = ["1","2","3","4","5"]
    
-    @IBOutlet weak var statsViewD: StatsView!
-    
+    @IBOutlet weak private var statsViewD: StatsView!
     @IBOutlet private weak var titlePokemon: UILabel!
-    
     @IBOutlet private weak var whiteBackground: UIImageView!
     @IBOutlet private weak var bigImage: UIImageView!
     
@@ -29,7 +27,6 @@ class DetailsViewController: UIViewController {
         setupButtons()
         gradieteBackground()
         configWhiteImage()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +45,8 @@ class DetailsViewController: UIViewController {
         configMoveButton()
     }
     
-    func loaditems() {
-        if let stats = self.stats{
+    private func loaditems() {
+        if let stats = self.stats {
         statsViewD.loaditems(stats: stats)
         }
     }
@@ -61,6 +58,7 @@ class DetailsViewController: UIViewController {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
     }
+    
     private func configWhiteImage() {
         whiteBackground.layer.cornerRadius = 50
         whiteBackground.backgroundColor = .white
@@ -112,7 +110,6 @@ class DetailsViewController: UIViewController {
             gradient.endPoint = CGPoint(x: 1, y: 1)
             return gradient
         }()
-        
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }

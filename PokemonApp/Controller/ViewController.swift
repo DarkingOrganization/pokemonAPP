@@ -1,5 +1,5 @@
 import UIKit
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak private var tableView: UITableView!
     
@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     private var elementoText: String?
     private var boolVar: Bool = false
     
-    var stats: [Float] = [0,1,2,3,4,5]
+    private var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,20 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
         tableView.reloadData()
     }
-    //MARK: - TableView Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        boolVar = true
-        let poke = filterPokemon()
-        
-        showFeatureView()
-        
-        if let indexPokemon = poke?[indexPath.row] {
-            assignedStats(pokemonModel: poke, indexPath: indexPath, indexPokemon: indexPokemon)
-            setupCode(indexPokemon: indexPokemon)
-            setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
-            assignedImageAndName(indexPokemon: indexPokemon)
-        }
-    }
+
     
     private func renameImagenAssests(imagen: Int) -> String? {
         if imagen < 10 {
@@ -265,6 +252,23 @@ extension ViewController: UITableViewDataSource {
         }
     }
 }
+//MARK: - TableViewDelegate Methods
+extension ViewController: UITableViewDelegate {
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    boolVar = true
+    let poke = filterPokemon()
+    
+    showFeatureView()
+    
+    if let indexPokemon = poke?[indexPath.row] {
+        assignedStats(pokemonModel: poke, indexPath: indexPath, indexPokemon: indexPokemon)
+        setupCode(indexPokemon: indexPokemon)
+        setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
+        assignedImageAndName(indexPokemon: indexPokemon)
+    }
+}
+}
+
 //MARK: - Searchbar delegate methods
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

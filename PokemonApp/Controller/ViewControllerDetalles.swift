@@ -1,21 +1,20 @@
 import UIKit
 
 class ViewControllerDetalles: UIViewController {
-    @IBOutlet weak var whiteBackground: UIImageView!
-    @IBOutlet weak var bigImage: UIImageView!
-    @IBOutlet weak var namePokemon: UILabel!
+    @IBOutlet weak private var whiteBackground: UIImageView!
+    @IBOutlet weak private var bigImage: UIImageView!
+    @IBOutlet weak private var namePokemon: UILabel!
     
-    @IBOutlet weak var elementLabel: UILabel!
-    @IBOutlet weak var elementIcon: UIImageView!
-    @IBOutlet weak var viewElement: UIView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak private var elementLabel: UILabel!
+    @IBOutlet weak private var elementIcon: UIImageView!
+    @IBOutlet weak private var viewElement: UIView!
+    @IBOutlet weak private var descriptionLabel: UILabel!
 
+    @IBOutlet weak private var statsButton: UIButton!
+    @IBOutlet weak private var evolutionButton: UIButton!
+    @IBOutlet weak private var movesButton: UIButton!
     
-    @IBOutlet weak var statsButton: UIButton!
-    @IBOutlet weak var evolutionButton: UIButton!
-    @IBOutlet weak var movesButton: UIButton!
-    
-    @IBOutlet weak var statsView: StatsView!
+    @IBOutlet weak private var statsView: StatsView!
     
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
@@ -27,8 +26,7 @@ class ViewControllerDetalles: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
-        
-       loaditems()
+        loaditems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +41,6 @@ class ViewControllerDetalles: UIViewController {
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
-        
         performSegue(withIdentifier: "segueStats", sender: self)
     }
     
@@ -90,7 +87,7 @@ class ViewControllerDetalles: UIViewController {
         whiteBackground.backgroundColor = .white
     }
     
-    private func configStatsButton() {
+    func configStatsButton() {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
@@ -118,7 +115,7 @@ class ViewControllerDetalles: UIViewController {
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    @IBAction func closePush(_ sender: UIButton) {
+    @IBAction private func closePush(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     //MARK: - Gradiete
@@ -137,11 +134,10 @@ class ViewControllerDetalles: UIViewController {
         
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
-        
     }
     
-    func loaditems() {
-        if let stats = self.stats{
+    private func loaditems() {
+        if let stats = self.stats {
         statsView.loaditems(stats: stats)
         }
     }

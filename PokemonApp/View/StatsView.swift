@@ -27,10 +27,8 @@ class StatsView: UIView {
     @IBOutlet weak var progressStat5: UIProgressView!
     @IBOutlet weak var progressStat6: UIProgressView!
     
-    
     let nibName = "StatsView"
     var contentView: UIView?
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,7 +37,8 @@ class StatsView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit() }
+        commonInit()
+    }
     
     func commonInit() {
         guard let view = loadViewFromNib() else { return }
@@ -52,13 +51,10 @@ class StatsView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
-        
     }
-    
     
     func loaditems(stats: [Float]) {
         renameLabelStats()
-        
         assignmentValueProgressBar(stats)
         septupLabelProgressBar(stats)
     }

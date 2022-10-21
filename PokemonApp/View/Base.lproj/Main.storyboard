@@ -178,7 +178,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of pokemon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBU-et-L3S">
-                                        <rect key="frame" x="19" y="468.5" width="376" height="0.0"/>
+                                        <rect key="frame" x="19" y="468.5" width="376" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -194,7 +194,7 @@
                                         </connections>
                                     </button>
                                     <stackView tag="2" contentMode="scaleToFill" distribution="fillEqually" spacing="72" translatesAutoresizingMaskIntoConstraints="NO" id="szw-Jb-GUX">
-                                        <rect key="frame" x="16.5" y="498.5" width="381" height="30"/>
+                                        <rect key="frame" x="16.5" y="519" width="381" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-kw-d2p">
                                                 <rect key="frame" x="0.0" y="0.0" width="79" height="30"/>
@@ -270,8 +270,8 @@
                                             <constraint firstAttribute="height" constant="199" id="V6q-Bk-Rto"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wq8-pB-jQS" customClass="StatsView" customModule="PokemonApp" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="578.5" width="394" height="191.5"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wq8-pB-jQS" customClass="StatsView" customModule="PokemonApp">
+                                        <rect key="frame" x="10" y="599" width="394" height="171"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -357,7 +357,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SY8-5U-76y">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SY8-5U-76y">
                                 <rect key="frame" x="-8" y="0.0" width="422" height="896"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1K0-cu-tvR">
@@ -440,6 +440,7 @@
                                     <constraint firstItem="ZLB-ri-vVh" firstAttribute="leading" secondItem="pCy-KB-IWc" secondAttribute="leading" constant="20" id="Hwj-hv-G3f"/>
                                     <constraint firstItem="hdT-yZ-LTq" firstAttribute="leading" secondItem="UfH-nc-8hS" secondAttribute="trailing" constant="44" id="KSD-0O-7n8"/>
                                     <constraint firstItem="UfH-nc-8hS" firstAttribute="top" secondItem="pCy-KB-IWc" secondAttribute="top" constant="47" id="OAF-Q5-cdJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZLB-ri-vVh" secondAttribute="bottom" constant="554.5" id="OHQ-HX-f2D"/>
                                     <constraint firstItem="Fur-Mh-VUq" firstAttribute="top" secondItem="NEO-WK-ox8" secondAttribute="bottom" constant="81" id="Uw4-sR-8C8"/>
                                     <constraint firstItem="UfH-nc-8hS" firstAttribute="leading" secondItem="Fur-Mh-VUq" secondAttribute="leading" constant="16" id="Yen-gt-3fQ"/>
                                     <constraint firstItem="hdT-yZ-LTq" firstAttribute="centerX" secondItem="SY8-5U-76y" secondAttribute="centerX" constant="3" id="da4-Aa-cxz"/>
@@ -449,6 +450,7 @@
                                     <constraint firstItem="pCy-KB-IWc" firstAttribute="trailing" secondItem="1K0-cu-tvR" secondAttribute="trailing" id="mgk-ka-ayV"/>
                                     <constraint firstItem="ZLB-ri-vVh" firstAttribute="top" secondItem="R34-aI-w0i" secondAttribute="bottom" constant="10" id="nIb-4p-hRm"/>
                                     <constraint firstItem="UfH-nc-8hS" firstAttribute="leading" secondItem="NEO-WK-ox8" secondAttribute="leading" constant="16" id="ngV-7Q-OeW"/>
+                                    <constraint firstItem="R34-aI-w0i" firstAttribute="top" secondItem="UfH-nc-8hS" secondAttribute="bottom" constant="30.5" id="niA-BR-V6a"/>
                                     <constraint firstAttribute="trailing" secondItem="UfH-nc-8hS" secondAttribute="trailing" constant="331" id="nkF-vS-L3M"/>
                                     <constraint firstItem="pCy-KB-IWc" firstAttribute="trailing" secondItem="ZLB-ri-vVh" secondAttribute="trailing" constant="10" id="sAv-VG-Mgq"/>
                                     <constraint firstAttribute="trailing" secondItem="R34-aI-w0i" secondAttribute="trailing" constant="34.5" id="uCh-ox-OXS"/>
