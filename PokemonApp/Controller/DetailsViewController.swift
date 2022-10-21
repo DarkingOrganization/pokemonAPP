@@ -7,7 +7,7 @@ class DetailsViewController: UIViewController {
     var selectedPokemonTextElement: String?
     var stats: [Float]? = [0,0,0,0,0]
     var statsString: [String]? = ["1","2","3","4","5"]
-   
+    
     @IBOutlet weak private var statsViewD: StatsView!
     @IBOutlet private weak var titlePokemon: UILabel!
     @IBOutlet private weak var whiteBackground: UIImageView!
@@ -48,10 +48,10 @@ class DetailsViewController: UIViewController {
     
     private func loaditems() {
         if let stats = self.stats {
-        statsViewD.loaditems(stats: stats)
+            statsViewD.loaditems(stats: stats)
         }
     }
-     
+    
     private func setupButtons() {
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15

@@ -9,7 +9,7 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak private var elementIcon: UIImageView!
     @IBOutlet weak private var viewElement: UIView!
     @IBOutlet weak private var descriptionLabel: UILabel!
-
+    
     @IBOutlet weak private var statsButton: UIButton!
     @IBOutlet weak private var evolutionButton: UIButton!
     @IBOutlet weak private var movesButton: UIButton!
@@ -71,7 +71,7 @@ class ViewControllerDetalles: UIViewController {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
     }
-        
+    
     private func setupElement() {
         elementLabel.text = selectedPokemonTextElement?.capitalized
         elementIcon.image = selectedPokemonIconoElement
@@ -138,7 +138,7 @@ class ViewControllerDetalles: UIViewController {
     
     private func loaditems() {
         if let stats = self.stats {
-        statsView.loaditems(stats: stats)
+            statsView.loaditems(stats: stats)
         }
     }
 }

@@ -6,28 +6,28 @@ import UIKit
 class StatsView: UIView {
     var viewControllerDetalles = ViewControllerDetalles()
     
-    @IBOutlet weak var stat1: UILabel!
-    @IBOutlet weak var stat2: UILabel!
-    @IBOutlet weak var stat3: UILabel!
-    @IBOutlet weak var stat4: UILabel!
-    @IBOutlet weak var stat5: UILabel!
-    @IBOutlet weak var stat6: UILabel!
+    @IBOutlet weak private var stat1: UILabel!
+    @IBOutlet weak private var stat2: UILabel!
+    @IBOutlet weak private var stat3: UILabel!
+    @IBOutlet weak private var stat4: UILabel!
+    @IBOutlet weak private var stat5: UILabel!
+    @IBOutlet weak private var stat6: UILabel!
     
-    @IBOutlet weak var LabelStats1: UILabel!
-    @IBOutlet weak var LabelStats2: UILabel!
-    @IBOutlet weak var LabelStats3: UILabel!
-    @IBOutlet weak var LabelStats4: UILabel!
-    @IBOutlet weak var LabelStats5: UILabel!
-    @IBOutlet weak var LabelStats6: UILabel!
+    @IBOutlet weak private var LabelStats1: UILabel!
+    @IBOutlet weak private var LabelStats2: UILabel!
+    @IBOutlet weak private var LabelStats3: UILabel!
+    @IBOutlet weak private var LabelStats4: UILabel!
+    @IBOutlet weak private var LabelStats5: UILabel!
+    @IBOutlet weak private var LabelStats6: UILabel!
     
-    @IBOutlet weak var progressStat1: UIProgressView!
-    @IBOutlet weak var progressStat2: UIProgressView!
-    @IBOutlet weak var progressStat3: UIProgressView!
-    @IBOutlet weak var progressStat4: UIProgressView!
-    @IBOutlet weak var progressStat5: UIProgressView!
-    @IBOutlet weak var progressStat6: UIProgressView!
+    @IBOutlet weak private var progressStat1: UIProgressView!
+    @IBOutlet weak private var progressStat2: UIProgressView!
+    @IBOutlet weak private var progressStat3: UIProgressView!
+    @IBOutlet weak private var progressStat4: UIProgressView!
+    @IBOutlet weak private var progressStat5: UIProgressView!
+    @IBOutlet weak private var progressStat6: UIProgressView!
     
-    let nibName = "StatsView"
+    private let nibName = "StatsView"
     var contentView: UIView?
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,14 +40,14 @@ class StatsView: UIView {
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
         self.addSubview(view)
         contentView = view
     }
     
-    func loadViewFromNib() -> UIView? {
+    private func loadViewFromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
@@ -59,7 +59,7 @@ class StatsView: UIView {
         septupLabelProgressBar(stats)
     }
     
-    func assignmentValueProgressBar(_ stats: [Float]) {
+    private func assignmentValueProgressBar(_ stats: [Float]) {
         progressStat1.progress = Float(stats[0])
         progressStat2.progress = Float(stats[1])
         progressStat3.progress = Float(stats[2])
@@ -68,7 +68,7 @@ class StatsView: UIView {
         progressStat6.progress = Float(stats[5])
     }
     
-    func septupLabelProgressBar(_ stats: [Float]) {
+    private func septupLabelProgressBar(_ stats: [Float]) {
         stat1.text = String(Int(stats[0] * 100))
         stat2.text = String(Int(stats[1] * 100))
         stat3.text = String(Int(stats[2] * 100))
@@ -77,7 +77,7 @@ class StatsView: UIView {
         stat6.text = String(Int(stats[5] * 100))
     }
     
-    func renameLabelStats() {
+    private func renameLabelStats() {
         LabelStats1.text = "Hp"
         LabelStats2.text = "Attack"
         LabelStats3.text = "Defense"
