@@ -9,12 +9,12 @@ class ViewControllerDetalles: UIViewController {
     @IBOutlet weak private var elementIcon: UIImageView!
     @IBOutlet weak private var viewElement: UIView!
     @IBOutlet weak private var descriptionLabel: UILabel!
-    
+
     @IBOutlet weak private var statsButton: UIButton!
     @IBOutlet weak private var evolutionButton: UIButton!
     @IBOutlet weak private var movesButton: UIButton!
     
-    @IBOutlet weak var statsView: StatsView!
+    @IBOutlet weak private var statsView: StatsView!
     
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
@@ -138,12 +138,6 @@ class ViewControllerDetalles: UIViewController {
     
     private func loaditems() {
         if let stats = self.stats {
-            statsView.loaditems(stats: stats)
-        }
-    }
-    
-    func loaditems() {
-        if let stats = self.stats{
         statsView.loaditems(stats: stats)
         }
     }

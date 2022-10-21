@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     private var elementoText: String?
     private var activeButtonOne: Bool = false
     
-    var stats: [Float] = [0,1,2,3,4,5]
+    private var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,6 @@ class ViewController: UIViewController {
         }
         tableView.reloadData()
     }
-    
     
     private func renameImagenAssests(imagen: Int) -> String? {
         if imagen < 10 {
