@@ -5,7 +5,7 @@ class DetailsViewController: UIViewController {
     var selectedPokemonImage: UIImage?
     var selectedPokemonIconoElement: UIImage?
     var selectedPokemonTextElement: String?
-    var stats: [Float]? = [0,0,0,0,0]
+    private var statsValues: [Float] = [0,1,2,3,4,5]
     var statsString: [String]? = ["1","2","3","4","5"]
     
     @IBOutlet weak private var statsViewD: StatsView!
@@ -21,17 +21,21 @@ class DetailsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    private var viewController = ViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitlePokemon()
-        loaditems()
         setupButtons()
         gradieteBackground()
         configWhiteImage()
+        viewController.delegate = self
+        viewController.updateDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        statsViewD.loaditems(stats: statsValues)
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
@@ -44,12 +48,6 @@ class DetailsViewController: UIViewController {
     
     @IBAction private func movesButtonPress(_ sender: UIButton) {
         configMoveButton()
-    }
-    
-    private func loaditems() {
-        if let stats = self.stats {
-            statsViewD.loaditems(stats: stats)
-        }
     }
     
     private func setupButtons() {
@@ -97,5 +95,28 @@ class DetailsViewController: UIViewController {
         }()
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
+    }
+    func calculatestats (_ stats: [Float])  {
+        for stat in 1...stats.count {
+            statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
+        }
+    }
+    func updateStats(stats: [Float]) {
+        DispatchQueue.main.async {
+            self.calculatestats(stats)
+        }
+    }
+}
+
+extension DetailsViewController: DatosPokemon {
+    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+        
+        if let codigoImagenPokemon = viewController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
+            bigImage.image = UIImage(named: codigoImagenPokemon)
+            
+            if let valueStats = stats {
+                updateStats(stats: valueStats)
+            }
+        }
     }
 }

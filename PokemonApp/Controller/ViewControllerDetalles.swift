@@ -20,7 +20,7 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
     @IBOutlet weak private var statsView: StatsView!
     
     private var statsString: [String] = ["1", "2", "3", "4", "5"]
-    private var statsValues: [Float] = [0,1,2,3,4,5]
+    var statsValues: [Float] = [0,1,2,3,4,5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,12 +132,19 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
-    //MARK: - Protocol DatosPokemon
-    private func calculatestats (_ stats: [Float])  {
+    //MARK: - Protocol Stats
+    func calculatestats (_ stats: [Float])  {
         for stat in 1...stats.count {
             statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
         }
     }
+    
+    func updateStats(stats: [Float]) {
+        DispatchQueue.main.async {
+            self.calculatestats(stats)
+        }
+    }
+    
     func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
         
         elementLabel.text = tipo
@@ -145,11 +152,10 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
         namePokemon.text = name
         if let codigoImagenPokemon = viewController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
+            
             if let valueStats = stats {
-                DispatchQueue.main.async {
-                    self.calculatestats(valueStats)
+                updateStats(stats: valueStats)
                 }
             }
         }
     }
-}
