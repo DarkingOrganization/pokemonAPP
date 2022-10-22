@@ -16,17 +16,13 @@ class ViewControllerDetalles: UIViewController {
     
     @IBOutlet weak private var statsView: StatsView!
     
-    var selectedPokemon: String = ""
-    var selectedPokemonImage: UIImage?
-    var selectedPokemonIconoElement: UIImage?
-    var selectedPokemonTextElement: String?
-    var stats: [Float]? = [0,0,0,0,0,0]
-    var statsString: [String] = ["1","2"]
+    private var statsString: [String] = []
+    private var statsValues: [Float] = [0,1,2,3,4,5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
-        loaditems()
+        statsView.loaditems(stats: statsValues)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,9 +133,27 @@ class ViewControllerDetalles: UIViewController {
         self.view.layer.insertSublayer(gradient, at:0)
     }
     
-    private func loaditems() {
-        if let stats = self.stats {
-            statsView.loaditems(stats: stats)
+   private func calculatestats (_ stats: [Float])  {
+        for stat in 1...stats.count {
+        statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
+                    let intStats = (Int(stats[(stat - 1)]))
+                    statsString.append(String(intStats))
+                }
+}
+}
+
+extension ViewControllerDetalles: DatosPokemon {
+    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+        
+        elementLabel.text = tipo
+        elementIcon.image = UIImage(named: tipo)
+        namePokemon.text = name
+        if let codigoImagenPokemon = viewController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
+            bigImage.image = UIImage(named: codigoImagenPokemon)
+            if let valueStats = stats {
+                calculatestats(valueStats)
+            }
         }
     }
 }
+

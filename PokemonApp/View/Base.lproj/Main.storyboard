@@ -139,6 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="rhG-ck-8qS"/>
                     <connections>
+                        <outlet property="bigImage" destination="fBf-7q-Y07" id="UjF-i5-YNr"/>
                         <outlet property="buttonOne" destination="psm-jW-ik2" id="aWk-gQ-dgO"/>
                         <outlet property="buttonTree" destination="3f9-Kz-9Be" id="AsO-K0-skZ"/>
                         <outlet property="buttonTwo" destination="UNN-fk-vXO" id="TiJ-E2-YoN"/>
@@ -147,7 +148,6 @@
                         <outlet property="constrainCentre" destination="MaM-2n-Rfq" id="zZw-6h-bbA"/>
                         <outlet property="elemento" destination="6Sj-EM-g5q" id="wQY-vt-WrV"/>
                         <outlet property="elemento2" destination="amh-Oc-v5S" id="jG7-tA-Khz"/>
-                        <outlet property="featuresTotal" destination="fBf-7q-Y07" id="UjF-i5-YNr"/>
                         <outlet property="namePokemonFeatures" destination="0Vp-Xo-beP" id="5e6-cH-PZk"/>
                         <outlet property="pokemonPop" destination="26O-A6-pPu" id="U2q-e4-tUP"/>
                         <outlet property="searchBar" destination="GGs-eu-elh" id="W4Z-kn-8e4"/>
