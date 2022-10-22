@@ -1,6 +1,7 @@
 import UIKit
 
 protocol DatosPokemon {
+    func datosPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String)
 }
 
 class ViewController: UIViewController {
@@ -263,7 +264,7 @@ extension ViewController: UITableViewDelegate {
             userDefautl.set(indexPokemon.tipoPokemon, forKey: "Tipo")
             userDefautl.set(indexPokemon.stats, forKey: "Stats")
             userDefautl.set(indexPokemon.pokemonID, forKey: "BigImage")
-        
+            
             assignedStats(pokemonModel: pokemonSeleccionado, indexPath: indexPath, indexPokemon: indexPokemon)
             setupCode(indexPokemon: indexPokemon)
             setupElement(indexPokemon: indexPokemon, indexPath: indexPath)
@@ -291,19 +292,17 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-extension DatosPokemon {
-    func datosPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String){
-        
-    }
-}
 extension ViewController: DatosPokemon {
+    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+    }
+    
     func updateDelegate() {
         if let namePokemon = userDefautl.string(forKey: "Name"),
            let tipoPokemon = userDefautl.string(forKey: "Tipo"),
            let codigoPokemon = userDefautl.string(forKey: "BigImage"),
            let stats = userDefautl.array(forKey: "Stats") as! [Float]? {
             self.delegate?.datosPokemon(name: namePokemon, tipo: tipoPokemon, stats: stats, codigoPokemon: codigoPokemon)
-    }
+        }
         
     }
 }

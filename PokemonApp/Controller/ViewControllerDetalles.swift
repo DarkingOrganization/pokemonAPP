@@ -1,6 +1,9 @@
 import UIKit
 
-class ViewControllerDetalles: UIViewController {
+class ViewControllerDetalles: UIViewController, DatosPokemon {
+    
+    var viewController = ViewController()
+    
     @IBOutlet weak private var whiteBackground: UIImageView!
     @IBOutlet weak private var bigImage: UIImageView!
     @IBOutlet weak private var namePokemon: UILabel!
@@ -16,23 +19,20 @@ class ViewControllerDetalles: UIViewController {
     
     @IBOutlet weak private var statsView: StatsView!
     
-    private var statsString: [String] = []
+    private var statsString: [String] = ["1", "2", "3", "4", "5"]
     private var statsValues: [Float] = [0,1,2,3,4,5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
-        statsView.loaditems(stats: statsValues)
+        viewController.updateDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        namePokemon.text = selectedPokemon
-        bigImage.image = selectedPokemonImage
-        setupElement()
         configWhiteImage()
         gradieteBackground()
+        statsView.loaditems(stats: statsValues)
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
@@ -132,17 +132,12 @@ class ViewControllerDetalles: UIViewController {
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
-    
-   private func calculatestats (_ stats: [Float])  {
+    //MARK: - Protocol DatosPokemon
+    private func calculatestats (_ stats: [Float])  {
         for stat in 1...stats.count {
-        statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
-                    let intStats = (Int(stats[(stat - 1)]))
-                    statsString.append(String(intStats))
-                }
-}
-}
-
-extension ViewControllerDetalles: DatosPokemon {
+            statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
+        }
+    }
     func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
         
         elementLabel.text = tipo
@@ -151,9 +146,10 @@ extension ViewControllerDetalles: DatosPokemon {
         if let codigoImagenPokemon = viewController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
             if let valueStats = stats {
-                calculatestats(valueStats)
+                DispatchQueue.main.async {
+                    self.calculatestats(valueStats)
+                }
             }
         }
     }
 }
-
