@@ -1,10 +1,10 @@
 import UIKit
 
-protocol DatosPokemon {
-    func datosPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String)
+protocol UniquePokemonData {
+    func dataPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String)
 }
 
-class ViewController: UIViewController {
+class PokemonController: UIViewController {
     
     @IBOutlet weak private var tableView: UITableView!
     
@@ -30,9 +30,9 @@ class ViewController: UIViewController {
     private var codigoImagenPokemon:String?
     private var elementoText: String?
     private var activeButtonOne: Bool = false
-    var delegate: DatosPokemon?
-    let userDefault = UserDefaults.standard
-    
+    var delegate: UniquePokemonData?
+    private let userDefault = UserDefaults.standard
+    var gradieteModel = GradieteModel()
     private var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
     override func viewDidLoad() {
@@ -134,17 +134,7 @@ class ViewController: UIViewController {
     }
     //MARK: - Gradiete
     private func gradieteBackground() {
-        let gradient: CAGradientLayer = {
-            let gradient = CAGradientLayer()
-            gradient.type = .axial
-            gradient.colors = [
-                UIColor.init(named: "greenCustom")?.cgColor ?? "green",
-                UIColor.init(named: "blueCustom")?.cgColor ?? "blue"
-            ]
-            gradient.startPoint = CGPoint(x: 0, y: 1)
-            gradient.endPoint = CGPoint(x: 1, y: 1)
-            return gradient
-        }()
+        let gradient = gradieteModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
@@ -183,7 +173,7 @@ class ViewController: UIViewController {
     }
 }
 //MARK: - PokemonManagerDelegate
-extension ViewController: PokemonManagerDelegate {
+extension PokemonController: PokemonManagerDelegate {
     
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
@@ -200,7 +190,7 @@ extension ViewController: PokemonManagerDelegate {
 }
 
 //MARK: - Tableview Datasource Methods
-extension ViewController: UITableViewDataSource {
+extension PokemonController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemonesFiltrados?.count ?? 1
@@ -237,7 +227,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 //MARK: - TableViewDelegate Methods
-extension ViewController: UITableViewDelegate {
+extension PokemonController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButtonOne = true
         let pokemonSeleccionado = filterPokemon()
@@ -259,7 +249,7 @@ extension ViewController: UITableViewDelegate {
 }
 
 //MARK: - Searchbar delegate methods
-extension ViewController: UISearchBarDelegate {
+extension PokemonController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         pokemonesFiltrados = []
         
@@ -277,17 +267,17 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-extension DatosPokemon {
-    func datosPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String){
+extension UniquePokemonData {
+    func dataPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String){
     }
 }
-extension ViewController: DatosPokemon {
+extension PokemonController: UniquePokemonData {
     func updateDelegate() {
         if let namePokemon = userDefault.string(forKey: "Name"),
            let tipoPokemon = userDefault.string(forKey: "Tipo"),
            let codigoPokemon = userDefault.string(forKey: "BigImage"),
            let stats = userDefault.array(forKey: "Stats") as! [Float]? {
-            self.delegate?.datosPokemon(name: namePokemon, tipo: tipoPokemon, stats: stats, codigoPokemon: codigoPokemon)
+            self.delegate?.dataPokemon(name: namePokemon, tipo: tipoPokemon, stats: stats, codigoPokemon: codigoPokemon)
         }
     }
 }

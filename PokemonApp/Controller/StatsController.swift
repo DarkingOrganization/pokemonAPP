@@ -1,8 +1,8 @@
 import UIKit
 
-class ViewControllerDetalles: UIViewController, DatosPokemon {
+class StatsController: UIViewController, UniquePokemonData {
     
-    var viewController = ViewController()
+    var pokemonController = PokemonController()
     
     @IBOutlet weak private var whiteBackground: UIImageView!
     @IBOutlet weak private var bigImage: UIImageView!
@@ -20,13 +20,14 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
     @IBOutlet weak private var statsView: StatsView!
     
     private var statsString: [String] = ["1", "2", "3", "4", "5"]
-    var statsValues: [Float] = [0,1,2,3,4,5]
+    private var statsValues: [Float] = [0,1,2,3,4,5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewController.delegate = self
-        viewController.updateDelegate()
+        pokemonController.delegate = self
+        pokemonController.updateDelegate()
         setupButtons()
+        setupElement()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,18 +105,7 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
     }
     //MARK: - Gradiete
     private func gradieteBackground() {
-        let gradient: CAGradientLayer = {
-            let gradient = CAGradientLayer()
-            gradient.type = .axial
-            gradient.colors = [
-                UIColor.init(named: "greenCustom")?.cgColor ?? "green",
-                UIColor.init(named: "blueCustom")?.cgColor ?? "blue"
-            ]
-            gradient.startPoint = CGPoint(x: 0, y: 1)
-            gradient.endPoint = CGPoint(x: 1, y: 1)
-            return gradient
-        }()
-        
+        let gradient = pokemonController.gradieteModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
@@ -132,11 +122,11 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
         }
     }
     
-    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {  
+    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {  
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)
         namePokemon.text = name
-        if let codigoImagenPokemon = viewController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
+        if let codigoImagenPokemon = pokemonController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
             
             if let valueStats = stats {
