@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     private var codigoImagenPokemon:String?
     private var elementoText: String?
     private var activeButtonOne: Bool = false
+    var delegate: DatosPokemon?
+    let userDefault = UserDefaults.standard
     
     private var stats: [Float] = [0,1,2,3,4,5]
     @IBOutlet weak private var searchBar: UISearchBar!
@@ -179,23 +181,6 @@ class ViewController: UIViewController {
             performSegue(withIdentifier: "detalles", sender: self)
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ViewControllerDetalles
-        if tableView.indexPathForSelectedRow != nil {
-            if let namePoke = namePokemonFeatures.text, let imagenSegue = featuresTotal.image, let elementIcon = elemento.image {
-                destinationVC.selectedPokemon = namePoke
-                destinationVC.selectedPokemonImage = imagenSegue
-                destinationVC.selectedPokemonIconoElement = elementIcon
-                destinationVC.selectedPokemonTextElement = self.elementoText
-            }
-            for stat in 1...stats.count {
-                destinationVC.stats?[stat - 1] = Float(stats[(stat - 1)] / 100)
-                let intStats = (Int(stats[(stat - 1)]))
-                destinationVC.statsString.append(String(intStats))
-            }
-        }
-    }
 }
 //MARK: - PokemonManagerDelegate
 extension ViewController: PokemonManagerDelegate {
@@ -260,10 +245,10 @@ extension ViewController: UITableViewDelegate {
         showFeatureView()
         
         if let indexPokemon = pokemonSeleccionado?[indexPath.row] {
-            userDefautl.set(indexPokemon.pokemonName, forKey: "Name")
-            userDefautl.set(indexPokemon.tipoPokemon, forKey: "Tipo")
-            userDefautl.set(indexPokemon.stats, forKey: "Stats")
-            userDefautl.set(indexPokemon.pokemonID, forKey: "BigImage")
+            userDefault.set(indexPokemon.pokemonName, forKey: "Name")
+            userDefault.set(indexPokemon.tipoPokemon, forKey: "Tipo")
+            userDefault.set(indexPokemon.stats, forKey: "Stats")
+            userDefault.set(indexPokemon.pokemonID, forKey: "BigImage")
             
             assignedStats(pokemonModel: pokemonSeleccionado, indexPath: indexPath, indexPokemon: indexPokemon)
             setupCode(indexPokemon: indexPokemon)
@@ -292,17 +277,17 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-extension ViewController: DatosPokemon {
-    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+extension DatosPokemon {
+    func datosPokemon (name: String, tipo: String, stats: [Float]?, codigoPokemon: String){
     }
-    
+}
+extension ViewController: DatosPokemon {
     func updateDelegate() {
-        if let namePokemon = userDefautl.string(forKey: "Name"),
-           let tipoPokemon = userDefautl.string(forKey: "Tipo"),
-           let codigoPokemon = userDefautl.string(forKey: "BigImage"),
-           let stats = userDefautl.array(forKey: "Stats") as! [Float]? {
+        if let namePokemon = userDefault.string(forKey: "Name"),
+           let tipoPokemon = userDefault.string(forKey: "Tipo"),
+           let codigoPokemon = userDefault.string(forKey: "BigImage"),
+           let stats = userDefault.array(forKey: "Stats") as! [Float]? {
             self.delegate?.datosPokemon(name: namePokemon, tipo: tipoPokemon, stats: stats, codigoPokemon: codigoPokemon)
         }
-        
     }
 }

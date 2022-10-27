@@ -24,34 +24,23 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButtons()
+        viewController.delegate = self
         viewController.updateDelegate()
+        setupButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configWhiteImage()
         gradieteBackground()
-        statsView.loaditems(stats: statsValues)
+        statsView.loaditems(stats: statsValues)   
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
         performSegue(withIdentifier: "segueStats", sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueStats" {
-            let destinationVCDetails = segue.destination as! DetailsViewController
-            
-            destinationVCDetails.selectedPokemon = self.selectedPokemon
-            destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
-            destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
-            destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
-            destinationVCDetails.stats = stats
-        }
-    }
-    
+        
     @IBAction private func evolutionButtonPress(_ sender: UIButton) {
         configEvolutionButton()
     }
@@ -69,8 +58,6 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
     }
     
     private func setupElement() {
-        elementLabel.text = selectedPokemonTextElement?.capitalized
-        elementIcon.image = selectedPokemonIconoElement
         viewElement.layer.cornerRadius = 30
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         elementIcon.layer.cornerRadius = 20
@@ -145,8 +132,7 @@ class ViewControllerDetalles: UIViewController, DatosPokemon {
         }
     }
     
-    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
-        
+    func datosPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {  
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)
         namePokemon.text = name
