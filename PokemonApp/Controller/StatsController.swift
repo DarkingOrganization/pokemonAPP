@@ -41,7 +41,7 @@ class StatsController: UIViewController, UniquePokemonData {
         configStatsButton()
         performSegue(withIdentifier: "segueStats", sender: self)
     }
-        
+    
     @IBAction private func evolutionButtonPress(_ sender: UIButton) {
         configEvolutionButton()
     }
@@ -131,7 +131,7 @@ class StatsController: UIViewController, UniquePokemonData {
             
             if let valueStats = stats {
                 updateStats(stats: valueStats)
-                }
             }
         }
     }
+}

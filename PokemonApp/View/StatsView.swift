@@ -4,7 +4,7 @@ import UIKit
 @IBDesignable
 
 class StatsView: UIView {
-    var viewControllerDetalles = ViewControllerDetalles()
+    var viewControllerDetalles = StatsController()
     
     @IBOutlet weak private var stat1: UILabel!
     @IBOutlet weak private var stat2: UILabel!
