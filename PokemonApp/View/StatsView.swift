@@ -28,7 +28,7 @@ class StatsView: UIView {
     @IBOutlet weak private var progressStat6: UIProgressView!
     
     private let nibName = "StatsView"
-    var contentView: UIView?
+    private var contentView: UIView?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

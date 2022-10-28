@@ -25,7 +25,7 @@ class StatsController: UIViewController, UniquePokemonData {
     override func viewDidLoad() {
         super.viewDidLoad()
         pokemonController.delegate = self
-        pokemonController.updateDelegate()
+        pokemonController.updateDataPokemon()
         setupButtons()
         setupElement()
     }
@@ -126,7 +126,7 @@ class StatsController: UIViewController, UniquePokemonData {
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)
         namePokemon.text = name
-        if let codigoImagenPokemon = pokemonController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
+        if let codigoImagenPokemon = pokemonController.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
             
             if let valueStats = stats {

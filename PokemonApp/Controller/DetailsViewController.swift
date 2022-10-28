@@ -29,7 +29,7 @@ class DetailsViewController: UIViewController {
         gradieteBackground()
         configWhiteImage()
         pokemonController.delegate = self
-        pokemonController.updateDelegate()
+        pokemonController.updateDataPokemon()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +117,7 @@ class DetailsViewController: UIViewController {
 extension DetailsViewController: UniquePokemonData {
     func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
         
-        if let codigoImagenPokemon = pokemonController.renameImagenAssests(imagen: Int(codigoPokemon) ?? 001) {
+        if let codigoImagenPokemon = pokemonController.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
             
             if let valueStats = stats {

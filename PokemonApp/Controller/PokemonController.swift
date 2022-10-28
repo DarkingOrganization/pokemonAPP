@@ -66,7 +66,7 @@ class PokemonController: UIViewController {
         tableView.reloadData()
     }
     
-    func renameImagenAssests(imagen: Int) -> String? {
+    func renameImagenAssets(imagen: Int) -> String? {
         if imagen < 10 {
             return "00\(String(imagen))"
         } else if imagen < 100 {
@@ -103,7 +103,7 @@ class PokemonController: UIViewController {
     }
     
     private func setupCode(indexPokemon: PokemonModel) {
-        let codeP = renameImagenAssests(imagen: Int(indexPokemon.pokemonID)!)
+        let codeP = renameImagenAssets(imagen: Int(indexPokemon.pokemonID)!)
         self.codigoPokemonFeatures.text = "#\(String(codeP!))"
     }
     
@@ -123,7 +123,7 @@ class PokemonController: UIViewController {
     
     private func assignedImageAndName(indexPokemon: PokemonModel) {
         if let imagenPokemon = Int(indexPokemon.pokemonID) {
-            self.codigoImagenPokemon = renameImagenAssests(imagen: imagenPokemon)
+            self.codigoImagenPokemon = renameImagenAssets(imagen: imagenPokemon)
             
             let imagen = (UIImage(named: self.codigoImagenPokemon!))
             pokemonPop.setImage(imagen, for: .normal)
@@ -200,7 +200,7 @@ extension PokemonController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
         cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
         
-        if let codePokemon = renameImagenAssests(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
+        if let codePokemon = renameImagenAssets(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
             cell.codigoPokemonLabel.text = "#\(String(codePokemon))"
             setupTipoPokemon(indexPath, cell)
             setupImagenPokemon(indexPath, cell)
@@ -218,7 +218,7 @@ extension PokemonController: UITableViewDataSource {
     }
     func setupImagenPokemon(_ indexPath: IndexPath,_ cell: PokemonCell) {
         if let imagenPokemon = Int((pokemonesFiltrados?[indexPath.row].pokemonID)!) {
-            self.codigoImagenPokemon = renameImagenAssests(imagen: imagenPokemon)
+            self.codigoImagenPokemon = renameImagenAssets(imagen: imagenPokemon)
             
             if let codigo = codigoImagenPokemon {
                 cell.pokemonImage.image = UIImage(named: codigo)
@@ -272,7 +272,7 @@ extension UniquePokemonData {
     }
 }
 extension PokemonController: UniquePokemonData {
-    func updateDelegate() {
+    func updateDataPokemon() {
         if let namePokemon = userDefault.string(forKey: "Name"),
            let tipoPokemon = userDefault.string(forKey: "Tipo"),
            let codigoPokemon = userDefault.string(forKey: "BigImage"),
