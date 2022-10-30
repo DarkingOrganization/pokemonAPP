@@ -23,6 +23,8 @@
 		D64685EB290B413F0081F974 /* GradieteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64685EA290B413F0081F974 /* GradieteModel.swift */; };
 		D648D16E29019026003A94E6 /* StatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D648D16D29019026003A94E6 /* StatsView.xib */; };
 		D648D171290190F0003A94E6 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D648D170290190F0003A94E6 /* StatsView.swift */; };
+		D6F181F3290EA5F10007ADB7 /* StatsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F181F2290EA5F10007ADB7 /* StatsController.xib */; };
+		D6F181F6290EA6440007ADB7 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F181F5290EA6440007ADB7 /* DetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		D64685EA290B413F0081F974 /* GradieteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradieteModel.swift; sourceTree = "<group>"; };
 		D648D16D29019026003A94E6 /* StatsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsView.xib; sourceTree = "<group>"; };
 		D648D170290190F0003A94E6 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		D6F181F2290EA5F10007ADB7 /* StatsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsController.xib; sourceTree = "<group>"; };
+		D6F181F5290EA6440007ADB7 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				D6444C4728F0662B000494E2 /* Main.storyboard */,
 				D648D16D29019026003A94E6 /* StatsView.xib */,
 				D648D170290190F0003A94E6 /* StatsView.swift */,
+				D6F181F2290EA5F10007ADB7 /* StatsController.xib */,
+				D6F181F5290EA6440007ADB7 /* DetailsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,11 +184,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6F181F6290EA6440007ADB7 /* DetailsViewController.xib in Resources */,
 				D648D16E29019026003A94E6 /* StatsView.xib in Resources */,
 				D6444C4E28F06634000494E2 /* LaunchScreen.storyboard in Resources */,
 				D6444C6B28F0846F000494E2 /* PokemonCell.xib in Resources */,
 				D6444C4B28F06634000494E2 /* Assets.xcassets in Resources */,
 				D6444C4928F0662B000494E2 /* Main.storyboard in Resources */,
+				D6F181F3290EA5F10007ADB7 /* StatsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

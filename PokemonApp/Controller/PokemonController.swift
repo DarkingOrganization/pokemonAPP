@@ -60,7 +60,7 @@ class PokemonController: UIViewController {
     }
     
     private func loadItems() {
-        for pokemon in 1...809 {
+        for pokemon in 1...20 {
             pokemonManager.fetchPokemon(pokemonCode: String(pokemon))
         }
         tableView.reloadData()
