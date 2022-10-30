@@ -8,5 +8,5 @@ struct PokemonModel {
     let tipoPokemon: String
     let abilityPokemon: String
     let tipoPokemon2: String?
-    let stats: [Int]
+    var stats: [Int]
 }

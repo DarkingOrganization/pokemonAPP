@@ -1,6 +1,6 @@
 import UIKit
 class DetailsViewController: UIViewController {
-    var pokemonController = PokemonController()
+    var gradietModel = GradieteModel()
     
     var selectedPokemon: String = ""
     var selectedPokemonImage: UIImage?
@@ -96,7 +96,7 @@ class DetailsViewController: UIViewController {
     
     //MARK: - Gradiete
     func gradieteBackground() {
-        let gradient = pokemonController.gradieteModel.gradient
+        let gradient = gradietModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }

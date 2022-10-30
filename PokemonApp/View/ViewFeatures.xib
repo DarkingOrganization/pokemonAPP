@@ -11,7 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewFeatures" customModule="PokemonApp" customModuleProvider="target">
             <connections>
                 <outlet property="bigImage" destination="y7A-Qg-d1Q" id="pHV-wh-9mT"/>
-                <outlet property="codigoPokemonFeatures" destination="2fQ-o5-CUw" id="TpZ-Tk-Sep"/>
+                <outlet property="closeButton" destination="kLm-JM-4B6" id="dv8-64-Bxu"/>
+                <outlet property="codigoImagenPokemon" destination="2fQ-o5-CUw" id="TpZ-Tk-Sep"/>
                 <outlet property="element" destination="dL5-UE-778" id="KOS-Ml-uuq"/>
                 <outlet property="element2" destination="c9R-cf-7Ja" id="hCy-sg-cfe"/>
                 <outlet property="elemento" destination="dL5-UE-778" id="KOH-2p-1A9"/>
@@ -25,6 +26,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLm-JM-4B6">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="closeButton:" destination="-1" eventType="touchUpInside" id="ePg-fj-Wnv"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-OR-zBg">
                     <rect key="frame" x="20" y="247" width="374" height="402"/>
                     <subviews>
@@ -68,13 +77,14 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <accessibility key="accessibilityConfiguration" identifier="viewFeatures"/>
             <constraints>
                 <constraint firstItem="VZZ-OR-zBg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="203" id="32G-8O-CJ3"/>
                 <constraint firstItem="VZZ-OR-zBg" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="gnl-Qb-LwO"/>
                 <constraint firstItem="VZZ-OR-zBg" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="kbX-EC-CRt"/>
                 <constraint firstItem="VZZ-OR-zBg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="xlE-b3-zXc"/>
             </constraints>
-            <point key="canvasLocation" x="141" y="67"/>
+            <point key="canvasLocation" x="140.57971014492756" y="66.964285714285708"/>
         </view>
     </objects>
     <resources>

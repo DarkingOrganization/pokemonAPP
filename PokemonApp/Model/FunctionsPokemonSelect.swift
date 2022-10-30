@@ -7,6 +7,20 @@
 
 import Foundation
 
+struct FunctionsPokemonSelect {
+    //MARK: - Image Names
+    func renameImagenAssets(imagen: Int) -> String? {
+        if imagen < 10 {
+            return "00\(String(imagen))"
+        } else if imagen < 100 {
+            return "0\(String(imagen))"
+        } else if imagen < 810 {
+            return "\(String(imagen))"
+        } else {
+            return "nil"
+        }
+    }
+}
 
 
     

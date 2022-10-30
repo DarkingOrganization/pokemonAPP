@@ -15,35 +15,46 @@ class ViewFeatures: UIViewController {
     @IBOutlet weak private var bigImage: UIImageView!
     
     @IBOutlet weak private var namePokemonFeatures: UILabel!
-    @IBOutlet weak private var codigoPokemonFeatures: UILabel!
+    @IBOutlet weak private var codigoImagenPokemon: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
     
+    var functionsPokemonSelect = FunctionsPokemonSelect()
     var pokemonSelect: PokemonModel? = nil
     
     override func viewDidLoad() {
+        closeButton.alpha = 0.5
         view.alpha = 0.5
         super.viewDidLoad()
         setupElement()
-        
+        setupImagenPokemon()
     }
+
     func setupElement() {
         if let pokemon = pokemonSelect {
             element.image = UIImage(named: pokemon.tipoPokemon)
-            
             if let elemento = UIImage(named: pokemon.tipoPokemon2!) {
                 element2?.image = elemento
             }
         }
     }
-//    struct FunctionsPokemonSelect {
-//        //MARK: - Funciones didselect
-//        private func assignedStats(pokemonModel: [PokemonModel]?, indexPath: IndexPath, indexPokemon: PokemonModel) {
-//            if let countStats = pokemonModel?[indexPath.row].stats.count {
-//                for stat in 1...countStats {
-//                    stats[stat - 1] = Float(indexPokemon.stats[stat - 1])
-//                }
-//            }
-//        }
-//    }
+    func setupImagenPokemon() {
+        if let imagenPokemon = Int(pokemonSelect!.pokemonID) {
+            self.codigoImagenPokemon.text = functionsPokemonSelect.renameImagenAssets(imagen: imagenPokemon)
+
+            if let codigo = codigoImagenPokemon.text {
+                bigImage.image = UIImage(named: codigo)
+                smallImage.setImage(UIImage(named: codigo), for: .normal)
+            }
+        }
+    }
+    func setupNamePokemon() {
+        if let namePokemon = pokemonSelect?.pokemonName {
+        self.namePokemonFeatures.text = namePokemon
+    }
+    }
+    @IBAction func closeButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 

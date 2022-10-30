@@ -2,7 +2,7 @@ import UIKit
 
 class StatsController: UIViewController {
     
-    var pokemonController = PokemonController()
+    var gradietModel = GradieteModel()
     
     @IBOutlet weak private var whiteBackground: UIImageView!
     @IBOutlet weak private var bigImage: UIImageView!
@@ -19,6 +19,8 @@ class StatsController: UIViewController {
     
     @IBOutlet weak private var statsView: StatsView!
     
+    var pokemonSelect: PokemonModel? = nil
+    var functionsPokemonSelect = FunctionsPokemonSelect()
     private var statsString: [String] = ["1", "2", "3", "4", "5"]
     private var statsValues: [Float] = [0,1,2,3,4,5]
     
@@ -26,13 +28,15 @@ class StatsController: UIViewController {
         super.viewDidLoad()
         setupButtons()
         setupElement()
+        loadPokemon()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configWhiteImage()
         gradieteBackground()
-        statsView.loaditems(stats: statsValues)   
+        statsView.loaditems(stats: statsValues)
+       
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
@@ -103,10 +107,18 @@ class StatsController: UIViewController {
     }
     //MARK: - Gradiete
     private func gradieteBackground() {
-        let gradient = pokemonController.gradieteModel.gradient
+        let gradient = gradietModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
+    //MARK: - LoadPokemon
+    func loadPokemon() {
+        if let pokemon = pokemonSelect, let stats = pokemonSelect?.stats {
+            let statsFloat = [Float(stats)]
+        dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: [Float(stats)], codigoPokemon: pokemon.pokemonID)
+        }
+    }
+    
     //MARK: - Protocol Stats
     func calculatestats (_ stats: [Float])  {
         for stat in 1...stats.count {
@@ -124,7 +136,7 @@ class StatsController: UIViewController {
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)
         namePokemon.text = name
-        if let codigoImagenPokemon = pokemonController.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
+        if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
             
             if let valueStats = stats {

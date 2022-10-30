@@ -16,9 +16,10 @@ class PokemonController: UIViewController {
     private var elementoText: String?
     private var activeButtonOne: Bool = false
     var gradieteModel = GradieteModel()
+    private var functionsPokemonSelect = FunctionsPokemonSelect()
     private var stats: [Float] = [0,1,2,3,4,5]
     
-    let viewFeatures = ViewFeatures()
+    let viewFeatures = ViewFeatures(nibName: "ViewFeatures", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,7 @@ class PokemonController: UIViewController {
     
 //MARK: - Load Pokemons
     private func loadPokemons() {
-        for pokemon in 1...20 {
+        for pokemon in 1...11 {
             pokemonManager.fetchPokemon(pokemonCode: String(pokemon))
         }
         tableView.reloadData()
@@ -61,18 +62,6 @@ class PokemonController: UIViewController {
     //MARK: - PokemonCell
     private func registerCells() {
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-    }
-    //MARK: - Image Names
-    func renameImagenAssets(imagen: Int) -> String? {
-        if imagen < 10 {
-            return "00\(String(imagen))"
-        } else if imagen < 100 {
-            return "0\(String(imagen))"
-        } else if imagen < 810 {
-            return "\(String(imagen))"
-        } else {
-            return "nil"
-        }
     }
     
  //MARK: - Table Border
@@ -99,7 +88,9 @@ class PokemonController: UIViewController {
     //MARK: - preparacion View Controller
     @IBAction func imageButtonPress(_ sender: UIButton) {
         if  activeButtonOne == true {
+            viewFeatures.modalPresentationStyle = .overCurrentContext
             self.present(viewFeatures, animated: true)
+            self.navigationController?.pushViewController(viewFeatures, animated: true)
         }
     }
 }
@@ -114,6 +105,7 @@ extension PokemonController: PokemonManagerDelegate {
             self.tableView.reloadData()
         }
     }
+    
     func didFailWithError(error: Error) {
         print(error)
     }
@@ -130,8 +122,10 @@ extension PokemonController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
         cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
-        if let codePokemon = renameImagenAssets(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
+        if let codePokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
             cell.codigoPokemonLabel.text = "#\(String(codePokemon))"
+            setupTipoPokemon(indexPath, cell)
+            setupImagenPokemon(indexPath, cell)
         }
         return cell
     }
@@ -139,14 +133,14 @@ extension PokemonController: UITableViewDataSource {
     func setupTipoPokemon(_ indexPath: IndexPath,_ cell: PokemonCell) {
         if let tipo = pokemonesFiltrados?[indexPath.row].tipoPokemon {
             cell.imageClaseOne.image = UIImage(named: tipo)
-            if let tipo2 = pokemonesFiltrados?[indexPath.row].tipoPokemon2 {
-                cell.imageClaseTwo.image = UIImage(named: tipo2)
-            }
+        }
+        if let tipo2 = pokemonesFiltrados?[indexPath.row].tipoPokemon2 {
+            cell.imageClaseTwo.image = UIImage(named: tipo2)
         }
     }
     func setupImagenPokemon(_ indexPath: IndexPath,_ cell: PokemonCell) {
         if let imagenPokemon = Int((pokemonesFiltrados?[indexPath.row].pokemonID)!) {
-            self.codigoImagenPokemon = renameImagenAssets(imagen: imagenPokemon)
+            self.codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: imagenPokemon)
             
             if let codigo = codigoImagenPokemon {
                 cell.pokemonImage.image = UIImage(named: codigo)
@@ -158,7 +152,11 @@ extension PokemonController: UITableViewDataSource {
 extension PokemonController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButtonOne = true
+        
         self.viewFeatures.pokemonSelect = pokemonesFiltrados?[indexPath.row]
+        self.viewFeatures.modalPresentationStyle = .overCurrentContext
+        self.present(viewFeatures, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewFeatures, animated: true)
     }
 }
 
