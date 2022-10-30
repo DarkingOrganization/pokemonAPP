@@ -28,8 +28,6 @@ class DetailsViewController: UIViewController {
         setupButtons()
         gradieteBackground()
         configWhiteImage()
-        pokemonController.delegate = self
-        pokemonController.updateDataPokemon()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +95,7 @@ class DetailsViewController: UIViewController {
     }
     
     //MARK: - Gradiete
-    private func gradieteBackground() {
+    func gradieteBackground() {
         let gradient = pokemonController.gradieteModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
@@ -110,19 +108,6 @@ class DetailsViewController: UIViewController {
     func updateStats(stats: [Float]) {
         DispatchQueue.main.async {
             self.calculatestats(stats)
-        }
-    }
-}
-
-extension DetailsViewController: UniquePokemonData {
-    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
-        
-        if let codigoImagenPokemon = pokemonController.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
-            bigImage.image = UIImage(named: codigoImagenPokemon)
-            
-            if let valueStats = stats {
-                updateStats(stats: valueStats)
-            }
         }
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class StatsController: UIViewController, UniquePokemonData {
+class StatsController: UIViewController {
     
     var pokemonController = PokemonController()
     
@@ -24,8 +24,6 @@ class StatsController: UIViewController, UniquePokemonData {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pokemonController.delegate = self
-        pokemonController.updateDataPokemon()
         setupButtons()
         setupElement()
     }

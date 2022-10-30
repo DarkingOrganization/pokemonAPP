@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewFeatures" customModule="PokemonApp" customModuleProvider="target">
+            <connections>
+                <outlet property="bigImage" destination="y7A-Qg-d1Q" id="pHV-wh-9mT"/>
+                <outlet property="codigoPokemonFeatures" destination="2fQ-o5-CUw" id="TpZ-Tk-Sep"/>
+                <outlet property="element" destination="dL5-UE-778" id="KOS-Ml-uuq"/>
+                <outlet property="element2" destination="c9R-cf-7Ja" id="hCy-sg-cfe"/>
+                <outlet property="elemento" destination="dL5-UE-778" id="KOH-2p-1A9"/>
+                <outlet property="elemento2" destination="c9R-cf-7Ja" id="C4s-i3-rI1"/>
+                <outlet property="namePokemonFeatures" destination="QA9-YC-DlA" id="7cW-wT-kgm"/>
+                <outlet property="smallImage" destination="Il1-ME-E6R" id="tKP-tz-fIk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-OR-zBg">
+                    <rect key="frame" x="20" y="247" width="374" height="402"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il1-ME-E6R" userLabel="Pokemon">
+                            <rect key="frame" x="40" y="44" width="82" height="69"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QA9-YC-DlA">
+                            <rect key="frame" x="167" y="60.5" width="40.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Codigo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fQ-o5-CUw">
+                            <rect key="frame" x="167" y="84.5" width="40.5" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="y7A-Qg-d1Q" userLabel="Popup">
+                            <rect key="frame" x="18" y="141" width="338" height="235"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dL5-UE-778" userLabel="elemento">
+                            <rect key="frame" x="313" y="49" width="53" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c9R-cf-7Ja" userLabel="elemento">
+                            <rect key="frame" x="252" y="49" width="53" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="QA9-YC-DlA" firstAttribute="centerX" secondItem="VZZ-OR-zBg" secondAttribute="centerX" id="MDa-HH-jQd"/>
+                        <constraint firstItem="2fQ-o5-CUw" firstAttribute="centerX" secondItem="VZZ-OR-zBg" secondAttribute="centerX" id="bXf-af-0bY"/>
+                        <constraint firstItem="2fQ-o5-CUw" firstAttribute="top" secondItem="QA9-YC-DlA" secondAttribute="bottom" constant="6" id="fsc-Uy-qCX"/>
+                        <constraint firstItem="y7A-Qg-d1Q" firstAttribute="top" secondItem="2fQ-o5-CUw" secondAttribute="bottom" constant="42" id="mUy-th-Jsj"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="VZZ-OR-zBg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="203" id="32G-8O-CJ3"/>
+                <constraint firstItem="VZZ-OR-zBg" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="gnl-Qb-LwO"/>
+                <constraint firstItem="VZZ-OR-zBg" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="kbX-EC-CRt"/>
+                <constraint firstItem="VZZ-OR-zBg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="xlE-b3-zXc"/>
+            </constraints>
+            <point key="canvasLocation" x="141" y="67"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

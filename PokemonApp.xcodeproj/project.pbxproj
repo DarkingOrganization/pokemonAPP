@@ -25,6 +25,9 @@
 		D648D171290190F0003A94E6 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D648D170290190F0003A94E6 /* StatsView.swift */; };
 		D6F181F3290EA5F10007ADB7 /* StatsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F181F2290EA5F10007ADB7 /* StatsController.xib */; };
 		D6F181F6290EA6440007ADB7 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F181F5290EA6440007ADB7 /* DetailsViewController.xib */; };
+		D6F181F9290EACDB0007ADB7 /* ViewFeatures.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F181F8290EACDB0007ADB7 /* ViewFeatures.xib */; };
+		D6F181FC290EAD440007ADB7 /* ViewFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F181FB290EAD440007ADB7 /* ViewFeatures.swift */; };
+		D6F18200290EB64A0007ADB7 /* FunctionsPokemonSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F181FF290EB64A0007ADB7 /* FunctionsPokemonSelect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		D648D170290190F0003A94E6 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		D6F181F2290EA5F10007ADB7 /* StatsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsController.xib; sourceTree = "<group>"; };
 		D6F181F5290EA6440007ADB7 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		D6F181F8290EACDB0007ADB7 /* ViewFeatures.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewFeatures.xib; sourceTree = "<group>"; };
+		D6F181FB290EAD440007ADB7 /* ViewFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFeatures.swift; sourceTree = "<group>"; };
+		D6F181FF290EB64A0007ADB7 /* FunctionsPokemonSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsPokemonSelect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,8 @@
 		D6444C5828F06A36000494E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6F181F8290EACDB0007ADB7 /* ViewFeatures.xib */,
+				D6F181FB290EAD440007ADB7 /* ViewFeatures.swift */,
 				D6444C6828F0846F000494E2 /* PokemonCell.swift */,
 				D6444C6928F0846F000494E2 /* PokemonCell.xib */,
 				D6444C4728F0662B000494E2 /* Main.storyboard */,
@@ -119,6 +127,7 @@
 		D6444C6028F06E68000494E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D6F181FF290EB64A0007ADB7 /* FunctionsPokemonSelect.swift */,
 				D6444C5D28F06E5F000494E2 /* PokemonManager.swift */,
 				D6444C6528F070AD000494E2 /* PokemonData.swift */,
 				D6444C6228F07070000494E2 /* PokemonModel.swift */,
@@ -187,6 +196,7 @@
 				D6F181F6290EA6440007ADB7 /* DetailsViewController.xib in Resources */,
 				D648D16E29019026003A94E6 /* StatsView.xib in Resources */,
 				D6444C4E28F06634000494E2 /* LaunchScreen.storyboard in Resources */,
+				D6F181F9290EACDB0007ADB7 /* ViewFeatures.xib in Resources */,
 				D6444C6B28F0846F000494E2 /* PokemonCell.xib in Resources */,
 				D6444C4B28F06634000494E2 /* Assets.xcassets in Resources */,
 				D6444C4928F0662B000494E2 /* Main.storyboard in Resources */,
@@ -205,6 +215,7 @@
 				D6444C4228F0662B000494E2 /* AppDelegate.swift in Sources */,
 				D6444C4428F0662B000494E2 /* SceneDelegate.swift in Sources */,
 				D6444C9428F0A5BF000494E2 /* PokemonController.swift in Sources */,
+				D6F18200290EB64A0007ADB7 /* FunctionsPokemonSelect.swift in Sources */,
 				D6444C6328F07070000494E2 /* PokemonModel.swift in Sources */,
 				D64685EB290B413F0081F974 /* GradieteModel.swift in Sources */,
 				D633042C28FAAB01005ECE72 /* StatsController.swift in Sources */,
@@ -212,6 +223,7 @@
 				D6444C6A28F0846F000494E2 /* PokemonCell.swift in Sources */,
 				D6444C5E28F06E5F000494E2 /* PokemonManager.swift in Sources */,
 				D63C175428FC8B3C0096BD4E /* DetailsViewController.swift in Sources */,
+				D6F181FC290EAD440007ADB7 /* ViewFeatures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

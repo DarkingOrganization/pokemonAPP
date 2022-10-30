@@ -23,57 +23,6 @@
                                     <constraint firstAttribute="height" constant="580" id="MGH-Hi-O7s"/>
                                 </constraints>
                             </tableView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INP-7b-pyM">
-                                <rect key="frame" x="-15" y="0.0" width="427" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="closeFeatures:" destination="BYZ-38-t0r" eventType="touchUpInside" id="izE-DI-7Gv"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUa-bY-EFi">
-                                <rect key="frame" x="20" y="244" width="374" height="401"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26O-A6-pPu" userLabel="Pokemon">
-                                        <rect key="frame" x="40" y="44" width="82" height="69"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <action selector="imageButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xcm-K5-4j5"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-Xo-beP">
-                                        <rect key="frame" x="167" y="60.5" width="40.5" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Codigo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WI-T8-k4k">
-                                        <rect key="frame" x="167" y="84.5" width="40.5" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fBf-7q-Y07" userLabel="Popup">
-                                        <rect key="frame" x="18" y="141" width="338" height="235"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6Sj-EM-g5q" userLabel="elemento">
-                                        <rect key="frame" x="313" y="49" width="53" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="amh-Oc-v5S" userLabel="elemento">
-                                        <rect key="frame" x="252" y="49" width="53" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="fBf-7q-Y07" firstAttribute="top" secondItem="2WI-T8-k4k" secondAttribute="bottom" constant="42" id="ta7-rE-XDn"/>
-                                    <constraint firstItem="2WI-T8-k4k" firstAttribute="centerX" secondItem="SUa-bY-EFi" secondAttribute="centerX" id="vcj-M4-dOs"/>
-                                    <constraint firstItem="0Vp-Xo-beP" firstAttribute="centerX" secondItem="SUa-bY-EFi" secondAttribute="centerX" id="wJa-k5-ufs"/>
-                                    <constraint firstItem="2WI-T8-k4k" firstAttribute="top" secondItem="0Vp-Xo-beP" secondAttribute="bottom" constant="6" id="z56-Sc-t1g"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psm-jW-ik2">
                                 <rect key="frame" x="50" y="801" width="50" height="50"/>
                                 <constraints>
@@ -120,11 +69,8 @@
                             <constraint firstItem="psm-jW-ik2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Fsg-5p-GJw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3f9-Kz-9Be" secondAttribute="bottom" constant="21" id="HHU-29-S33"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3f9-Kz-9Be" secondAttribute="trailing" constant="34" id="KAU-Jn-Xdi"/>
-                            <constraint firstAttribute="bottom" secondItem="SUa-bY-EFi" secondAttribute="bottom" constant="251" id="Loq-v8-Yvd"/>
-                            <constraint firstItem="SUa-bY-EFi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MaM-2n-Rfq"/>
                             <constraint firstItem="GGs-eu-elh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NK1-4l-7f0"/>
                             <constraint firstItem="GGs-eu-elh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OEH-fF-x9h"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SUa-bY-EFi" secondAttribute="trailing" constant="20" id="PBL-X5-3ev"/>
                             <constraint firstItem="wJG-YQ-GJS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Per-fq-6Pj"/>
                             <constraint firstItem="wJG-YQ-GJS" firstAttribute="top" secondItem="GGs-eu-elh" secondAttribute="bottom" constant="2" id="Qhx-KA-iDr"/>
                             <constraint firstItem="CRv-E2-TRV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="SFD-gL-Xl5"/>
@@ -133,26 +79,16 @@
                             <constraint firstAttribute="trailing" secondItem="wJG-YQ-GJS" secondAttribute="trailing" id="hPQ-Ic-cMe"/>
                             <constraint firstItem="GGs-eu-elh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nCm-XM-NBj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="psm-jW-ik2" secondAttribute="bottom" constant="11" id="nVj-xC-nT7"/>
-                            <constraint firstItem="SUa-bY-EFi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="244" id="oJy-th-ATv"/>
                             <constraint firstItem="wJG-YQ-GJS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qC2-mO-YrV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rhG-ck-8qS"/>
                     <connections>
-                        <outlet property="bigImage" destination="fBf-7q-Y07" id="UjF-i5-YNr"/>
                         <outlet property="buttonOne" destination="psm-jW-ik2" id="aWk-gQ-dgO"/>
                         <outlet property="buttonTree" destination="3f9-Kz-9Be" id="AsO-K0-skZ"/>
                         <outlet property="buttonTwo" destination="UNN-fk-vXO" id="TiJ-E2-YoN"/>
-                        <outlet property="buttonViewT" destination="INP-7b-pyM" id="9f3-LA-tEH"/>
-                        <outlet property="codigoPokemonFeatures" destination="2WI-T8-k4k" id="V0O-pF-Ol8"/>
-                        <outlet property="constrainCentre" destination="MaM-2n-Rfq" id="zZw-6h-bbA"/>
-                        <outlet property="elemento" destination="6Sj-EM-g5q" id="wQY-vt-WrV"/>
-                        <outlet property="elemento2" destination="amh-Oc-v5S" id="jG7-tA-Khz"/>
-                        <outlet property="namePokemonFeatures" destination="0Vp-Xo-beP" id="5e6-cH-PZk"/>
-                        <outlet property="pokemonPop" destination="26O-A6-pPu" id="U2q-e4-tUP"/>
                         <outlet property="searchBar" destination="GGs-eu-elh" id="W4Z-kn-8e4"/>
-                        <outlet property="tableView" destination="wJG-YQ-GJS" id="nt3-ez-aps"/>
-                        <outlet property="vistaFeatures" destination="SUa-bY-EFi" id="ILU-O9-ayM"/>
+                        <outlet property="tableView" destination="wJG-YQ-GJS" id="yuS-sb-D6A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
