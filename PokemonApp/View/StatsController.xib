@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of pokemon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6K-jg-x1V">
-                                <rect key="frame" x="19" y="468.5" width="376" height="0.0"/>
+                                <rect key="frame" x="19" y="468.5" width="376" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <stackView tag="2" contentMode="scaleToFill" distribution="fillEqually" spacing="72" translatesAutoresizingMaskIntoConstraints="NO" id="AuQ-S1-zvu">
-                                <rect key="frame" x="16.5" y="498.5" width="381" height="30"/>
+                                <rect key="frame" x="16.5" y="519" width="381" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gt-92-Hzz">
                                         <rect key="frame" x="0.0" y="0.0" width="79" height="30"/>
@@ -116,8 +116,8 @@
                                     <constraint firstAttribute="height" constant="199" id="9kY-Vv-mmJ"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6z-sE-6Wl" customClass="StatsView" customModule="PokemonApp">
-                                <rect key="frame" x="10" y="578.5" width="394" height="191.5"/>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="I6z-sE-6Wl" customClass="StatsView" customModule="PokemonApp">
+                                <rect key="frame" x="10" y="599" width="394" height="171"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -172,7 +172,7 @@
                 <outlet property="viewElement" destination="oyg-Kn-QB0" id="xeu-hr-fDc"/>
                 <outlet property="whiteBackground" destination="9dw-ce-wIP" id="ucG-U3-HJE"/>
             </connections>
-            <point key="canvasLocation" x="552" y="97"/>
+            <point key="canvasLocation" x="550.72463768115949" y="96.428571428571431"/>
         </viewController>
     </objects>
     <resources>

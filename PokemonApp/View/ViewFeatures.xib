@@ -15,10 +15,9 @@
                 <outlet property="codigoImagenPokemon" destination="2fQ-o5-CUw" id="TpZ-Tk-Sep"/>
                 <outlet property="element" destination="dL5-UE-778" id="KOS-Ml-uuq"/>
                 <outlet property="element2" destination="c9R-cf-7Ja" id="hCy-sg-cfe"/>
-                <outlet property="elemento" destination="dL5-UE-778" id="KOH-2p-1A9"/>
-                <outlet property="elemento2" destination="c9R-cf-7Ja" id="C4s-i3-rI1"/>
                 <outlet property="namePokemonFeatures" destination="QA9-YC-DlA" id="7cW-wT-kgm"/>
                 <outlet property="smallImage" destination="Il1-ME-E6R" id="tKP-tz-fIk"/>
+                <outlet property="viewFeatures" destination="iN0-l3-epB" id="qAl-RK-yww"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -77,7 +76,6 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <accessibility key="accessibilityConfiguration" identifier="viewFeatures"/>
             <constraints>
                 <constraint firstItem="VZZ-OR-zBg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="203" id="32G-8O-CJ3"/>
                 <constraint firstItem="VZZ-OR-zBg" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="gnl-Qb-LwO"/>

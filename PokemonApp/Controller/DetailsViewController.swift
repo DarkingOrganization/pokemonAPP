@@ -2,14 +2,12 @@ import UIKit
 class DetailsViewController: UIViewController {
     var gradietModel = GradieteModel()
     
-    var selectedPokemon: String = ""
-    var selectedPokemonImage: UIImage?
-    var selectedPokemonIconoElement: UIImage?
-    var selectedPokemonTextElement: String?
+    var pokemonSelect: PokemonModel? = nil
+    var functionsPokemonSelect = FunctionsPokemonSelect()
     private var statsValues: [Float] = [0,1,2,3,4,5]
     private var statsString: [String]? = ["1","2","3","4","5"]
     
-    @IBOutlet weak private var statsViewD: StatsView!
+    @IBOutlet weak private var statsView: StatsView!
     @IBOutlet private weak var titlePokemon: UILabel!
     @IBOutlet private weak var whiteBackground: UIImageView!
     @IBOutlet private weak var bigImage: UIImageView!
@@ -19,7 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var movesButton: UIButton!
     
     @IBAction private func closeButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -32,7 +30,7 @@ class DetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        statsViewD.loaditems(stats: statsValues)
+        statsView.loaditems(stats: statsValues)
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
@@ -61,9 +59,11 @@ class DetailsViewController: UIViewController {
     }
     
     private func setupTitlePokemon() {
-        titlePokemon.text = selectedPokemon
+        titlePokemon.text = pokemonSelect?.pokemonName
         titlePokemon.textColor = .white
-        bigImage.image = selectedPokemonImage
+        if let imagePokemon = pokemonSelect?.pokemonID {
+        bigImage.image = UIImage(named: imagePokemon)
+        }
     }
     
     func configStatsButton() {
@@ -100,6 +100,13 @@ class DetailsViewController: UIViewController {
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
+    //MARK: - LoadPokemon
+    func loadPokemon() {
+        if let pokemon = pokemonSelect, let stats = pokemonSelect?.stats as! [Float]? {
+        dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: stats, codigoPokemon: pokemon.pokemonID)
+        }
+    }
+    //MARK: - Stats
     func calculatestats (_ stats: [Float])  {
         for stat in 1...stats.count {
             statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
@@ -108,6 +115,16 @@ class DetailsViewController: UIViewController {
     func updateStats(stats: [Float]) {
         DispatchQueue.main.async {
             self.calculatestats(stats)
+        }
+    }
+    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+        titlePokemon.text = name
+        if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
+            bigImage.image = UIImage(named: codigoImagenPokemon)
+            
+            if let valueStats = stats {
+                updateStats(stats: valueStats)
+            }
         }
     }
 }

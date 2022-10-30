@@ -41,7 +41,7 @@ class StatsController: UIViewController {
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
-        performSegue(withIdentifier: "segueStats", sender: self)
+     //   performSegue(withIdentifier: "segueStats", sender: self)
     }
     
     @IBAction private func evolutionButtonPress(_ sender: UIButton) {
@@ -103,7 +103,7 @@ class StatsController: UIViewController {
     
     @IBAction private func closePush(_ sender: UIButton) {
         
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     //MARK: - Gradiete
     private func gradieteBackground() {
@@ -113,9 +113,8 @@ class StatsController: UIViewController {
     }
     //MARK: - LoadPokemon
     func loadPokemon() {
-        if let pokemon = pokemonSelect, let stats = pokemonSelect?.stats {
-            let statsFloat = [Float(stats)]
-        dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: [Float(stats)], codigoPokemon: pokemon.pokemonID)
+        if let pokemon = pokemonSelect, let stats = pokemonSelect?.stats as! [Float]? {
+        dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: stats, codigoPokemon: pokemon.pokemonID)
         }
     }
     

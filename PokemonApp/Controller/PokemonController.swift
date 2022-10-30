@@ -19,7 +19,7 @@ class PokemonController: UIViewController {
     private var functionsPokemonSelect = FunctionsPokemonSelect()
     private var stats: [Float] = [0,1,2,3,4,5]
     
-    let viewFeatures = ViewFeatures(nibName: "ViewFeatures", bundle: nil)
+    let viewFeatures = ViewFeatures()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,11 +87,11 @@ class PokemonController: UIViewController {
 
     //MARK: - preparacion View Controller
     @IBAction func imageButtonPress(_ sender: UIButton) {
-        if  activeButtonOne == true {
-            viewFeatures.modalPresentationStyle = .overCurrentContext
+        //if  activeButtonOne == true {
+            viewFeatures.modalPresentationStyle = .overFullScreen
             self.present(viewFeatures, animated: true)
-            self.navigationController?.pushViewController(viewFeatures, animated: true)
-        }
+          //  self.navigationController?.pushViewController(viewFeatures, animated: true)
+        //}
     }
 }
 //MARK: - PokemonManagerDelegate
@@ -154,7 +154,7 @@ extension PokemonController: UITableViewDelegate {
         activeButtonOne = true
         
         self.viewFeatures.pokemonSelect = pokemonesFiltrados?[indexPath.row]
-        self.viewFeatures.modalPresentationStyle = .overCurrentContext
+        self.viewFeatures.modalPresentationStyle = .overFullScreen
         self.present(viewFeatures, animated: true, completion: nil)
         self.navigationController?.pushViewController(viewFeatures, animated: true)
     }
