@@ -9,24 +9,32 @@ import UIKit
 
 class ViewFeatures: UIViewController {
     
-    @IBOutlet weak private var element: UIImageView!
     @IBOutlet weak private var element2: UIImageView?
+    @IBOutlet weak private var element: UIImageView!
     @IBOutlet weak private var smallImage: UIButton!
     @IBOutlet weak private var bigImage: UIImageView!
     
     @IBOutlet weak private var namePokemonFeatures: UILabel!
     @IBOutlet weak private var codigoImagenPokemon: UILabel!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var stackView: UIView!
     
     var functionsPokemonSelect = FunctionsPokemonSelect()
     var pokemonSelect: PokemonModel? = nil
     
     override func viewDidLoad() {
-        closeButton.alpha = 0.5
-        view.alpha = 0.5
         super.viewDidLoad()
+        closeButton.alpha = 0.5
+        closeButton.backgroundColor = .white
+        view.alpha = 1
+        stackView.layer.borderColor = .init(genericCMYKCyan: 60, magenta: 60, yellow: 60, black: 60, alpha: 1)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setupElement()
         setupImagenPokemon()
+        setupNamePokemon()
     }
 
     func setupElement() {
@@ -38,14 +46,11 @@ class ViewFeatures: UIViewController {
         }
     }
     func setupImagenPokemon() {
-        if let imagenPokemon = Int(pokemonSelect!.pokemonID) {
-            self.codigoImagenPokemon.text = functionsPokemonSelect.renameImagenAssets(imagen: imagenPokemon)
-
-            if let codigo = codigoImagenPokemon.text {
-                bigImage.image = UIImage(named: codigo)
-                smallImage.setImage(UIImage(named: codigo), for: .normal)
+        if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(pokemonSelect!.pokemonID)!) {
+        self.codigoImagenPokemon.text = "#\(codigoImagenPokemon)"
+                bigImage.image = UIImage(named: codigoImagenPokemon)
+                smallImage.setImage(UIImage(named: codigoImagenPokemon), for: .normal)
             }
-        }
     }
     func setupNamePokemon() {
         if let namePokemon = pokemonSelect?.pokemonName {
@@ -53,7 +58,8 @@ class ViewFeatures: UIViewController {
     }
     }
     @IBAction func closeButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+    // navigationController?.popViewController(animated: true)
+       dismiss(animated: true, completion: nil)
     }
 }
 

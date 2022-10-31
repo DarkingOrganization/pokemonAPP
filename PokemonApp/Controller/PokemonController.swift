@@ -9,6 +9,7 @@ class PokemonController: UIViewController {
     @IBOutlet weak private var buttonTree: UIButton!
     @IBOutlet weak private var searchBar: UISearchBar!
     
+    private var borderColor: CGColor?
     private var pokemonManager = PokemonManager()
     private var pokemones: [PokemonModel]? = []
     private var pokemonesFiltrados: [PokemonModel]? = []
@@ -18,7 +19,7 @@ class PokemonController: UIViewController {
     var gradieteModel = GradieteModel()
     private var functionsPokemonSelect = FunctionsPokemonSelect()
     private var stats: [Float] = [0,1,2,3,4,5]
-    
+    private var gradient: CAGradientLayer?
     let viewFeatures = ViewFeatures()
     
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ class PokemonController: UIViewController {
     //MARK: - Gradiete
     private func gradieteBackground() {
         let gradient = gradieteModel.gradient
+        self.gradient = gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
@@ -121,7 +123,7 @@ extension PokemonController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
-        cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
+        cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName//.capitalized
         if let codePokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
             cell.codigoPokemonLabel.text = "#\(String(codePokemon))"
             setupTipoPokemon(indexPath, cell)
@@ -154,9 +156,9 @@ extension PokemonController: UITableViewDelegate {
         activeButtonOne = true
         
         self.viewFeatures.pokemonSelect = pokemonesFiltrados?[indexPath.row]
-        self.viewFeatures.modalPresentationStyle = .overFullScreen
+        self.viewFeatures.modalPresentationStyle = .overCurrentContext
         self.present(viewFeatures, animated: true, completion: nil)
-        self.navigationController?.pushViewController(viewFeatures, animated: true)
+  //      self.navigationController?.pushViewController(viewFeatures, animated: true)
     }
 }
 
@@ -178,3 +180,4 @@ extension PokemonController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
 }
+
