@@ -91,8 +91,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="codigoPokemonLabel" destination="lwp-lW-bJ6" id="L1L-tf-QId"/>
-                <outlet property="imageClaseOne" destination="X3q-ao-RlC" id="RhI-av-IMY"/>
-                <outlet property="imageClaseTwo" destination="Jjs-LB-Tf6" id="sjo-Uc-LqI"/>
+                <outlet property="imageClaseOne" destination="X3q-ao-RlC" id="5Oc-34-a6Q"/>
+                <outlet property="imageClaseTwo" destination="Jjs-LB-Tf6" id="GHq-EC-uV1"/>
                 <outlet property="pokemonImage" destination="136-Sn-n5I" id="7eA-3O-fdX"/>
                 <outlet property="pokemonLabel" destination="PuL-Ol-5ZW" id="1RA-7T-9F7"/>
             </connections>

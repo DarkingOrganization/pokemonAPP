@@ -1,6 +1,9 @@
 import UIKit
 
-class ViewControllerDetalles: UIViewController {
+class StatsController: UIViewController {
+    
+    private var gradietModel = GradieteModel()
+    
     @IBOutlet weak private var whiteBackground: UIImageView!
     @IBOutlet weak private var bigImage: UIImageView!
     @IBOutlet weak private var namePokemon: UILabel!
@@ -16,44 +19,34 @@ class ViewControllerDetalles: UIViewController {
     
     @IBOutlet weak private var statsView: StatsView!
     
-    var selectedPokemon: String = ""
-    var selectedPokemonImage: UIImage?
-    var selectedPokemonIconoElement: UIImage?
-    var selectedPokemonTextElement: String?
-    var stats: [Float]? = [0,0,0,0,0,0]
-    var statsString: [String] = ["1","2"]
+    var pokemonSelect: PokemonModel? = nil
+    
+    private var detailsViewController = DetailsViewController()
+    private var statsString: [String] = ["1", "2", "3", "4", "5"]
+    private var statsValues: [Float] = [0,1,2,3,4,5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
-        loaditems()
+        setupElement()
+        loadPokemon()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        namePokemon.text = selectedPokemon
-        bigImage.image = selectedPokemonImage
-        setupElement()
         configWhiteImage()
         gradieteBackground()
+        statsView.loaditems(stats: statsValues)
+        loadPokemon()
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
-        performSegue(withIdentifier: "segueStats", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueStats" {
-            let destinationVCDetails = segue.destination as! DetailsViewController
-            
-            destinationVCDetails.selectedPokemon = self.selectedPokemon
-            destinationVCDetails.selectedPokemonImage = self.selectedPokemonImage
-            destinationVCDetails.selectedPokemonIconoElement = self.selectedPokemonIconoElement
-            destinationVCDetails.selectedPokemonTextElement = self.selectedPokemonTextElement
-            destinationVCDetails.stats = stats
-        }
+        detailsViewController.pokemonSelect = self.pokemonSelect
+        detailsViewController.statsValues = statsValues
+        detailsViewController.imagenPokemon = bigImage.image
+        detailsViewController.modalPresentationStyle = .overCurrentContext
+        present(detailsViewController, animated: true, completion: nil)
     }
     
     @IBAction private func evolutionButtonPress(_ sender: UIButton) {
@@ -64,7 +57,7 @@ class ViewControllerDetalles: UIViewController {
         configMoveButton()
     }
     
-    func setupButtons() {
+    private func setupButtons() {
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
         movesButton.layer.cornerRadius = 15
@@ -73,8 +66,6 @@ class ViewControllerDetalles: UIViewController {
     }
     
     private func setupElement() {
-        elementLabel.text = selectedPokemonTextElement?.capitalized
-        elementIcon.image = selectedPokemonIconoElement
         viewElement.layer.cornerRadius = 30
         elementIcon.backgroundColor = #colorLiteral(red: 0.3221421838, green: 0.6007931232, blue: 0.8479036689, alpha: 1)
         elementIcon.layer.cornerRadius = 20
@@ -87,7 +78,7 @@ class ViewControllerDetalles: UIViewController {
         whiteBackground.backgroundColor = .white
     }
     
-    func configStatsButton() {
+    private func configStatsButton() {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
@@ -97,7 +88,7 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configEvolutionButton() {
+    private func configEvolutionButton() {
         evolutionButton.setTitleColor(.white, for: .normal)
         evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -106,7 +97,7 @@ class ViewControllerDetalles: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configMoveButton() {
+    private func configMoveButton() {
         movesButton.setTitleColor(.white, for: .normal)
         movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -114,31 +105,51 @@ class ViewControllerDetalles: UIViewController {
         statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
-    
+    //MARK: - CloseScreen
     @IBAction private func closePush(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
     }
     //MARK: - Gradiete
     private func gradieteBackground() {
-        let gradient: CAGradientLayer = {
-            let gradient = CAGradientLayer()
-            gradient.type = .axial
-            gradient.colors = [
-                UIColor.init(named: "greenCustom")?.cgColor ?? "green",
-                UIColor.init(named: "blueCustom")?.cgColor ?? "blue"
-            ]
-            gradient.startPoint = CGPoint(x: 0, y: 1)
-            gradient.endPoint = CGPoint(x: 1, y: 1)
-            return gradient
-        }()
-        
+        let gradient = gradietModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
     }
+    //MARK: - LoadPokemon
+    private func loadPokemon() {
+        if let pokemon = pokemonSelect {
+            for n in 1...statsValues.count {
+                self.statsValues[n - 1] = Float(pokemon.stats[n - 1])
+            }
+            dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: self.statsValues, codigoPokemon: pokemon.pokemonID)
+        }
+    }
     
-    private func loaditems() {
-        if let stats = self.stats {
-            statsView.loaditems(stats: stats)
+    //MARK: - Protocol Stats
+    private func calculatestats(_ stats: [Float]) {
+        for stat in 1...stats.count {
+            statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
+        }
+    }
+    
+    private func updateStats(stats: [Float]) {
+        DispatchQueue.main.async {
+            self.calculatestats(stats)
+        }
+    }
+    
+    private func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+        let functionsPokemonSelect = FunctionsPokemonSelect(pokemonSelect?.pokemonID, [self.pokemonSelect])
+        elementLabel.text = tipo
+        elementIcon.image = UIImage(named: tipo)
+        namePokemon.text = name.capitalized
+        if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
+            bigImage.image = UIImage(named: codigoImagenPokemon)
+            
+            if let valueStats = stats {
+                updateStats(stats: valueStats)
+            }
         }
     }
 }

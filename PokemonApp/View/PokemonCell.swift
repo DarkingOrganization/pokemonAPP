@@ -17,4 +17,3 @@ class PokemonCell: UITableViewCell {
         contentView.backgroundColor = UIColor.white
     }
 }
-
