@@ -88,6 +88,7 @@ class PokemonController: UIViewController {
         //  self.navigationController?.pushViewController(viewFeatures, animated: true)
     }
 }
+
 //MARK: - PokemonManagerDelegate
 extension PokemonController: PokemonManagerDelegate {
     
@@ -119,13 +120,19 @@ extension PokemonController: UITableViewDataSource {
         self.imagePokemonSelect?.append(functionsPokemonSelect)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
-        cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
-        if let codePokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
-            cell.codigoPokemonLabel.text = "#\(codePokemon)"
-            
-            functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
-            functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
-            functionsPokemonSelect.setupElementPokemon(indexPath)
+        if let pokemonSelected = pokemonesFiltrados?[indexPath.row] {
+            cell.pokemonLabel?.text = pokemonSelected.pokemonName.capitalized
+            if let codePokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int((pokemonSelected.pokemonID))!) {
+                cell.codigoPokemonLabel.text = "#\(codePokemon)"
+                
+                functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
+                functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
+                
+                cell.imageClaseOne?.image = UIImage(named: pokemonSelected.tipoPokemon)
+                if let tipo2 = pokemonSelected.tipoPokemon2 {
+                    cell.imageClaseTwo?.image = UIImage(named: tipo2)
+                }
+            }
         }
         return cell
     }
