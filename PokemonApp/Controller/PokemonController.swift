@@ -16,11 +16,11 @@ class PokemonController: UIViewController {
     private var codigoImagenPokemon:String?
     private var elementoText: String?
     private var activeButtonOne: Bool = false
-    var gradieteModel = GradieteModel()
-
+    private var gradieteModel = GradieteModel()
+    
     private var stats: [Float] = [0,1,2,3,4,5]
     private var gradient: CAGradientLayer?
-    let viewFeatures = ViewFeatures()
+    private let viewFeatures = ViewFeatures()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class PokemonController: UIViewController {
     }
     //MARK: - Load Pokemons
     private func loadPokemons() {
-        for pokemon in 1...11 {
+        for pokemon in 1...50 {
             pokemonManager.fetchPokemon(pokemonCode: String(pokemon))
         }
         tableView.reloadData()
@@ -91,7 +91,7 @@ class PokemonController: UIViewController {
 }
 //MARK: - PokemonManagerDelegate
 extension PokemonController: PokemonManagerDelegate {
-
+    
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
             let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats: pokemon.stats)]
@@ -115,18 +115,18 @@ extension PokemonController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         var functionsPokemonSelect = FunctionsPokemonSelect(codigoImagenPokemon, pokemonesFiltrados!)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
-        cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName//.capitalized
+        cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
         if let codePokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int((pokemonesFiltrados?[indexPath.row].pokemonID)!)!) {
-        cell.codigoPokemonLabel.text = "#\(codePokemon)"
-             
-                functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
-                functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
-    }
-    return cell
+            cell.codigoPokemonLabel.text = "#\(codePokemon)"
+            
+            functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
+            functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
+        }
+        return cell
     }
 }
 
@@ -135,7 +135,10 @@ extension PokemonController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         activeButtonOne = true
         
-        self.viewFeatures.pokemonSelect = pokemonesFiltrados?[indexPath.row]
+        if let pokemonFiltrado = pokemonesFiltrados?[indexPath.row] {
+            self.viewFeatures.pokemonSelect = pokemonFiltrado
+            self.buttonOne.setImage(UIImage(named: pokemonFiltrado.pokemonID), for: .normal)
+        }
         self.viewFeatures.modalPresentationStyle = .overCurrentContext
         self.present(viewFeatures, animated: true, completion: nil)
         //      self.navigationController?.pushViewController(viewFeatures, animated: true)
@@ -160,4 +163,3 @@ extension PokemonController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
 }
-

@@ -19,6 +19,8 @@ class ViewFeatures: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var stackView: UIView!
     
+    private var statsController = StatsController()
+    
     var pokemonSelect: PokemonModel? = nil
     
     override func viewDidLoad() {
@@ -60,6 +62,11 @@ class ViewFeatures: UIViewController {
     @IBAction func closeButton(_ sender: Any) {
         // navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
+    }
+    @IBAction func smallImagePress(_ sender: UIButton) {
+        self.statsController.pokemonSelect = pokemonSelect
+        self.statsController.modalPresentationStyle = .overCurrentContext
+        self.present(statsController, animated: true, completion: nil)
     }
 }
 

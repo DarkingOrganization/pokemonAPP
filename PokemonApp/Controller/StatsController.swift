@@ -20,7 +20,8 @@ class StatsController: UIViewController {
     @IBOutlet weak private var statsView: StatsView!
     
     var pokemonSelect: PokemonModel? = nil
-  
+    
+    private var detailsViewController = DetailsViewController()
     private var statsString: [String] = ["1", "2", "3", "4", "5"]
     private var statsValues: [Float] = [0,1,2,3,4,5]
     
@@ -36,12 +37,14 @@ class StatsController: UIViewController {
         configWhiteImage()
         gradieteBackground()
         statsView.loaditems(stats: statsValues)
-       
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
         configStatsButton()
-     //   performSegue(withIdentifier: "segueStats", sender: self)
+        detailsViewController.pokemonSelect = self.pokemonSelect
+        detailsViewController.statsValues = statsValues
+        detailsViewController.modalPresentationStyle = .overCurrentContext
+        present(detailsViewController, animated: true, completion: nil)
     }
     
     @IBAction private func evolutionButtonPress(_ sender: UIButton) {
@@ -102,8 +105,8 @@ class StatsController: UIViewController {
     }
     
     @IBAction private func closePush(_ sender: UIButton) {
-        
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
     }
     //MARK: - Gradiete
     private func gradieteBackground() {
@@ -113,13 +116,16 @@ class StatsController: UIViewController {
     }
     //MARK: - LoadPokemon
     func loadPokemon() {
-        if let pokemon = pokemonSelect, let stats = pokemonSelect?.stats as! [Float]? {
-        dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: stats, codigoPokemon: pokemon.pokemonID)
+        if let pokemon = pokemonSelect {
+            for n in 1...statsValues.count {
+                self.statsValues[n - 1] = Float(pokemon.stats[n - 1])
+            }
+            dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: self.statsValues, codigoPokemon: pokemon.pokemonID)
         }
     }
     
     //MARK: - Protocol Stats
-    func calculatestats (_ stats: [Float])  {
+    func calculatestats(_ stats: [Float]) {
         for stat in 1...stats.count {
             statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
         }

@@ -41,6 +41,9 @@
                                 <constraint firstAttribute="height" constant="60" id="Oun-N9-h8D"/>
                                 <constraint firstAttribute="width" constant="60" id="fAA-1y-lhP"/>
                             </constraints>
+                            <connections>
+                                <action selector="smallImagePress:" destination="-1" eventType="touchUpInside" id="4CZ-gy-69G"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QA9-YC-DlA">
                             <rect key="frame" x="165" y="60.5" width="40.5" height="18"/>

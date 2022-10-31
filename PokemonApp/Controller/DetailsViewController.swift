@@ -3,8 +3,7 @@ class DetailsViewController: UIViewController {
     var gradietModel = GradieteModel()
     
     var pokemonSelect: PokemonModel? = nil
-    private var statsValues: [Float] = [0,1,2,3,4,5]
-    private var statsString: [String]? = ["1","2","3","4","5"]
+    var statsValues: [Float] = [0,1,2,3,4,5]
     
     @IBOutlet weak private var statsView: StatsView!
     @IBOutlet private weak var titlePokemon: UILabel!
@@ -16,7 +15,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var movesButton: UIButton!
     
     @IBAction private func closeButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ class DetailsViewController: UIViewController {
         titlePokemon.text = pokemonSelect?.pokemonName
         titlePokemon.textColor = .white
         if let imagePokemon = pokemonSelect?.pokemonID {
-        bigImage.image = UIImage(named: imagePokemon)
+            bigImage.image = UIImage(named: imagePokemon)
         }
     }
     
@@ -98,33 +98,5 @@ class DetailsViewController: UIViewController {
         let gradient = gradietModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
-    }
-    //MARK: - LoadPokemon
-    func loadPokemon() {
-        if let pokemon = pokemonSelect, let stats = pokemonSelect?.stats as! [Float]? {
-        dataPokemon(name: pokemon.pokemonName, tipo: pokemon.tipoPokemon, stats: stats, codigoPokemon: pokemon.pokemonID)
-        }
-    }
-    //MARK: - Stats
-    func calculatestats (_ stats: [Float])  {
-        for stat in 1...stats.count {
-            statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
-        }
-    }
-    func updateStats(stats: [Float]) {
-        DispatchQueue.main.async {
-            self.calculatestats(stats)
-        }
-    }
-    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
-        let functionsPokemonSelect = FunctionsPokemonSelect(codigoPokemon, [self.pokemonSelect])
-        titlePokemon.text = name
-        if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
-            bigImage.image = UIImage(named: codigoImagenPokemon)
-            
-            if let valueStats = stats {
-                updateStats(stats: valueStats)
-            }
-        }
     }
 }
