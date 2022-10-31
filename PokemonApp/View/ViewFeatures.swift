@@ -29,7 +29,6 @@ class ViewFeatures: UIViewController {
         closeButton.backgroundColor = .white
         view.alpha = 1
         stackView.layer.borderColor = .init(genericCMYKCyan: 60, magenta: 60, yellow: 60, black: 60, alpha: 1)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
