@@ -59,7 +59,7 @@ class StatsView: UIView {
         septupLabelProgressBar(stats)
     }
     
-        func assignmentValueProgressBar(_ stats: [Float]) {
+    func assignmentValueProgressBar(_ stats: [Float]) {
         progressStat1.progress = Float(stats[0])
         progressStat2.progress = Float(stats[1])
         progressStat3.progress = Float(stats[2])

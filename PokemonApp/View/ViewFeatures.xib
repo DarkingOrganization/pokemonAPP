@@ -16,7 +16,6 @@
                 <outlet property="element2" destination="c9R-cf-7Ja" id="hCy-sg-cfe"/>
                 <outlet property="namePokemonFeatures" destination="QA9-YC-DlA" id="7cW-wT-kgm"/>
                 <outlet property="smallImage" destination="Il1-ME-E6R" id="tKP-tz-fIk"/>
-                <outlet property="stackView" destination="VZZ-OR-zBg" id="gbp-xk-91v"/>
                 <outlet property="view" destination="iN0-l3-epB" id="RTP-ts-JWh"/>
             </connections>
         </placeholder>

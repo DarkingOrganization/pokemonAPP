@@ -29,7 +29,6 @@ class PokemonController: UIViewController {
         registerCells()
         gradieteBackground()
         loadPokemons()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,12 +150,11 @@ extension PokemonController: UITableViewDelegate {
         //      self.navigationController?.pushViewController(viewFeatures, animated: true)
     }
 }
-
 //MARK: - Searchbar delegate methods
 extension PokemonController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         pokemonesFiltrados = []
-        
+  
         if searchText == "" {
             pokemonesFiltrados = pokemones
         } else {

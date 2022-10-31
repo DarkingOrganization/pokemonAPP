@@ -2,7 +2,7 @@ import UIKit
 
 class StatsController: UIViewController {
     
-    var gradietModel = GradieteModel()
+    private var gradietModel = GradieteModel()
     
     @IBOutlet weak private var whiteBackground: UIImageView!
     @IBOutlet weak private var bigImage: UIImageView!
@@ -37,6 +37,7 @@ class StatsController: UIViewController {
         configWhiteImage()
         gradieteBackground()
         statsView.loaditems(stats: statsValues)
+        loadPokemon()
     }
     
     @IBAction private func statsButtonPress(_ sender: UIButton) {
@@ -56,7 +57,7 @@ class StatsController: UIViewController {
         configMoveButton()
     }
     
-    func setupButtons() {
+    private func setupButtons() {
         statsButton.layer.cornerRadius = 15
         evolutionButton.layer.cornerRadius = 15
         movesButton.layer.cornerRadius = 15
@@ -77,7 +78,7 @@ class StatsController: UIViewController {
         whiteBackground.backgroundColor = .white
     }
     
-    func configStatsButton() {
+    private func configStatsButton() {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
@@ -87,7 +88,7 @@ class StatsController: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configEvolutionButton() {
+    private func configEvolutionButton() {
         evolutionButton.setTitleColor(.white, for: .normal)
         evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -96,7 +97,7 @@ class StatsController: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configMoveButton() {
+    private func configMoveButton() {
         movesButton.setTitleColor(.white, for: .normal)
         movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -104,7 +105,7 @@ class StatsController: UIViewController {
         statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
-    
+    //MARK: - CloseScreen
     @IBAction private func closePush(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
         //navigationController?.popViewController(animated: true)
@@ -116,7 +117,7 @@ class StatsController: UIViewController {
         self.view.layer.insertSublayer(gradient, at:0)
     }
     //MARK: - LoadPokemon
-    func loadPokemon() {
+    private func loadPokemon() {
         if let pokemon = pokemonSelect {
             for n in 1...statsValues.count {
                 self.statsValues[n - 1] = Float(pokemon.stats[n - 1])
@@ -126,19 +127,19 @@ class StatsController: UIViewController {
     }
     
     //MARK: - Protocol Stats
-    func calculatestats(_ stats: [Float]) {
+    private func calculatestats(_ stats: [Float]) {
         for stat in 1...stats.count {
             statsValues[stat - 1] = Float((stats[(stat - 1)]) / 100)
         }
     }
     
-    func updateStats(stats: [Float]) {
+    private func updateStats(stats: [Float]) {
         DispatchQueue.main.async {
             self.calculatestats(stats)
         }
     }
     
-    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+    private func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
         let functionsPokemonSelect = FunctionsPokemonSelect(pokemonSelect?.pokemonID, [self.pokemonSelect])
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)

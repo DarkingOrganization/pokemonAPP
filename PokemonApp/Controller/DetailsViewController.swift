@@ -10,7 +10,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var evolutionButton: UIButton!
     @IBOutlet private weak var movesButton: UIButton!
     
-    var gradietModel = GradieteModel()
+    private var gradietModel = GradieteModel()
     var pokemonSelect: PokemonModel? = nil
     var statsValues: [Float] = [0,1,2,3,4,5]
     var imagenPokemon: UIImage? = nil
@@ -59,12 +59,12 @@ class DetailsViewController: UIViewController {
     }
     
     private func setupTitlePokemon() {
-        titlePokemon.text = pokemonSelect?.pokemonName
+        titlePokemon.text = pokemonSelect?.pokemonName.capitalized
         titlePokemon.textColor = .white
         bigImage.image = imagenPokemon
     }
     
-    func configStatsButton() {
+    private func configStatsButton() {
         statsButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.setTitleColor(.white, for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
@@ -74,7 +74,7 @@ class DetailsViewController: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configEvolutionButton() {
+    private func configEvolutionButton() {
         evolutionButton.setTitleColor(.white, for: .normal)
         evolutionButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -83,7 +83,7 @@ class DetailsViewController: UIViewController {
         movesButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
     
-    func configMoveButton() {
+    private func configMoveButton() {
         movesButton.setTitleColor(.white, for: .normal)
         movesButton.backgroundColor = #colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1)
         statsButton.backgroundColor = .white
@@ -91,9 +91,8 @@ class DetailsViewController: UIViewController {
         statsButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
         evolutionButton.setTitleColor(#colorLiteral(red: 0.3951376379, green: 0.6996766925, blue: 0.8580685258, alpha: 1), for: .normal)
     }
-    
     //MARK: - Gradiete
-    func gradieteBackground() {
+    private func gradieteBackground() {
         let gradient = gradietModel.gradient
         gradient.frame = view.bounds
         self.view.layer.insertSublayer(gradient, at:0)
