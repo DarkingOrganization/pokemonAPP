@@ -3,7 +3,6 @@ class DetailsViewController: UIViewController {
     var gradietModel = GradieteModel()
     
     var pokemonSelect: PokemonModel? = nil
-    var functionsPokemonSelect = FunctionsPokemonSelect()
     private var statsValues: [Float] = [0,1,2,3,4,5]
     private var statsString: [String]? = ["1","2","3","4","5"]
     
@@ -118,6 +117,7 @@ class DetailsViewController: UIViewController {
         }
     }
     func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+        let functionsPokemonSelect = FunctionsPokemonSelect(codigoPokemon, [self.pokemonSelect])
         titlePokemon.text = name
         if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)

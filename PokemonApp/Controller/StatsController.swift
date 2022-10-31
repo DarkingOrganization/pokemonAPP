@@ -20,7 +20,7 @@ class StatsController: UIViewController {
     @IBOutlet weak private var statsView: StatsView!
     
     var pokemonSelect: PokemonModel? = nil
-    var functionsPokemonSelect = FunctionsPokemonSelect()
+  
     private var statsString: [String] = ["1", "2", "3", "4", "5"]
     private var statsValues: [Float] = [0,1,2,3,4,5]
     
@@ -131,7 +131,8 @@ class StatsController: UIViewController {
         }
     }
     
-    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {  
+    func dataPokemon(name: String, tipo: String, stats: [Float]?, codigoPokemon: String) {
+        let functionsPokemonSelect = FunctionsPokemonSelect(pokemonSelect?.pokemonID, [self.pokemonSelect])
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)
         namePokemon.text = name

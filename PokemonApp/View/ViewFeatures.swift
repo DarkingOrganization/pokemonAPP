@@ -19,7 +19,6 @@ class ViewFeatures: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var stackView: UIView!
     
-    var functionsPokemonSelect = FunctionsPokemonSelect()
     var pokemonSelect: PokemonModel? = nil
     
     override func viewDidLoad() {
@@ -28,7 +27,7 @@ class ViewFeatures: UIViewController {
         closeButton.backgroundColor = .white
         view.alpha = 1
         stackView.layer.borderColor = .init(genericCMYKCyan: 60, magenta: 60, yellow: 60, black: 60, alpha: 1)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +35,7 @@ class ViewFeatures: UIViewController {
         setupImagenPokemon()
         setupNamePokemon()
     }
-
+    
     func setupElement() {
         if let pokemon = pokemonSelect {
             element.image = UIImage(named: pokemon.tipoPokemon)
@@ -46,20 +45,21 @@ class ViewFeatures: UIViewController {
         }
     }
     func setupImagenPokemon() {
+        let functionsPokemonSelect = FunctionsPokemonSelect(codigoImagenPokemon.text, [pokemonSelect])
         if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(pokemonSelect!.pokemonID)!) {
-        self.codigoImagenPokemon.text = "#\(codigoImagenPokemon)"
-                bigImage.image = UIImage(named: codigoImagenPokemon)
-                smallImage.setImage(UIImage(named: codigoImagenPokemon), for: .normal)
-            }
+            self.codigoImagenPokemon.text = "#\(codigoImagenPokemon)"
+            bigImage.image = UIImage(named: codigoImagenPokemon)
+            smallImage.setImage(UIImage(named: codigoImagenPokemon), for: .normal)
+        }
     }
     func setupNamePokemon() {
         if let namePokemon = pokemonSelect?.pokemonName {
-        self.namePokemonFeatures.text = namePokemon
-    }
+            self.namePokemonFeatures.text = namePokemon
+        }
     }
     @IBAction func closeButton(_ sender: Any) {
-    // navigationController?.popViewController(animated: true)
-       dismiss(animated: true, completion: nil)
+        // navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }
 
