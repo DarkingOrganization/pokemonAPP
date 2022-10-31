@@ -4,6 +4,8 @@ struct FunctionsPokemonSelect {
     
     var codigoImagenPokemon:String?
     var pokemonModel: [PokemonModel?]
+    var imageClaseOne: UIImageView?
+    var imageClaseTwo: UIImageView?
     
     init(_ codigoImagenPokemon: String?,_ pokemonModel: [PokemonModel?]) {
         self.codigoImagenPokemon = codigoImagenPokemon
@@ -41,4 +43,12 @@ struct FunctionsPokemonSelect {
             }
         }
     }
+    func setupElementPokemon(_ indexPath: IndexPath) {
+        if let tipo1 = self.pokemonModel[indexPath.row]?.tipoPokemon{
+            self.imageClaseOne?.image = UIImage(named: tipo1)
+        }
+        if let tipo2 = self.pokemonModel[indexPath.row]?.tipoPokemon2 {
+            self.imageClaseTwo?.image = UIImage(named: tipo2)
+    }
+}
 }

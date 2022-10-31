@@ -15,12 +15,12 @@ class PokemonController: UIViewController {
     private var pokemonesFiltrados: [PokemonModel]? = []
     private var codigoImagenPokemon:String?
     private var elementoText: String?
-    private var activeButtonOne: Bool = false
     private var gradieteModel = GradieteModel()
     
     private var stats: [Float] = [0,1,2,3,4,5]
     private var gradient: CAGradientLayer?
     private let viewFeatures = ViewFeatures()
+    private var imagePokemonSelect: [FunctionsPokemonSelect]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,6 @@ class PokemonController: UIViewController {
         super.viewWillAppear(animated)
         tableBorderColor()
         setupIconsButtons()
-        activeButtonOne = false
     }
     //MARK: - Delegates
     private func setupDelegates() {
@@ -117,6 +116,7 @@ extension PokemonController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var functionsPokemonSelect = FunctionsPokemonSelect(codigoImagenPokemon, pokemonesFiltrados!)
+        self.imagePokemonSelect?.append(functionsPokemonSelect)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! PokemonCell
         cell.pokemonLabel?.text = pokemonesFiltrados?[indexPath.row].pokemonName.capitalized
@@ -125,6 +125,7 @@ extension PokemonController: UITableViewDataSource {
             
             functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
             functionsPokemonSelect.setupImagenPokemon(indexPath, cell)
+            functionsPokemonSelect.setupElementPokemon(indexPath)
         }
         return cell
     }
@@ -133,11 +134,10 @@ extension PokemonController: UITableViewDataSource {
 //MARK: - TableViewDelegate Methods
 extension PokemonController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        activeButtonOne = true
         
         if let pokemonFiltrado = pokemonesFiltrados?[indexPath.row] {
             self.viewFeatures.pokemonSelect = pokemonFiltrado
-            self.buttonOne.setImage(UIImage(named: pokemonFiltrado.pokemonID), for: .normal)
+            setupIconsButtons()
         }
         self.viewFeatures.modalPresentationStyle = .overCurrentContext
         self.present(viewFeatures, animated: true, completion: nil)
@@ -157,7 +157,6 @@ extension PokemonController: UISearchBarDelegate {
                 if pokemon.pokemonName.contains(searchText.lowercased()) {
                     pokemonesFiltrados?.append(pokemon)
                 }
-                activeButtonOne = false
             }
         }
         self.tableView.reloadData()

@@ -43,6 +43,7 @@ class StatsController: UIViewController {
         configStatsButton()
         detailsViewController.pokemonSelect = self.pokemonSelect
         detailsViewController.statsValues = statsValues
+        detailsViewController.imagenPokemon = bigImage.image
         detailsViewController.modalPresentationStyle = .overCurrentContext
         present(detailsViewController, animated: true, completion: nil)
     }
@@ -141,7 +142,7 @@ class StatsController: UIViewController {
         let functionsPokemonSelect = FunctionsPokemonSelect(pokemonSelect?.pokemonID, [self.pokemonSelect])
         elementLabel.text = tipo
         elementIcon.image = UIImage(named: tipo)
-        namePokemon.text = name
+        namePokemon.text = name.capitalized
         if let codigoImagenPokemon = functionsPokemonSelect.renameImagenAssets(imagen: Int(codigoPokemon) ?? 001) {
             bigImage.image = UIImage(named: codigoImagenPokemon)
             

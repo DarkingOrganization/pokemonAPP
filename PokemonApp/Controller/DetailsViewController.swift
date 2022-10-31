@@ -1,10 +1,6 @@
 import UIKit
 class DetailsViewController: UIViewController {
-    var gradietModel = GradieteModel()
-    
-    var pokemonSelect: PokemonModel? = nil
-    var statsValues: [Float] = [0,1,2,3,4,5]
-    
+
     @IBOutlet weak private var statsView: StatsView!
     @IBOutlet private weak var titlePokemon: UILabel!
     @IBOutlet private weak var whiteBackground: UIImageView!
@@ -14,6 +10,11 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var evolutionButton: UIButton!
     @IBOutlet private weak var movesButton: UIButton!
     
+    var gradietModel = GradieteModel()
+    var pokemonSelect: PokemonModel? = nil
+    var statsValues: [Float] = [0,1,2,3,4,5]
+    var imagenPokemon: UIImage? = nil
+
     @IBAction private func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         //navigationController?.popViewController(animated: true)
@@ -60,9 +61,7 @@ class DetailsViewController: UIViewController {
     private func setupTitlePokemon() {
         titlePokemon.text = pokemonSelect?.pokemonName
         titlePokemon.textColor = .white
-        if let imagePokemon = pokemonSelect?.pokemonID {
-            bigImage.image = UIImage(named: imagePokemon)
-        }
+        bigImage.image = imagenPokemon
     }
     
     func configStatsButton() {

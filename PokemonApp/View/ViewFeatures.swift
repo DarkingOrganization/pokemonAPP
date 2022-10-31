@@ -56,7 +56,7 @@ class ViewFeatures: UIViewController {
     }
     func setupNamePokemon() {
         if let namePokemon = pokemonSelect?.pokemonName {
-            self.namePokemonFeatures.text = namePokemon
+            self.namePokemonFeatures.text = namePokemon.capitalized
         }
     }
     @IBAction func closeButton(_ sender: Any) {
