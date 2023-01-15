@@ -1,4 +1,5 @@
 import UIKit
+import ApiPodPokedex
 
 class PokemonController: UIViewController {
     
@@ -93,7 +94,7 @@ extension PokemonController: PokemonManagerDelegate {
     
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
-            let pokemoncito: [PokemonModel] = [PokemonModel(pokemonName: pokemon.pokemonName, imageFront: pokemon.imageFront, pokemonID: pokemon.pokemonID, tipoPokemon: pokemon.tipoPokemon, abilityPokemon: pokemon.abilityPokemon, tipoPokemon2: pokemon.tipoPokemon2, stats: pokemon.stats)]
+            let pokemoncito: [PokemonModel] = [PokemonModel(pokemon.pokemonName, pokemon.imageFront, pokemon.pokemonID, pokemon.tipoPokemon, pokemon.abilityPokemon, pokemon.tipoPokemon2, pokemon.stats)]
             self.pokemones?.append(contentsOf: pokemoncito)
             self.pokemonesFiltrados = self.pokemones
             self.tableView.reloadData()

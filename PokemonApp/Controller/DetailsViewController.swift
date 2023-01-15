@@ -1,4 +1,5 @@
 import UIKit
+import ApiPodPokedex
 class DetailsViewController: UIViewController {
 
     @IBOutlet weak private var statsView: StatsView!

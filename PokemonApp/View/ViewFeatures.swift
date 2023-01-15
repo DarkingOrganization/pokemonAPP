@@ -1,4 +1,5 @@
 import UIKit
+import ApiPodPokedex
 
 class ViewFeatures: UIViewController {
     
@@ -26,7 +27,7 @@ class ViewFeatures: UIViewController {
         setupNamePokemon()
     }
     
-    private func setupElement() {
+    func setupElement() {
         if let pokemon = pokemonSelect {
             element.image = UIImage(named: pokemon.tipoPokemon)
             if let elemento = UIImage(named: pokemon.tipoPokemon2!) {

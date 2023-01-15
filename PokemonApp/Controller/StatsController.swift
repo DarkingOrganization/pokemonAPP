@@ -1,4 +1,5 @@
 import UIKit
+import ApiPodPokedex
 
 class StatsController: UIViewController {
     
