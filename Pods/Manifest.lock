@@ -1,0 +1,22 @@
+PODS:
+  - PodPokedex (0.1.0)
+
+DEPENDENCIES:
+  - PodPokedex (from `https://github.com/Darking75/PodPokedex.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  PodPokedex:
+    :branch: master
+    :git: https://github.com/Darking75/PodPokedex.git
+
+CHECKOUT OPTIONS:
+  PodPokedex:
+    :commit: 8578d69eb1d266a0e76f1cbc1374e43f1b0d1630
+    :git: https://github.com/Darking75/PodPokedex.git
+
+SPEC CHECKSUMS:
+  PodPokedex: 78ad4b3c5199d161efd38798c7250f100746509b
+
+PODFILE CHECKSUM: 953a56e2c407b9c36e0b52b9b8d286b612a4e048
+
+COCOAPODS: 1.10.0
